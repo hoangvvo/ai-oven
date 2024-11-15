@@ -14,6 +14,8 @@
     "@headlessui/react": "^2.2.0",
     "@heroicons/react": "^2.1.5",
     "@icons-pack/react-simple-icons": "^10.1.0",
+    "@paypal/paypal-server-sdk": "^0.6.0",
+    "@paypal/react-paypal-js": "^8.7.0",
     "clsx": "^2.1.1",
     "cva": "^1.0.0-beta.1",
     "dotenv": "^16.4.5",

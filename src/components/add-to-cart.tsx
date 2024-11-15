@@ -9,7 +9,7 @@ import { Button } from "./ui/button";
 export function AddToCart({ product }: { product: Product }) {
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const { cart, dispatch } = useCart();
+  const { dispatch } = useCart();
 
   const addToCart = () => {
     const quantity = inputRef.current?.valueAsNumber;

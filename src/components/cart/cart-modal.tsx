@@ -8,8 +8,10 @@ import {
 } from "@headlessui/react";
 import { ShoppingCartIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { Fragment, useEffect, useRef, useState } from "react";
-import { Button } from "../ui/button";
+import { Button, buttonVariants } from "../ui/button";
 import { useCart } from "./cart-context";
 import { CartItem } from "./types";
 
@@ -80,11 +82,18 @@ function CartItemCard({ item }: { item: CartItem }) {
 }
 
 export function CartModal() {
-  const { cart, totalQuantities, totalPrice, dispatch } = useCart();
+  const { cart, totalQuantities, totalPrice } = useCart();
 
   const [isOpen, setIsOpen] = useState(false);
   const openCart = () => setIsOpen(true);
   const closeCart = () => setIsOpen(false);
+
+  const router = useRouter();
+
+  const gotoCheckout = () => {
+    closeCart();
+    router.push("/checkout");
+  };
 
   const quantityRef = useRef(totalQuantities);
 
@@ -152,9 +161,13 @@ export function CartModal() {
                   <p className="text-lg font-semibold">
                     Total: ${totalPrice.toFixed(2)}
                   </p>
-                  <Button onClick={closeCart} variant="primary">
+                  <Link
+                    href="/checkout"
+                    onClick={gotoCheckout}
+                    className={buttonVariants()}
+                  >
                     Checkout
-                  </Button>
+                  </Link>
                 </div>
               </div>
             </DialogPanel>

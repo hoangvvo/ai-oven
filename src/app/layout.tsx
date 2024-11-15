@@ -20,7 +20,7 @@ export default async function RootLayout({
     <html lang="en">
       <body className={`${font.className}`}>
         <SessionProvider session={session}>
-          <CartProvider>{children}</CartProvider>
+          <CartProvider initialSession={session}>{children}</CartProvider>
         </SessionProvider>
         <Toaster />
       </body>

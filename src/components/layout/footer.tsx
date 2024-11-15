@@ -121,7 +121,7 @@ export default function Footer() {
           <h4 className="text-xl font-semibold mb-4">Have a question?</h4>
           <p className="mb-4">We&apos;re always here to lend a helping hand.</p>
           <p className="mb-8">
-            Consumer Care Team hours are <br /> Monday-Friday, 9am - 5pm ICT
+            We&apos;re open from <br /> Monday-Friday, 9am - 5pm ICT
           </p>
           <h5 className="font-semibold mb-2">CONTACT US</h5>
           <div className="flex space-x-4">

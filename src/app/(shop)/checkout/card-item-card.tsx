@@ -1,4 +1,4 @@
-import { CartItem } from "@/components/cart";
+import { CartItem } from "@/types";
 import Image from "next/image";
 
 export function CartItemCard({ item }: { item: CartItem }) {

@@ -1,8 +1,9 @@
 "use client";
 
-import { CartItem, useCart } from "@/components/cart";
+import { useCart } from "@/components/cart";
 import { buttonVariants } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { CartItem } from "@/types";
 import {
   PayPalButtons,
   PayPalScriptProvider,

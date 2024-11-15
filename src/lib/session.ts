@@ -32,9 +32,12 @@ export async function setSession(session: Partial<AppSession>): Promise<void> {
 
 const defaultSession: AppSession = {
   user: null,
+  cart: {
+    items: [],
+  },
 };
 
-export const getSession = cache(async () => {
+export const getSession = cache(async (): Promise<AppSession> => {
   const cookieStore = await cookies();
 
   const token = cookieStore.get("session");
@@ -46,10 +49,11 @@ export const getSession = cache(async () => {
   try {
     const jwtPayload = await jwt.verify(token.value, jwtSecret);
     if (typeof jwtPayload === "object" && jwtPayload !== null) {
-      const { user } = jwtPayload as AppSession;
+      const { user, cart } = jwtPayload as AppSession;
 
       return {
         user,
+        cart,
       };
     }
     return defaultSession;

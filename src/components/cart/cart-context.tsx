@@ -1,8 +1,7 @@
 "use client";
 
-import { Product } from "@/types";
+import { AppSession, Cart, Product } from "@/types";
 import { createContext, ReactNode, useContext, useReducer } from "react";
-import { Cart } from "./types";
 
 type CartContextType = {
   cart: Cart;
@@ -71,8 +70,14 @@ const cartReducer = (state: Cart, action: CartAction) => {
   }
 };
 
-export function CartProvider({ children }: { children: ReactNode }) {
-  const [cart, dispatch] = useReducer(cartReducer, { items: [] });
+export function CartProvider({
+  children,
+  initialSession,
+}: {
+  children: ReactNode;
+  initialSession: AppSession;
+}) {
+  const [cart, dispatch] = useReducer(cartReducer, initialSession.cart);
 
   const totalQuantities = cart.items.reduce(
     (total, item) => total + item.quantity,

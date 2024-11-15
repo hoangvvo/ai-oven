@@ -1,5 +1,7 @@
 "use client";
 
+import { syncCart } from "@/lib/cart";
+import { CartItem } from "@/types";
 import {
   Dialog,
   DialogPanel,
@@ -13,7 +15,6 @@ import { useRouter } from "next/navigation";
 import { Fragment, useEffect, useRef, useState } from "react";
 import { Button, buttonVariants } from "../ui/button";
 import { useCart } from "./cart-context";
-import { CartItem } from "./types";
 
 function CartItemCard({ item }: { item: CartItem }) {
   const { dispatch } = useCart();
@@ -109,6 +110,13 @@ export function CartModal() {
       quantityRef.current = totalQuantities;
     }
   }, [isOpen, totalQuantities, quantityRef]);
+
+  useEffect(() => {
+    const doSyncCart = async () => {
+      syncCart(cart);
+    };
+    doSyncCart();
+  }, [cart]);
 
   return (
     <>

@@ -33,4 +33,14 @@ export interface ApiError {
 
 export interface AppSession {
   user: User | null;
+  cart: Cart;
 }
+
+export type CartItem = {
+  product: Product;
+  quantity: number;
+};
+
+export type Cart = {
+  items: CartItem[];
+};

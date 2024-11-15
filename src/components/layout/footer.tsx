@@ -7,31 +7,25 @@ import {
   SiVisa,
   SiX,
 } from "@icons-pack/react-simple-icons";
+import Link from "next/link";
 import { Logo } from "../logo";
 
 const navLinks = [
   {
     title: "CAREERS",
-    href: "#",
+    href: "/careers",
   },
   {
     title: "ABOUT",
     href: "/about",
   },
-];
-
-const helpLinks = [
-  {
-    title: "HELP CENTER",
-    href: "#",
-  },
   {
     title: "REFUNDS & RETURNS",
-    href: "#",
+    href: "/refunds",
   },
   {
     title: "PROMOTION TERMS",
-    href: "#",
+    href: "/promotion-terms",
   },
 ];
 
@@ -94,29 +88,31 @@ export default function Footer() {
           <div className="mb-6 md:mb-0">
             <Logo />
           </div>
-
           <div className="flex flex-col gap-4 md:flex-row md:gap-10">
             <div className="flex flex-col gap-4">
               {navLinks.map((link) => (
-                <a
+                <Link
                   key={link.title}
                   href={link.href}
                   className="text-sm hover:underline"
                 >
                   {link.title}
-                </a>
+                </Link>
               ))}
             </div>
             <div className="flex flex-col gap-4">
-              {helpLinks.map((link) => (
-                <a
-                  key={link.title}
-                  href={link.href}
-                  className="text-sm hover:underline"
-                >
-                  {link.title}
-                </a>
-              ))}
+              <h4 className="text-xl font-semibold">Visit Us</h4>
+              <div className="flex flex-col gap-4 leading-none text-gray-700">
+                <p>268 Ly Thuong Kiet, Ward 14, District 10, HCMC</p>
+              </div>
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d281.90780425095215!2d106.65756782772264!3d10.7726027309556!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752ec17709146b%3A0x54a1658a0639d341!2zxJDhuqFpIEjhu41jIELDoWNoIEtob2EgLSAyNjggTMO9IFRoxrDhu51uZyBLaeG7h3Q!5e0!3m2!1sen!2s!4v1731693851646!5m2!1sen!2s"
+                width="400"
+                height="300"
+                allowFullScreen={false}
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              ></iframe>
             </div>
           </div>
         </div>
@@ -144,15 +140,15 @@ export default function Footer() {
       </div>
 
       <div className="container mt-8 text-sm flex flex-col md:flex-row md:justify-between">
-        <a href="#" className="hover:underline">
+        <Link href="/policy" className="hover:underline">
           PRIVACY POLICY
-        </a>
-        <a href="#" className="hover:underline">
+        </Link>
+        <Link href="/terms" className="hover:underline">
           TERMS OF SERVICE
-        </a>
-        <a href="#" className="hover:underline">
+        </Link>
+        <Link href="/accessibility-statement" className="hover:underline">
           ACCESSIBILITY STATEMENT
-        </a>
+        </Link>
       </div>
 
       <div className="container mt-4 flex justify-end items-center gap-1">

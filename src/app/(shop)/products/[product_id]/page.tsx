@@ -30,7 +30,6 @@ export default async function ProductPage({
           />
         </div>
 
-        {/* Product Details */}
         <div className="md:flex-1">
           <h1 className="text-3xl md:text-5xl font-medium mb-4">
             {product.name}

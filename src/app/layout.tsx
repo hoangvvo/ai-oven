@@ -1,3 +1,4 @@
+import { CartProvider } from "@/components/cart/cart-context";
 import { Playfair_Display } from "next/font/google";
 import { Toaster } from "sonner";
 import "./globals.css";
@@ -14,9 +15,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${font.className}`}>
-        {children}
+        <CartProvider>{children}</CartProvider>
         <Toaster />
-        </body>
+      </body>
     </html>
   );
 }

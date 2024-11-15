@@ -1,6 +1,6 @@
-import { ShoppingCartIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import { Suspense } from "react";
+import { CartModal } from "../cart";
 import { Logo } from "../logo";
 import { Button } from "../ui/button";
 import Search, { SearchSkeleton } from "./search";
@@ -48,10 +48,7 @@ export function Navbar() {
       </div>
       <div className="flex gap-2 justify-end md:w-1/3">
         <Button>Sign in</Button>
-        <Button variant="secondary">
-          <ShoppingCartIcon className="w-4 h-4" />
-          My cart
-        </Button>
+        <CartModal />
       </div>
     </nav>
   );

@@ -11,6 +11,7 @@
     "migrate": "drizzle-kit push"
   },
   "dependencies": {
+    "@headlessui/react": "^2.2.0",
     "@heroicons/react": "^2.1.5",
     "@icons-pack/react-simple-icons": "^10.1.0",
     "clsx": "^2.1.1",

@@ -1,24 +1,23 @@
-"use client"
+"use client";
 
 import { Product } from "@/types";
 import { useRef } from "react";
 import { toast } from "sonner";
+import { useCart } from "./cart";
 import { Button } from "./ui/button";
 
-export function AddToCart({
-  product
-}: {
-  product: Product
-}) {
-
+export function AddToCart({ product }: { product: Product }) {
   const inputRef = useRef<HTMLInputElement>(null);
+
+  const { cart, dispatch } = useCart();
 
   const addToCart = () => {
     const quantity = inputRef.current?.valueAsNumber;
     if (!quantity) {
       toast.error("Please enter a quantity");
     }
-  }
+    dispatch({ type: "add", product, quantity: quantity || 1 });
+  };
 
   const onBlur = () => {
     if (!inputRef.current) return;
@@ -27,7 +26,7 @@ export function AddToCart({
     if (!Number.isInteger(quantity)) {
       inputRef.current.value = "1";
     }
-  }
+  };
 
   return (
     <div className="flex items-center gap-2">
@@ -42,5 +41,5 @@ export function AddToCart({
       />
       <Button onClick={addToCart}>Add to Cart</Button>
     </div>
-  )
+  );
 }

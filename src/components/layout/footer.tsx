@@ -15,16 +15,8 @@ const navLinks = [
     href: "#",
   },
   {
-    title: "GIFT CARDS",
-    href: "#",
-  },
-  {
-    title: "GIVING BACK",
-    href: "#",
-  },
-  {
-    title: "DO NOT SELL MY INFORMATION",
-    href: "#",
+    title: "ABOUT",
+    href: "/about",
   },
 ];
 

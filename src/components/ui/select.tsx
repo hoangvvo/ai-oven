@@ -34,7 +34,11 @@ export function Select({ options, value, onSelect }: SelectProps) {
         onClick={() => setIsOpen(!isOpen)}
       >
         {selectedLabel}
-        {isOpen ? <ChevronUpIcon className="w-6 h-6" /> : <ChevronDownIcon className="w-6 h-6" />}
+        {isOpen ? (
+          <ChevronUpIcon className="w-6 h-6" />
+        ) : (
+          <ChevronDownIcon className="w-6 h-6" />
+        )}
       </button>
 
       {/* Dropdown Options */}
@@ -47,7 +51,9 @@ export function Select({ options, value, onSelect }: SelectProps) {
               onClick={() => handleOptionClick(option)}
             >
               {option.href ? (
-                <Link href={option.href} className="block px-4 py-2">{option.label}</Link>
+                <Link href={option.href} className="block px-4 py-2">
+                  {option.label}
+                </Link>
               ) : (
                 <div className="px-4 py-2">{option.label}</div>
               )}

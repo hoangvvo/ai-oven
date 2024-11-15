@@ -21,7 +21,7 @@ const navLinks = [
   },
   {
     title: "REFUNDS & RETURNS",
-    href: "/refunds",
+    href: "/refunds-and-returns-terms",
   },
   {
     title: "PROMOTION TERMS",

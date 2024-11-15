@@ -3,11 +3,13 @@ import { cva, VariantProps } from "cva";
 import { forwardRef } from "react";
 
 export const buttonVariants = cva({
-  base: "rounded flex items-center gap-2 transition-colors",
+  base: "rounded flex items-center gap-2 transition-colors text-center",
   variants: {
     variant: {
-      primary: "bg-black text-white hover:bg-gray-700",
-      secondary: "bg-white text-black border border-black hover:bg-gray-100",
+      primary:
+        "bg-black text-white hover:bg-gray-700 disabled:bg-gray-300 disabled:text-gray-500",
+      secondary:
+        "bg-white text-black border border-black hover:bg-gray-100 disabled:bg-gray-300 disabled:text-gray-500",
     },
     size: {
       sm: "text-sm px-2 py-1",

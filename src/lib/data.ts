@@ -2,40 +2,41 @@ import { db } from "@/db";
 import { collectionsTable, productCollectionsTable } from "@/db/schema";
 import { Collection, Product } from "@/types";
 import { eq, inArray } from "drizzle-orm";
+import { cache } from "react";
 
-export async function getCollections(): Promise<Collection[]> {
+export const getCollections = cache(async () => {
   return db.query.collectionsTable.findMany();
-}
+});
 
-export async function getCollectionsByIds(
-  ids: string[],
-): Promise<Collection[]> {
-  return db.query.collectionsTable.findMany({
-    where: inArray(collectionsTable.id, ids),
-  });
-}
+export const getCollectionsByIds = cache(
+  async (ids: string[]): Promise<Collection[]> => {
+    return db.query.collectionsTable.findMany({
+      where: inArray(collectionsTable.id, ids),
+    });
+  },
+);
 
-export async function getProducts(): Promise<Product[]> {
+export const getProducts = cache(async (): Promise<Product[]> => {
   return db.query.productsTable.findMany();
-}
+});
 
-export async function getProduct(id: string): Promise<Product | null> {
+export const getProduct = cache(async (id: string): Promise<Product | null> => {
   return db.query.productsTable
     .findFirst({
       where: eq(collectionsTable.id, id),
     })
     .then((product) => product ?? null);
-}
+});
 
-export async function getProductsByCollectionId(
-  collectionId: string,
-): Promise<Product[]> {
-  const productCollections = await db.query.productCollectionsTable.findMany({
-    where: eq(productCollectionsTable.collection_id, collectionId),
-    with: {
-      product: true,
-    },
-  });
+export const getProductsByCollectionId = cache(
+  async (id: string): Promise<Product[]> => {
+    const productCollections = await db.query.productCollectionsTable.findMany({
+      where: eq(productCollectionsTable.collection_id, id),
+      with: {
+        product: true,
+      },
+    });
 
-  return productCollections.map((pc) => pc.product);
-}
+    return productCollections.map((pc) => pc.product);
+  },
+);

@@ -1,70 +1,12 @@
 import { buttonVariants } from "@/components/ui/button";
+import { getCollectionsByIds } from "@/lib/data";
 import { cn } from "@/lib/utils";
+import { Collection } from "@/types";
 import { ChevronRightIcon } from "@heroicons/react/24/outline";
 import { StarIcon } from "@heroicons/react/24/solid";
 import Image from "next/image";
 import Link from "next/link";
 import { FC } from "react";
-
-interface Collection {
-  title: string;
-  description: string;
-  image: string;
-  collection: string;
-}
-
-const productCollections: Collection[] = [
-  {
-    title: "Artisan Bread",
-    description:
-      "Discover our curated selection of artisan bread, each a masterpiece of flavor and craftsmanship.",
-    image: "https://images.unsplash.com/photo-1588870410947-895d92561635",
-    collection: "breads",
-  },
-  {
-    title: "Exquisite Pastries",
-    description:
-      "Discover our curated selection of exquisite pastries, each a masterpiece of flavor and craftsmanship.",
-    image: "https://plus.unsplash.com/premium_photo-1663133750605-97df74d9d3a2",
-    collection: "pastries",
-  },
-  {
-    title: "Gourmet Cakes",
-    description:
-      "Discover our curated selection of gourmet cakes, each a masterpiece of flavor and craftsmanship.",
-    image: "https://plus.unsplash.com/premium_photo-1661431015513-68ea7322097a",
-    collection: "cakes",
-  },
-];
-
-const occasionCollections: Collection[] = [
-  {
-    title: "Weddings",
-    description: "Elegant cakes and delicate pastries for your special day",
-    image: "https://images.unsplash.com/photo-1559373098-e1caaccae791",
-    collection: "wedding",
-  },
-  {
-    title: "Birthdays",
-    description:
-      "Customized cakes and colorful treats to celebrate another year",
-    image: "https://plus.unsplash.com/premium_photo-1663839412026-51a44cfadfb8",
-    collection: "birthday",
-  },
-  {
-    title: "Corporate Events",
-    description:
-      "Sophisticated pastries and finger foods for professional gatherings",
-    image: "https://plus.unsplash.com/premium_photo-1723867267202-169dfe3b197a",
-    collection: "corporate",
-  },
-  {
-    title: "Holidays",
-    description: "Seasonal specialties to make your festivities even sweeter",
-    image: "https://images.unsplash.com/photo-1608906457945-eae8eecf31a5",
-    collection: "holiday",
-  },
-];
 
 const testimonialData = [
   {
@@ -123,19 +65,19 @@ const CollectionSection: React.FC<CollectionSectionProps> = ({
       <div className={`grid grid-cols-1 gap-4 mt-8 ${getGridClass(columns)}`}>
         {collections.map((collection) => (
           <Link
-            key={collection.title}
+            key={collection.id}
             className="flex flex-col items-center"
-            href={`/products?collection=${collection.collection}`}
+            href={`/products?collection=${collection.id}`}
           >
             <Image
               className="object-cover w-40 h-40 rounded"
               width={160}
               height={160}
-              src={collection.image}
-              alt={collection.title}
+              src={collection.image_url}
+              alt={collection.name}
             />
             <div className="p-4 text-center">
-              <h3 className="text-2xl mb-1">{collection.title}</h3>
+              <h3 className="text-2xl mb-1">{collection.name}</h3>
               <p className="text-gray-500 max-w-md">{collection.description}</p>
             </div>
           </Link>
@@ -200,7 +142,21 @@ const TestimonialSection: FC = () => (
   </div>
 );
 
-const IndexPage: React.FC = () => {
+async function IndexPage() {
+  const [productCollections, occasionCollections] = await Promise.all([
+    getCollectionsByIds([
+      "artisan-bread",
+      "exquisite-pastries",
+      "gourmet-cakes",
+    ]),
+    getCollectionsByIds([
+      "weddings",
+      "birthdays",
+      "corporate-events",
+      "holidays",
+    ]),
+  ]);
+
   return (
     <>
       <CollectionSection
@@ -220,6 +176,6 @@ const IndexPage: React.FC = () => {
       <TestimonialSection />
     </>
   );
-};
+}
 
 export default IndexPage;

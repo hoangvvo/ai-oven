@@ -1,6 +1,6 @@
 "use client";
 
-import { ChevronDownIcon } from "@heroicons/react/24/outline";
+import { ChevronDownIcon, ChevronUpIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import { useState } from "react";
 
@@ -26,8 +26,6 @@ export function Select({ options, value, onSelect }: SelectProps) {
 
   const selectedLabel = options.find((option) => option.value === value)?.label;
 
-  console.log({ options, value, selectedLabel });
-
   return (
     <div className="relative">
       {/* Toggle Button */}
@@ -36,7 +34,7 @@ export function Select({ options, value, onSelect }: SelectProps) {
         onClick={() => setIsOpen(!isOpen)}
       >
         {selectedLabel}
-        <ChevronDownIcon className="w-6 h-6" />
+        {isOpen ? <ChevronUpIcon className="w-6 h-6" /> : <ChevronDownIcon className="w-6 h-6" />}
       </button>
 
       {/* Dropdown Options */}
@@ -45,13 +43,13 @@ export function Select({ options, value, onSelect }: SelectProps) {
           {options.map((option) => (
             <li
               key={option.value}
-              className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
+              className=" hover:bg-gray-100 cursor-pointer"
               onClick={() => handleOptionClick(option)}
             >
               {option.href ? (
-                <Link href={option.href}>{option.label}</Link>
+                <Link href={option.href} className="block px-4 py-2">{option.label}</Link>
               ) : (
-                option.label
+                <div className="px-4 py-2">{option.label}</div>
               )}
             </li>
           ))}

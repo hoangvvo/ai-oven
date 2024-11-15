@@ -1,4 +1,5 @@
 import { Playfair_Display } from "next/font/google";
+import { Toaster } from "sonner";
 import "./globals.css";
 
 const font = Playfair_Display({
@@ -12,7 +13,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${font.className}`}>{children}</body>
+      <body className={`${font.className}`}>
+        {children}
+        <Toaster />
+        </body>
     </html>
   );
 }

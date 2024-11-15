@@ -19,6 +19,12 @@ export async function getProducts(): Promise<Product[]> {
   return db.query.productsTable.findMany();
 }
 
+export async function getProduct(id: string): Promise<Product | null> {
+  return db.query.productsTable.findFirst({
+    where: eq(collectionsTable.id, id),
+  }).then((product) => product ?? null);
+}
+
 export async function getProductsByCollectionId(
   collectionId: string,
 ): Promise<Product[]> {

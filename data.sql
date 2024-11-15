@@ -42,7 +42,6 @@ INSERT INTO products (id, name, description, ingredients, price, discount_percen
 ('focaccia', 'Focaccia', 'Italian focaccia bread with rosemary and sea salt.', 'Flour, Olive Oil, Salt, Rosemary', 4.99, 0.00, ARRAY['https://images.unsplash.com/photo-1711805064484-a77096f599a6'], 30, false),
 ('easter-cookies', 'Easter Cookies', 'Colorful cookies decorated for the Easter holiday.', 'Flour, Sugar, Butter, Food Coloring', 1.99, 0.00, ARRAY['https://plus.unsplash.com/premium_photo-1710438379123-2d27dfd6a1b9'], 50, true);
 
--- Inserting data into the product_collections table
 INSERT INTO product_collections (product_id, collection_id) VALUES
 ('sourdough-loaf', 'artisan-bread'),
 ('baguette', 'artisan-bread'),

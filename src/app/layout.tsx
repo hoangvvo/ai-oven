@@ -1,4 +1,6 @@
 import { CartProvider } from "@/components/cart/cart-context";
+import Footer from "@/components/layout/footer";
+import { Navbar } from "@/components/layout/navbar";
 import { SessionProvider } from "@/components/session";
 import { getSession } from "@/lib/session";
 import { Playfair_Display } from "next/font/google";
@@ -20,7 +22,11 @@ export default async function RootLayout({
     <html lang="en">
       <body className={`${font.className}`}>
         <SessionProvider session={session}>
-          <CartProvider initialSession={session}>{children}</CartProvider>
+          <CartProvider initialSession={session}>
+            <Navbar />
+            {children}
+            <Footer />
+          </CartProvider>
         </SessionProvider>
         <Toaster />
       </body>

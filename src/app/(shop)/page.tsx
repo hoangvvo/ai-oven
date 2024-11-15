@@ -12,7 +12,7 @@ const testimonialData = [
   {
     name: "Sophie L.",
     quote:
-      "The croissants at Élégant are simply divine. Perfectly flaky and buttery!",
+      "The croissants at AI Oven are simply divine. Perfectly flaky and buttery!",
   },
   {
     name: "Thomas M.",

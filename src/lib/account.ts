@@ -1,3 +1,5 @@
+"use server";
+
 import { db } from "@/db";
 import { UserEntity, usersTable } from "@/db/schema";
 import {
@@ -14,12 +16,13 @@ import { setSession } from "./session";
 function userEntityToUser(userEntity: UserEntity): User {
   return {
     id: userEntity.id,
-    name: userEntity.name,
+    first_name: userEntity.first_name,
+    last_name: userEntity.last_name,
     email: userEntity.email,
     phone_number: userEntity.phone_number,
     address: userEntity.address,
     city: userEntity.city,
-    country: userEntity.country,
+    country_code: userEntity.country_code,
   };
 }
 

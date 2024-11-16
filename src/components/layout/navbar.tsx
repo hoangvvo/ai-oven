@@ -51,7 +51,7 @@ export async function Navbar() {
         </Suspense>
       </div>
       <div className="flex gap-2 justify-end md:w-1/3">
-        {session ? (
+        {session.user ? (
           <Link
             href="/account"
             className={buttonVariants()}

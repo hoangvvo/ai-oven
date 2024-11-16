@@ -6,17 +6,25 @@ export type Collection = CollectionEntity;
 
 export type User = Pick<
   UserEntity,
-  "id" | "name" | "email" | "phone_number" | "address" | "city" | "country"
+  | "id"
+  | "first_name"
+  | "last_name"
+  | "email"
+  | "phone_number"
+  | "address"
+  | "city"
+  | "country_code"
 >;
 
 export interface CreateUserAccountInput {
-  name: string;
+  first_name: string;
+  last_name: string;
   email: string;
   password: string;
   phone_number?: string;
   address?: string;
   city?: string;
-  country?: string;
+  country_code?: string;
 }
 
 export interface CreateUserAccountResponse {
@@ -43,4 +51,24 @@ export type CartItem = {
 
 export type Cart = {
   items: CartItem[];
+};
+
+export type CreateOrderRequest = {
+  guest_email?: string;
+  shipping_address: string;
+  shipping_city: string;
+  shipping_country_code: string;
+  shipping_first_name: string;
+  shipping_last_name: string;
+  shipping_phone_number: string;
+};
+
+export type CreateOrderResponse = {
+  jsonResponse: any;
+  httpStatusCode: number;
+};
+
+export type CaptureOrderResponse = {
+  jsonResponse: any;
+  httpStatusCode: number;
 };

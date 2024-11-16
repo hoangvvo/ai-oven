@@ -1,18 +1,20 @@
 "use server";
 
 import { createUserAccount } from "@/lib/account";
+import { countryCodeSchema, phoneNumberSchema } from "@/lib/zod";
 import { redirect } from "next/navigation";
 import { z, ZodError } from "zod";
 import { zfd } from "zod-form-data";
 
 const schema = zfd.formData({
   email: z.string().email().trim().toLowerCase(),
-  name: z.string(),
+  first_name: z.string().min(2),
+  last_name: z.string().min(2),
   password: z.string().min(6),
   address: z.string().trim().optional(),
   city: z.string().trim().optional(),
-  country: z.string().trim().optional(),
-  phone_number: z.string().trim().optional(),
+  country_code: countryCodeSchema.optional(),
+  phone_number: phoneNumberSchema.optional(),
 });
 
 export async function registerAction(
@@ -29,7 +31,8 @@ export async function registerAction(
 
     const values: RegisterActionState["values"] = {
       email: "",
-      name: "",
+      first_name: "",
+      last_name: "",
       password: "",
     };
 

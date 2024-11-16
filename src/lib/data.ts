@@ -1,3 +1,5 @@
+"use server";
+
 import { db } from "@/db";
 import { collectionsTable, productCollectionsTable } from "@/db/schema";
 import { Collection, Product } from "@/types";

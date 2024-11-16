@@ -1,14 +1,17 @@
 "use client";
 
+import { CountrySelect } from "@/components/country-select";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { DEFAULT_COUNTRY_CODE } from "@/lib/constants";
 import { useActionState } from "react";
 import { registerAction, RegisterActionState } from "./actions";
 
 const initialState: RegisterActionState = {
   values: {
     email: "",
-    name: "",
+    first_name: "",
+    last_name: "",
     password: "",
   },
 };
@@ -24,14 +27,26 @@ export function RegisterForm() {
       <div className="flex flex-col gap-2">
         <h2 className="text-lg font-medium">Your Account</h2>
         <div className="flex flex-col gap-1">
-          <Input
-            type="text"
-            placeholder="Name"
-            name="name"
-            defaultValue={state.values.name}
-            autoComplete="name"
-            required
-          />
+          <div className="flex items-center gap-1">
+            <Input
+              type="text"
+              placeholder="First Name"
+              name="first_name"
+              defaultValue={state.values.first_name}
+              autoComplete="given-name"
+              required
+              className="flex-1"
+            />
+            <Input
+              type="text"
+              placeholder="Last Name"
+              name="last_name"
+              defaultValue={state.values.last_name}
+              autoComplete="family-name"
+              required
+              className="flex-1"
+            />
+          </div>
           <Input
             type="email"
             placeholder="Email"
@@ -68,11 +83,9 @@ export function RegisterForm() {
             name="city"
             defaultValue={state.values.city}
           />
-          <Input
-            type="text"
-            placeholder="Country"
-            name="country"
-            defaultValue={state.values.country}
+          <CountrySelect
+            name="country_code"
+            defaultValue={state.values.country_code || DEFAULT_COUNTRY_CODE}
           />
           <Input
             type="tel"

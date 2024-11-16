@@ -15,13 +15,14 @@ export const userEnum = pgEnum("user_role", ["admin", "user"]);
 
 export const usersTable = pgTable("users", {
   id: integer().primaryKey().generatedAlwaysAsIdentity(),
-  name: varchar({ length: 255 }).notNull(),
+  first_name: varchar({ length: 255 }).notNull(),
+  last_name: varchar({ length: 255 }).notNull(),
   email: varchar({ length: 255 }).notNull().unique(),
   password_hash: varchar({ length: 255 }).notNull(),
   phone_number: varchar({ length: 50 }),
   address: text(),
   city: varchar({ length: 100 }),
-  country: varchar({ length: 50 }),
+  country_code: varchar({ length: 10 }),
   role: userEnum(),
   created_at: timestamp().notNull().defaultNow(),
 });
@@ -89,3 +90,67 @@ export const productCollectionRelations = relations(
 export type ProductCollectionEntity = InferSelectModel<
   typeof productCollectionsTable
 >;
+
+export const orderStatusEnum = pgEnum("order_status", [
+  "pending",
+  "processing",
+  "completed",
+  "cancelled",
+]);
+
+export const ordersTable = pgTable("orders", {
+  id: integer().primaryKey().generatedAlwaysAsIdentity(),
+  paypal_id: varchar({ length: 50 }),
+  user_id: integer().references(() => usersTable.id, {
+    onDelete: "cascade",
+  }),
+  guest_name: varchar({ length: 255 }),
+  guest_email: varchar({ length: 255 }),
+  status: orderStatusEnum().notNull().default("pending"),
+  total_price: decimal({ precision: 10, scale: 2 }).notNull(),
+  shipping_first_name: varchar({ length: 255 }).notNull(),
+  shipping_last_name: varchar({ length: 255 }).notNull(),
+  shipping_address: text().notNull(),
+  shipping_city: varchar({ length: 100 }).notNull(),
+  shipping_country_code: varchar({ length: 10 }).notNull(),
+  created_at: timestamp().notNull().defaultNow(),
+});
+
+export const orderRelations = relations(ordersTable, ({ many }) => ({
+  orderItems: many(orderItemsTable),
+}));
+
+export type OrderEntity = InferSelectModel<typeof ordersTable> & {
+  orderItems?: OrderItemEntity[];
+};
+
+export const orderItemsTable = pgTable("order_items", {
+  order_id: integer()
+    .references(() => ordersTable.id, {
+      onDelete: "cascade",
+    })
+    .notNull(),
+  product_id: varchar({ length: 50 })
+    .references(() => productsTable.id, {
+      onDelete: "cascade",
+    })
+    .notNull(),
+  quantity: integer().notNull(),
+  price: decimal({ precision: 10, scale: 2 }).notNull(),
+  subtotal: decimal({ precision: 10, scale: 2 }).notNull(),
+});
+
+export const orderItemRelations = relations(orderItemsTable, ({ one }) => ({
+  order: one(ordersTable, {
+    fields: [orderItemsTable.order_id],
+    references: [ordersTable.id],
+  }),
+  product: one(productsTable, {
+    fields: [orderItemsTable.product_id],
+    references: [productsTable.id],
+  }),
+}));
+
+export type OrderItemEntity = InferSelectModel<typeof orderItemsTable> & {
+  product?: ProductEntity;
+};

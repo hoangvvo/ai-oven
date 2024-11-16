@@ -1,5 +1,3 @@
-"use server";
-
 import { getSession } from "@/lib/session";
 import { Metadata } from "next";
 import Link from "next/link";

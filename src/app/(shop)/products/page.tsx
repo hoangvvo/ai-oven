@@ -8,23 +8,61 @@ import { Metadata } from "next";
 import Link from "next/link";
 import { CollectionList } from "./collection-list";
 
-async function ProductList({ collectionId }: { collectionId?: string }) {
-  const products = collectionId
+async function ProductList({
+  collectionId,
+  searchQuery,
+}: {
+  collectionId?: string;
+  searchQuery?: string;
+}) {
+  let products = collectionId
     ? await getProductsByCollectionId(collectionId)
     : await getProducts();
 
+  // yes, frontend source for demo purposes
+  // we will move this to the backend in the next step
+  if (searchQuery) {
+    products = products.filter(
+      (product) =>
+        product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        product.description?.toLowerCase().includes(searchQuery.toLowerCase()),
+    );
+  }
+
   return (
-    <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-      {products.map((product) => (
-        <Link key={product.id} href={`/products/${product.id}`}>
-          <ProductCard product={product} />
-        </Link>
-      ))}
+    <div>
+      {searchQuery && (
+        <div className="text-neutral-500 text-sm">
+          Showing results for &ldquo;{searchQuery}&rdquo;.{" "}
+          <Link
+            href={
+              "/products" + (collectionId ? `?collection=${collectionId}` : "")
+            }
+            className="underline"
+          >
+            Clear
+          </Link>
+        </div>
+      )}
+
+      {!products.length && (
+        <div className="text-center text-lg text-neutral-700 p-24">
+          No products found
+        </div>
+      )}
+
+      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {products.map((product) => (
+          <Link key={product.id} href={`/products/${product.id}`}>
+            <ProductCard product={product} />
+          </Link>
+        ))}
+      </div>
     </div>
   );
 }
 
-type SearchParams = { collection?: string };
+type SearchParams = { collection?: string; q?: string };
 
 export default async function ProductsPage({
   searchParams: searchParamsPromise,
@@ -39,10 +77,14 @@ export default async function ProductsPage({
         <CollectionList
           collectionId={searchParams.collection}
           collections={collections}
+          searchQuery={searchParams.q}
         />
       </div>
       <div className="md:flex-1">
-        <ProductList collectionId={searchParams.collection} />
+        <ProductList
+          collectionId={searchParams.collection}
+          searchQuery={searchParams.q}
+        />
       </div>
     </div>
   );

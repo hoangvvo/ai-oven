@@ -9,16 +9,20 @@ import { useRouter } from "next/navigation";
 export function CollectionList({
   collectionId,
   collections,
+  searchQuery,
 }: {
   collectionId?: string;
   collections: Collection[];
+  searchQuery?: string;
 }) {
   const options = [
     { label: "All Products", value: "all", href: "/products" },
     ...collections.map((collection) => ({
       label: collection.name,
       value: collection.id,
-      href: `/products?collection=${collection.id}`,
+      href:
+        `/products?collection=${collection.id}` +
+        (searchQuery ? `&q=${searchQuery}` : ""),
     })),
   ];
 

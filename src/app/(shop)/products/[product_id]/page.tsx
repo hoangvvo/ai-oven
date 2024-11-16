@@ -39,23 +39,45 @@ export default async function ProductPage(props: Props) {
         </div>
 
         <div className="md:flex-1">
-          <h1 className="text-3xl md:text-5xl font-medium mb-4">
+          <h1 className="text-3xl md:text-5xl font-medium mb-2">
             {product.name}
           </h1>
-          <p className="text-xl md:text-2xl mb-6">${product.price}</p>
+          <p className="text-base md:text-lg mb-4">{product.description}</p>
+          <p className="text-xl md:text-2xl mb-6 text-gray-700">
+            ${product.price}
+          </p>
           <AddToCart product={product} />
         </div>
       </div>
 
       <div className="flex flex-col gap-8">
         <div className="flex flex-col gap-2">
-          <h2 className="text-xl md:text-2xl font-medium">Description</h2>
-          <p className="text-base md:text-lg">{product.description}</p>
+          <h2 className="text-xl md:text-2xl font-medium">Ingredients</h2>
+          <p className="text-base md:text-lg">{product.ingredients}</p>
         </div>
 
         <div className="flex flex-col gap-2">
-          <h2 className="text-xl md:text-2xl font-medium">Ingredients</h2>
-          <p className="text-base md:text-lg">{product.ingredients}</p>
+          <h2 className="text-xl md:text-2xl font-medium">Nutrition Facts</h2>
+          <p className="text-base md:text-lg">{product.nutritional_info}</p>
+        </div>
+
+        <div className="flex flex-col gap-2">
+          <h2 className="text-xl md:text-2xl font-medium">Allergens</h2>
+          <p className="text-base md:text-lg">{product.allergen_info}</p>
+        </div>
+
+        <div className="flex flex-col gap-2">
+          <h2 className="text-xl md:text-2xl font-medium">
+            Serving Instructions
+          </h2>
+          <p className="text-base md:text-lg">{product.serving_suggestions}</p>
+        </div>
+
+        <div className="flex flex-col gap-2">
+          <h2 className="text-xl md:text-2xl font-medium">
+            Storage Instructions
+          </h2>
+          <p className="text-base md:text-lg">{product.storage_instructions}</p>
         </div>
       </div>
     </div>

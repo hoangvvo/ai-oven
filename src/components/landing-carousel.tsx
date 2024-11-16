@@ -1,6 +1,7 @@
 "use client";
 
 import { Product } from "@/types";
+import Autoplay from "embla-carousel-autoplay";
 import useEmblaCarousel from "embla-carousel-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -9,7 +10,16 @@ import { FC } from "react";
 export const LandingCarousel: FC<{
   featuredProducts: Product[];
 }> = ({ featuredProducts }) => {
-  const [emblaRef] = useEmblaCarousel();
+  const [emblaRef] = useEmblaCarousel(
+    {
+      loop: true,
+    },
+    [
+      Autoplay({
+        delay: 3000,
+      }),
+    ],
+  );
 
   return (
     <div className="embla" ref={emblaRef}>

@@ -171,6 +171,7 @@ function DeliveryForm({
 }
 
 function CheckoutPageContent() {
+  const session = useSession();
   const { cart, dispatch } = useCart();
 
   const [showPayment, setShowPayment] = useState(false);
@@ -186,21 +187,32 @@ function CheckoutPageContent() {
     return <CompleteScreen order={completedOrder} />;
   }
 
+  if (!cart.items.length) {
+    return (
+      <div className="container py-12 text-center flex flex-col items-center">
+        <h1 className="text-3xl font-medium mb-8">Your cart is empty</h1>
+        <Link href="/products" className={buttonVariants({ size: "lg" })}>
+          Browse Products
+        </Link>
+      </div>
+    );
+  }
+
   const onComplete = (order: Order) => {
     dispatch({ type: "clear" });
     setCompletedOrder(order);
   };
 
   return (
-    <div className="container py-12 flex gap-8">
-      <div className="flex-1">
+    <div className="container py-12 grid gap-8 grid-cols-1 lg:grid-cols-2">
+      <div>
         <h1 className="text-3xl font-medium mb-4">Checkout</h1>
         <form
           ref={formRef}
           className={cn("flex flex-col gap-8", showPayment && "hidden")}
           onSubmit={onSubmit}
         >
-          <ContactForm />
+          {!session.user && <ContactForm />}
           <DeliveryForm formRef={formRef} />
           <Button type="submit" className={buttonVariants({ size: "lg" })}>
             <span className="flex-1 text-left">Place Order</span>
@@ -216,7 +228,8 @@ function CheckoutPageContent() {
           </>
         )}
       </div>
-      <div className="flex-1">
+      <div>
+        <h2 className="text-xl font-medium mb-4">Your order</h2>
         <div className="flex flex-col gap-4 mb-12 w-full">
           {cart.items.map((item) => (
             <CartItemCard key={item.product.id} item={item} />
@@ -246,19 +259,6 @@ const initialOptions: ReactPayPalScriptOptions = {
 };
 
 export default function CheckoutPage() {
-  const { cart } = useCart();
-
-  if (!cart.items.length) {
-    return (
-      <div className="container py-12 text-center flex flex-col items-center">
-        <h1 className="text-3xl font-medium mb-8">Your cart is empty</h1>
-        <Link href="/products" className={buttonVariants({ size: "lg" })}>
-          Browse Products
-        </Link>
-      </div>
-    );
-  }
-
   return (
     <PayPalScriptProvider options={initialOptions}>
       <CheckoutPageContent />

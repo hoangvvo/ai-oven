@@ -1,7 +1,7 @@
 "use server";
 
 import { db } from "@/db";
-import { ordersTable } from "@/db/schema";
+import { orderItemsTable, ordersTable } from "@/db/schema";
 import {
   ApiError,
   AppSession,
@@ -62,8 +62,8 @@ export async function createOrder(
             value: (Number(item.product.price) * item.quantity).toFixed(2),
           },
           description: item.product.name,
-          customId: item.product.id,
           quantity: item.quantity.toString(),
+          referenceId: item.product.id,
         })),
         payer: {
           name: {
@@ -88,6 +88,7 @@ export async function createOrder(
       prefer: "return=minimal",
     });
   } catch (error) {
+    console.error("PayPal API error", error);
     const err = error as any;
     if (err.body) {
       const body = JSON.parse(err.body.toString());
@@ -112,14 +113,28 @@ export async function createOrder(
     throw new Error("PayPal order ID not found in response");
   }
 
-  await db.insert(ordersTable).values({
-    paypal_id: paypalOrderId,
-    user_id: session.user?.id,
-    ...shippingInformation,
-    total_price: total_price.toFixed(2),
-    guest_email,
-    // awaiting payment
-    status: "pending",
+  await db.transaction(async (tx) => {
+    const [order] = await tx
+      .insert(ordersTable)
+      .values({
+        paypal_id: paypalOrderId,
+        user_id: session.user?.id,
+        ...shippingInformation,
+        total_price: total_price.toFixed(2),
+        guest_email,
+        // awaiting payment
+        status: "pending",
+      })
+      .returning();
+    await tx.insert(orderItemsTable).values(
+      session.cart.items.map((item) => ({
+        order_id: order.id,
+        product_id: item.product.id,
+        quantity: item.quantity,
+        price: item.product.price,
+        subtotal: (Number(item.product.price) * item.quantity).toFixed(2),
+      })),
+    );
   });
 
   return {

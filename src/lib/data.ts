@@ -1,9 +1,13 @@
 "use server";
 
 import { db } from "@/db";
-import { collectionsTable, productCollectionsTable } from "@/db/schema";
+import {
+  collectionsTable,
+  ordersTable,
+  productCollectionsTable,
+} from "@/db/schema";
 import { Collection, Product } from "@/types";
-import { eq, inArray } from "drizzle-orm";
+import { and, desc, eq, inArray } from "drizzle-orm";
 import { cache } from "react";
 
 export const getCollections = cache(async () => {
@@ -40,5 +44,39 @@ export const getProductsByCollectionId = cache(
     });
 
     return productCollections.map((pc) => pc.product);
+  },
+);
+
+export const getOrdersByUserId = cache(async (userId: number) => {
+  return db.query.ordersTable.findMany({
+    where: eq(ordersTable.user_id, userId),
+    with: {
+      orderItems: {
+        with: {
+          product: true,
+        },
+      },
+    },
+    orderBy: desc(ordersTable.created_at),
+  });
+});
+
+export const getOrderByIdAndUserId = cache(
+  async ({ orderId, userId }: { orderId: number; userId: number }) => {
+    return db.query.ordersTable
+      .findFirst({
+        where: and(
+          eq(ordersTable.id, orderId),
+          eq(ordersTable.user_id, userId),
+        ),
+        with: {
+          orderItems: {
+            with: {
+              product: true,
+            },
+          },
+        },
+      })
+      .then((order) => order ?? null);
   },
 );

@@ -112,6 +112,7 @@ export default function Footer() {
                 allowFullScreen={false}
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
+                className="rounded-lg max-w-full"
               ></iframe>
             </div>
           </div>

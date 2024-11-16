@@ -14,10 +14,10 @@ export default function NotFound() {
         height={192}
       />
       <h1 className="text-4xl font-semibold mb-4">Oops!</h1>
-      <p className="text-gray-900 text-xl mb-8">
+      <p className="text-gray-900 text-xl mb-8 text-center">
         It looks like this page is half-baked or out of the oven.
       </p>
-      <p className="text-lg text-gray-600  mb-8">
+      <p className="text-lg text-gray-600 mb-8 max-w-xl text-center">
         Maybe the dough didn’t rise, or we mixed up the ingredients. Either way,
         it’s not here!
       </p>

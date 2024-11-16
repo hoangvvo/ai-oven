@@ -24,6 +24,7 @@
     "clsx": "^2.1.1",
     "countries-list": "^3.1.1",
     "cva": "^1.0.0-beta.1",
+    "date-fns": "^4.1.0",
     "dotenv": "^16.4.5",
     "drizzle-orm": "^0.36.2",
     "jsonwebtoken": "^9.0.2",

@@ -83,9 +83,6 @@ export function PaymentForm({
         // (3) Successful transaction -> Show confirmation or thank you message
         // Or go to another URL:  actions.redirect('thank_you.html');
 
-        const transaction =
-          paypalOrderData.purchase_units[0].payments.captures[0];
-
         onCompleted(order);
       }
     } catch (error) {

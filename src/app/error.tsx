@@ -28,10 +28,10 @@ export default function Error({
         height={192}
       />
       <h1 className="text-4xl font-semibold mb-4">Uh-oh!</h1>
-      <p className="text-gray-900 text-xl mb-8">
+      <p className="text-gray-900 text-xl mb-8 text-center">
         Our oven overheated, and things got a little crispy!
       </p>
-      <p className="text-lg text-gray-600 mb-8">
+      <p className="text-lg text-gray-600 mb-8 max-w-xl text-center">
         It seems something went wrong, and we burned this page. But don’t worry,
         our bakers are working to fix it. In the meantime, you can head back to
         our home page or try reloading.

@@ -1,6 +1,7 @@
 "use server";
 
 import { getSession } from "@/lib/session";
+import { Metadata } from "next";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { LoginForm } from "./login-form";
@@ -29,3 +30,9 @@ export default async function LoginPage() {
     </div>
   );
 }
+
+export const metadata: Metadata = {
+  title: "Login - AI Oven",
+  description:
+    "Login to your account to access your orders and prefill your details while shopping.",
+};

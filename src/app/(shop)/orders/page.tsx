@@ -2,6 +2,7 @@ import { getOrdersByUserId } from "@/lib/data";
 import { getSession } from "@/lib/session";
 import { Order } from "@/types";
 import { format } from "date-fns";
+import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { redirect } from "next/navigation";
@@ -59,7 +60,7 @@ export default async function OrdersPage() {
       <h1 className="text-3xl font-medium mb-4">My Orders</h1>
       {!orders.length && (
         <p className="text-lg text-gray-700">
-          You haven't placed any orders yet.
+          You haven&apos;t placed any orders yet.
         </p>
       )}
       <div className="flex flex-col gap-4">
@@ -72,3 +73,8 @@ export default async function OrdersPage() {
     </div>
   );
 }
+
+export const metadata: Metadata = {
+  title: "My Orders - AI Oven",
+  robots: "noindex",
+};

@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils";
 import { Collection } from "@/types";
 import { ChevronRightIcon } from "@heroicons/react/24/outline";
 import { StarIcon } from "@heroicons/react/24/solid";
+import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { FC } from "react";
@@ -187,5 +188,11 @@ async function IndexPage() {
     </>
   );
 }
+
+export const metadata: Metadata = {
+  title: "AI Oven",
+  description:
+    "Indulge in our meticulously crafted pastries and breads, where centuries-old techniques meet modern refinement.",
+};
 
 export default IndexPage;

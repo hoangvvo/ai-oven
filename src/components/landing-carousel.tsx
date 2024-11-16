@@ -4,23 +4,17 @@ import { Product } from "@/types";
 import useEmblaCarousel from "embla-carousel-react";
 import Image from "next/image";
 import Link from "next/link";
-import { FC, useMemo } from "react";
+import { FC } from "react";
 
 export const LandingCarousel: FC<{
   featuredProducts: Product[];
 }> = ({ featuredProducts }) => {
   const [emblaRef] = useEmblaCarousel();
 
-  const showcasingProducts = useMemo(() => {
-    // get random 5 products
-    const randomProducts = featuredProducts.sort(() => 0.5 - Math.random());
-    return randomProducts.slice(0, 5);
-  }, [featuredProducts]);
-
   return (
     <div className="embla" ref={emblaRef}>
       <div className="embla__container">
-        {showcasingProducts.map((product) => (
+        {featuredProducts.map((product) => (
           <div key={product.id} className="embla__slide relative h-[500px]">
             <div className="absolute inset-0 w-full h-full">
               <Image

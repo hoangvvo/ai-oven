@@ -1,21 +1,29 @@
 import { AddToCart } from "@/components/add-to-cart";
 import { getProduct } from "@/lib/data";
+import { Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 
 type Params = { product_id: string };
 
-export default async function ProductPage({
-  params: paramsPromise,
-}: {
+type Props = {
   params: Promise<Params>;
-}) {
-  const params = await paramsPromise;
+};
+
+const getProductFromProps = async (props: Props) => {
+  const params = await props.params;
+
   const product = await getProduct(params.product_id);
 
   if (!product) {
     notFound();
   }
+
+  return product;
+};
+
+export default async function ProductPage(props: Props) {
+  const product = await getProductFromProps(props);
 
   return (
     <div className="container py-12 flex flex-col gap-8">
@@ -52,4 +60,19 @@ export default async function ProductPage({
       </div>
     </div>
   );
+}
+
+export async function generateMetadata(props: Props): Promise<Metadata> {
+  const product = await getProductFromProps(props);
+
+  return {
+    title: `${product.name} - AI Oven`,
+    description: product.description,
+    openGraph: {
+      images: product.image_urls.map((url) => ({
+        url,
+        alt: product.name,
+      })),
+    },
+  };
 }

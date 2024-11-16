@@ -3,6 +3,7 @@ import Footer from "@/components/layout/footer";
 import { Navbar } from "@/components/layout/navbar";
 import { SessionProvider } from "@/components/session";
 import { getSession } from "@/lib/session";
+import { Metadata } from "next";
 import { Playfair_Display } from "next/font/google";
 import { Toaster } from "sonner";
 import "./globals.css";
@@ -33,3 +34,7 @@ export default async function RootLayout({
     </html>
   );
 }
+
+export const metadata: Metadata = {
+  title: "AI Oven",
+};

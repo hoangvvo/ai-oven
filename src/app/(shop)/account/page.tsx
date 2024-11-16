@@ -1,5 +1,6 @@
 import { buttonVariants } from "@/components/ui/button";
 import { getSession } from "@/lib/session";
+import { Metadata } from "next";
 import Link from "next/link";
 
 function Card({
@@ -68,3 +69,8 @@ export default async function AccountPage() {
     </div>
   );
 }
+
+export const metadata: Metadata = {
+  title: "My Account - AI Oven",
+  description: "View your account information and order history.",
+};

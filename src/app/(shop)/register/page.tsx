@@ -1,6 +1,5 @@
-"use server";
-
 import { getSession } from "@/lib/session";
+import { Metadata } from "next";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { RegisterForm } from "./register-form";
@@ -29,3 +28,9 @@ export default async function CreateAccountPage() {
     </div>
   );
 }
+
+export const metadata: Metadata = {
+  title: "Create Account - AI Oven",
+  description:
+    "Create an account and enjoy the world of gourmet food and drinks with us.",
+};

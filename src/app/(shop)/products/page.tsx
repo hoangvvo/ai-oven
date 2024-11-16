@@ -4,6 +4,7 @@ import {
   getProducts,
   getProductsByCollectionId,
 } from "@/lib/data";
+import { Metadata } from "next";
 import Link from "next/link";
 import { CollectionList } from "./collection-list";
 
@@ -46,3 +47,8 @@ export default async function ProductsPage({
     </div>
   );
 }
+
+export const metadata: Metadata = {
+  title: "Products - AI Oven",
+  description: "Explore our wide range of gourmet food and drinks.",
+};

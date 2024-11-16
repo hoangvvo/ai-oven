@@ -1,12 +1,17 @@
 import { getOrderByIdAndUserId } from "@/lib/data";
 import { getSession } from "@/lib/session";
 import { OrderItem } from "@/types";
+import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
 
 type Params = {
   order_id: string;
+};
+
+type Props = {
+  params: Promise<Params>;
 };
 
 function OrderItemCard({ orderItem }: { orderItem: OrderItem }) {
@@ -40,17 +45,13 @@ function OrderItemCard({ orderItem }: { orderItem: OrderItem }) {
   );
 }
 
-export default async function OrderPage({
-  params: paramsPromise,
-}: {
-  params: Promise<Params>;
-}) {
+const getOrderFromProps = async (props: Props) => {
   const session = await getSession();
   if (!session.user) {
     redirect("/login");
   }
 
-  const params = await paramsPromise;
+  const params = await props.params;
 
   const order = await getOrderByIdAndUserId({
     orderId: parseInt(params.order_id),
@@ -60,6 +61,12 @@ export default async function OrderPage({
   if (!order) {
     notFound();
   }
+
+  return order;
+};
+
+export default async function OrderPage(props: Props) {
+  const order = await getOrderFromProps(props);
 
   return (
     <div className="container max-w-4xl mx-auto py-12">
@@ -91,4 +98,12 @@ export default async function OrderPage({
       </div>
     </div>
   );
+}
+
+export async function generateMetadata(props: Props): Promise<Metadata> {
+  const order = await getOrderFromProps(props);
+  return {
+    title: `Order #${order.id} - AI Oven`,
+    robots: "noindex",
+  };
 }

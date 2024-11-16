@@ -8,7 +8,7 @@ import {
   productsTable,
 } from "@/db/schema";
 import { Collection, Product } from "@/types";
-import { and, desc, eq, inArray } from "drizzle-orm";
+import { and, desc, eq, inArray, ne } from "drizzle-orm";
 import { cache } from "react";
 
 export const getCollections = cache(async () => {
@@ -50,7 +50,10 @@ export const getProductsByCollectionId = cache(
 
 export const getOrdersByUserId = cache(async (userId: number) => {
   return db.query.ordersTable.findMany({
-    where: eq(ordersTable.user_id, userId),
+    where: and(
+      eq(ordersTable.user_id, userId),
+      ne(ordersTable.status, "pending"),
+    ),
     with: {
       orderItems: {
         with: {

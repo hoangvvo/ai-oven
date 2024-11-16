@@ -1,4 +1,5 @@
 import { createOrder } from "@/lib/checkout";
+import rateLimit from "@/lib/rate-limit";
 import { getSession } from "@/lib/session";
 import {
   countryCodeSchema,
@@ -18,7 +19,15 @@ const schema = z.object({
   shipping_phone_number: phoneNumberSchema,
 });
 
+const limiter = rateLimit({
+  interval: 60 * 1000, // 60 seconds
+  uniqueTokenPerInterval: 500, // Max 500 users per second
+});
+
 export async function POST(request: Request) {
+  // allows 30 requests per minute
+  await limiter.check(30);
+
   const formData = await request.formData();
 
   let validationSchema = schema;

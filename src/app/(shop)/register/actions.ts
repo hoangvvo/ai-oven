@@ -1,6 +1,7 @@
 "use server";
 
 import { createUserAccount } from "@/lib/account";
+import rateLimit from "@/lib/rate-limit";
 import { countryCodeSchema, phoneNumberSchema } from "@/lib/zod";
 import { redirect } from "next/navigation";
 import { z, ZodError } from "zod";
@@ -17,10 +18,32 @@ const schema = zfd.formData({
   phone_number: phoneNumberSchema.optional(),
 });
 
+const limiter = rateLimit({
+  interval: 60 * 1000, // 60 seconds
+  uniqueTokenPerInterval: 500, // Max 500 users per second
+});
+
 export async function registerAction(
   prevState: RegisterActionState,
   formData: FormData,
 ) {
+  try {
+    // allows 10 requests per minute
+    await limiter.check(10);
+  } catch {
+    return {
+      values: {
+        email: "",
+        first_name: "",
+        last_name: "",
+        password: "",
+      },
+      result: {
+        error: "Rate limit exceeded",
+      },
+    };
+  }
+
   // infer the type of the schema
   let data: z.infer<typeof schema>;
 

@@ -1,6 +1,7 @@
 "use server";
 
 import { loginUser } from "@/lib/account";
+import rateLimit from "@/lib/rate-limit";
 import { redirect } from "next/navigation";
 import { z, ZodError } from "zod";
 import { zfd } from "zod-form-data";
@@ -10,10 +11,30 @@ const schema = zfd.formData({
   password: z.string().min(6),
 });
 
+const limiter = rateLimit({
+  interval: 60 * 1000, // 60 seconds
+  uniqueTokenPerInterval: 500, // Max 500 users per second
+});
+
 export async function loginAction(
   prevState: LoginActionState,
   formData: FormData,
 ) {
+  try {
+    // allows 10 requests per minute
+    await limiter.check(10);
+  } catch {
+    return {
+      values: {
+        email: "",
+        password: "",
+      },
+      result: {
+        error: "Rate limit exceeded",
+      },
+    };
+  }
+
   let data: z.infer<typeof schema>;
 
   try {

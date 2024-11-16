@@ -1,5 +1,6 @@
+import { LandingCarousel } from "@/components/landing-carousel";
 import { buttonVariants } from "@/components/ui/button";
-import { getCollectionsByIds } from "@/lib/data";
+import { getCollectionsByIds, getFeaturedProducts } from "@/lib/data";
 import { cn } from "@/lib/utils";
 import { Collection } from "@/types";
 import { ChevronRightIcon } from "@heroicons/react/24/outline";
@@ -56,11 +57,17 @@ const CollectionSection: React.FC<CollectionSectionProps> = ({
 }) => (
   <section className={cn("py-12", className)}>
     <div className="container flex flex-col gap-8 items-center">
-      <div className="flex flex-col max-w-xl gap-2">
+      <div className="flex flex-col max-w-xl gap-2 items-center">
         <h2 className="text-4xl font-semibold text-center">{title}</h2>
         <p className="text-gray-500 text-center text-xl max-w-xl">
           {description}
         </p>
+        <Link
+          className="font-bold text-lg underline underline-offset-4 text-teal-950 hover:text-teal-900 transition-colors my-2"
+          href="/products"
+        >
+          View All Products
+        </Link>
       </div>
       <div className={`grid grid-cols-1 gap-4 mt-8 ${getGridClass(columns)}`}>
         {collections.map((collection) => (
@@ -143,22 +150,25 @@ const TestimonialSection: FC = () => (
 );
 
 async function IndexPage() {
-  const [productCollections, occasionCollections] = await Promise.all([
-    getCollectionsByIds([
-      "artisan-bread",
-      "exquisite-pastries",
-      "gourmet-cakes",
-    ]),
-    getCollectionsByIds([
-      "weddings",
-      "birthdays",
-      "corporate-events",
-      "holidays",
-    ]),
-  ]);
+  const [productCollections, occasionCollections, featuredProducts] =
+    await Promise.all([
+      getCollectionsByIds([
+        "artisan-bread",
+        "exquisite-pastries",
+        "gourmet-cakes",
+      ]),
+      getCollectionsByIds([
+        "weddings",
+        "birthdays",
+        "corporate-events",
+        "holidays",
+      ]),
+      getFeaturedProducts(),
+    ]);
 
   return (
     <>
+      <LandingCarousel featuredProducts={featuredProducts} />
       <CollectionSection
         title="Our Products"
         description="Indulge in our meticulously crafted pastries and breads, where centuries-old techniques meet modern refinement."

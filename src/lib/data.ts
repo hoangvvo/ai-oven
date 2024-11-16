@@ -5,6 +5,7 @@ import {
   collectionsTable,
   ordersTable,
   productCollectionsTable,
+  productsTable,
 } from "@/db/schema";
 import { Collection, Product } from "@/types";
 import { and, desc, eq, inArray } from "drizzle-orm";
@@ -80,3 +81,10 @@ export const getOrderByIdAndUserId = cache(
       .then((order) => order ?? null);
   },
 );
+
+export const getFeaturedProducts = cache(async (): Promise<Product[]> => {
+  return db.query.productsTable.findMany({
+    limit: 4,
+    where: eq(productsTable.featured, true),
+  });
+});

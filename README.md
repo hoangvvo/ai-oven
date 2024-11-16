@@ -44,6 +44,7 @@ npm install
 
 ```bash
 DATABASE_URL=postgres://postgres:postgres@localhost:5432/postgres
+POSTGRES_PASSWORD=postgres
 MILVUS_HOST=localhost:19530
 PAYPAL_CLIENT_ID=<YOUR_PAYPAL_CLIENT_ID>
 PAYPAL_CLIENT_SECRET=<YOUR_PAYPAL_CLIENT_SECRET>

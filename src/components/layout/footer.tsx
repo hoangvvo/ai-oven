@@ -100,7 +100,7 @@ export default function Footer() {
                 </Link>
               ))}
             </div>
-            <div className="flex flex-col gap-4">
+            <div className="flex flex-col gap-4 px-2">
               <h4 className="text-xl font-semibold">Visit Us</h4>
               <div className="flex flex-col gap-4 leading-none text-gray-700">
                 <p>268 Ly Thuong Kiet, Ward 14, District 10, HCMC</p>

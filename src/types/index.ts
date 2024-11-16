@@ -1,4 +1,10 @@
-import { CollectionEntity, ProductEntity, UserEntity } from "@/db/schema";
+import {
+  CollectionEntity,
+  OrderEntity,
+  OrderItemEntity,
+  ProductEntity,
+  UserEntity,
+} from "@/db/schema";
 
 export type Product = ProductEntity;
 
@@ -69,6 +75,10 @@ export type CreateOrderResponse = {
 };
 
 export type CaptureOrderResponse = {
+  order: Order;
   jsonResponse: any;
   httpStatusCode: number;
 };
+
+export type Order = OrderEntity;
+export type OrderItem = OrderItemEntity;

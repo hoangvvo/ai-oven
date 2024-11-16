@@ -1,16 +1,22 @@
 "use client";
 
 import { useCart } from "@/components/cart";
-import { buttonVariants } from "@/components/ui/button";
+import { CountrySelect } from "@/components/country-select";
+import { useSession } from "@/components/session";
+import { Button, buttonVariants } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { CartItem } from "@/types";
+import { cn } from "@/lib/utils";
+import { CartItem, Order } from "@/types";
+import { ArrowRightIcon } from "@heroicons/react/24/outline";
 import {
-  PayPalButtons,
   PayPalScriptProvider,
   ReactPayPalScriptOptions,
 } from "@paypal/react-paypal-js";
 import Image from "next/image";
 import Link from "next/link";
+import { RefObject, useRef, useState } from "react";
+import { CompleteScreen } from "./complete-screen";
+import { PaymentForm } from "./payment-form";
 
 function CartItemCard({ item }: { item: CartItem }) {
   const totalPrice = Number(item.product.price) * item.quantity;
@@ -45,59 +51,170 @@ function ContactForm() {
     <div className="flex flex-col gap-2">
       <h2 className="text-xl font-medium">Contact</h2>
       <div className="flex flex-col gap-2">
-        <Input type="email" placeholder="Email" autoComplete="email" />
+        <Input
+          type="email"
+          placeholder="Email"
+          autoComplete="email"
+          name="guest_email"
+          required
+        />
       </div>
     </div>
   );
 }
 
-function DeliveryForm() {
+function DeliveryForm({
+  formRef,
+}: {
+  formRef: RefObject<HTMLFormElement | null>;
+}) {
+  const session = useSession();
+
+  const onUseAccountDetails = () => {
+    const form = formRef.current;
+    if (!form) {
+      return;
+    }
+    if (!session.user) {
+      return;
+    }
+    (form.elements.namedItem("shipping_first_name") as HTMLInputElement).value =
+      session.user.first_name;
+    (form.elements.namedItem("shipping_last_name") as HTMLInputElement).value =
+      session.user.last_name;
+    if (session.user.address) {
+      (form.elements.namedItem("shipping_address") as HTMLInputElement).value =
+        session.user.address;
+    }
+    if (session.user.city) {
+      (form.elements.namedItem("shipping_city") as HTMLInputElement).value =
+        session.user.city;
+    }
+    if (session.user.country_code) {
+      (
+        form.elements.namedItem("shipping_country_code") as HTMLSelectElement
+      ).value = session.user.country_code;
+    }
+    if (session.user.phone_number) {
+      (
+        form.elements.namedItem("shipping_phone_number") as HTMLInputElement
+      ).value = session.user.phone_number;
+    }
+  };
+
   return (
     <div className="flex flex-col gap-2">
-      <h2 className="text-xl font-medium">Delivery</h2>
+      <div className="flex items-center gap-2">
+        <h2 className="text-xl font-medium flex-1 min-w-0">Delivery</h2>
+        {session.user && (
+          <button
+            className="text-sm text-gray-700 hover:underline flex-none"
+            onClick={onUseAccountDetails}
+            type="button"
+          >
+            Use my account details
+          </button>
+        )}
+      </div>
       <div className="flex flex-col gap-2">
-        <Input type="text" placeholder="Name" autoComplete="name" />
+        <div className="flex items-center gap-1">
+          <Input
+            type="text"
+            placeholder="First Name"
+            autoComplete="given-name"
+            name="shipping_first_name"
+            className="flex-1"
+            defaultValue={session.user?.first_name || undefined}
+            required
+          />
+          <Input
+            type="text"
+            placeholder="Last Name"
+            autoComplete="family-name"
+            name="shipping_last_name"
+            className="flex-1"
+            defaultValue={session.user?.last_name || undefined}
+            required
+          />
+        </div>
         <Input
           type="text"
           placeholder="Address"
           autoComplete="street-address"
+          name="shipping_address"
+          defaultValue={session.user?.address || undefined}
+          required
         />
-        <Input type="text" placeholder="City" autoComplete="address-level2" />
-        <Input type="text" placeholder="Country" autoComplete="country-name" />
-        <Input placeholder="Phone" type="tel" />
+        <Input
+          type="text"
+          placeholder="City"
+          autoComplete="address-level2"
+          name="shipping_city"
+          defaultValue={session.user?.city || undefined}
+          required
+        />
+        <CountrySelect
+          name="shipping_country_code"
+          defaultValue={session.user?.country_code || undefined}
+          required
+        />
+        <Input
+          placeholder="Phone"
+          type="tel"
+          name="shipping_phone_number"
+          defaultValue={session.user?.phone_number || undefined}
+          required
+        />
       </div>
-    </div>
-  );
-}
-
-function PaymentForm() {
-  return (
-    <div className="flex flex-col gap-2">
-      <h2 className="text-xl font-medium">Payment</h2>
-      <PayPalButtons
-        style={{
-          shape: "rect",
-          layout: "vertical",
-          color: "gold",
-          label: "paypal",
-        }}
-      />
     </div>
   );
 }
 
 function CheckoutPageContent() {
-  const { cart } = useCart();
+  const { cart, dispatch } = useCart();
+
+  const [showPayment, setShowPayment] = useState(false);
+  const [completedOrder, setCompletedOrder] = useState<Order | null>(null);
+
+  const formRef = useRef<HTMLFormElement>(null);
+  const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setShowPayment(true);
+  };
+
+  if (completedOrder) {
+    return <CompleteScreen order={completedOrder} />;
+  }
+
+  const onComplete = (order: Order) => {
+    dispatch({ type: "clear" });
+    setCompletedOrder(order);
+  };
 
   return (
     <div className="container py-12 flex gap-8">
       <div className="flex-1">
         <h1 className="text-3xl font-medium mb-4">Checkout</h1>
-        <div className="flex flex-col gap-8">
+        <form
+          ref={formRef}
+          className={cn("flex flex-col gap-8", showPayment && "hidden")}
+          onSubmit={onSubmit}
+        >
           <ContactForm />
-          <DeliveryForm />
-          <PaymentForm />
-        </div>
+          <DeliveryForm formRef={formRef} />
+          <Button type="submit" className={buttonVariants({ size: "lg" })}>
+            <span className="flex-1 text-left">Place Order</span>
+            <ArrowRightIcon className="h-6 w-6" />
+          </Button>
+        </form>
+        {showPayment && (
+          <>
+            <PaymentForm formRef={formRef} onCompleted={onComplete} />
+            <Button variant="secondary" onClick={() => setShowPayment(false)}>
+              Go Back
+            </Button>
+          </>
+        )}
       </div>
       <div className="flex-1">
         <div className="flex flex-col gap-4 mb-12 w-full">

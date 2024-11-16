@@ -1,7 +1,8 @@
-import { buttonVariants } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import { getSession } from "@/lib/session";
 import { Metadata } from "next";
 import Link from "next/link";
+import { logoutAction } from "./action";
 
 function Card({
   title,
@@ -40,9 +41,11 @@ export default async function AccountPage() {
           )}
         </p>
         {session.user ? (
-          <Link href="/logout" className={buttonVariants({ size: "sm" })}>
-            Logout
-          </Link>
+          <form action={logoutAction}>
+            <Button type="submit" variant="primary" size="sm">
+              Logout
+            </Button>
+          </form>
         ) : (
           <Link href="/login" className={buttonVariants({ size: "sm" })}>
             Login

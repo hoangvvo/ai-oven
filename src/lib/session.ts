@@ -10,17 +10,15 @@ const jwtSecret = process.env.JWT_SECRET!;
 export async function setSession(session: Partial<AppSession>): Promise<void> {
   const existingSession = await getSession();
 
-  const token = jwt.sign(
-    {
-      ...existingSession,
-      ...session,
-    },
-    jwtSecret,
-    {
-      algorithm: "HS256",
-      expiresIn: "7d",
-    },
-  );
+  const newSession = {
+    ...existingSession,
+    ...session,
+  };
+
+  const token = jwt.sign(newSession, jwtSecret, {
+    algorithm: "HS256",
+    expiresIn: "7d",
+  });
 
   const cookieStore = await cookies();
 

@@ -82,3 +82,12 @@ export type CaptureOrderResponse = {
 
 export type Order = OrderEntity;
 export type OrderItem = OrderItemEntity;
+
+export type ProductDataVectorEntity = {
+  id: number;
+  product_id: string;
+  vector: number[];
+  content_text: string;
+  content_type: "product_info" | "user_review";
+  user_review_id: number | -1;
+};

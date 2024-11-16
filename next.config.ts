@@ -18,6 +18,14 @@ const nextConfig: NextConfig = {
     PAYPAL_CLIENT_ID: process.env.PAYPAL_CLIENT_ID,
   },
   pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],
+  serverExternalPackages: [
+    "sharp",
+    "onnxruntime-node",
+    "@zilliz/milvus2-sdk-node",
+  ],
+  outputFileTracingIncludes: {
+    "/api/**/*": ["node_modules/@zilliz/milvus2-sdk-node/dist/proto/**/*"],
+  },
 };
 
 const withMDX = createMDX({});

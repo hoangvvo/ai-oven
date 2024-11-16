@@ -40,7 +40,10 @@ const cartReducer = (state: Cart, action: CartAction) => {
 
       return {
         ...state,
-        items: [...state.items, { product: action.product, quantity: 1 }],
+        items: [
+          ...state.items,
+          { product: action.product, quantity: action.quantity },
+        ],
       };
     }
 

@@ -89,5 +89,11 @@ export type ProductDataVectorEntity = {
   vector: number[];
   content_text: string;
   content_type: "product_info" | "user_review";
-  user_review_id: number | -1;
+  user_review_id: number;
+};
+
+export type Message = {
+  id: string;
+  role: "user" | "assistant";
+  content: string;
 };

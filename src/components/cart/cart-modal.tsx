@@ -5,6 +5,7 @@ import { CartItem } from "@/types";
 import {
   Dialog,
   DialogPanel,
+  DialogTitle,
   Transition,
   TransitionChild,
 } from "@headlessui/react";
@@ -150,13 +151,14 @@ export function CartModal() {
           >
             <DialogPanel className="fixed bottom-0 right-0 top-0 flex h-full w-full flex-col border-l border-neutral-200 bg-white p-6 text-black md:w-[420px]">
               <div className="flex items-center justify-between mb-8">
-                <p className="text-lg font-semibold">My Cart</p>
                 <button aria-label="Close cart" onClick={closeCart}>
                   <XMarkIcon className="w-6 h-6" />
                 </button>
               </div>
               <div className="flex flex-col gap-4 flex-1 min-h-0">
-                <h2 className="text-3xl font-semibold">Your Items</h2>
+                <DialogTitle className="text-3xl font-semibold">
+                  Your Items
+                </DialogTitle>
                 {!cart.items.length && (
                   <p className="text-lg text-neutral-500">
                     Your cart is empty.

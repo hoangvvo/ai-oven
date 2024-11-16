@@ -118,12 +118,14 @@ class Milvus {
 
   async search<F extends keyof ProductDataVectorEntity>({
     vector,
+    vectors,
     limit,
     offset = 0,
     filter,
     outputFields,
   }: {
-    vector: number[];
+    vector?: number[];
+    vectors?: number[][];
     limit: number;
     offset?: number;
     filter?: string;
@@ -133,7 +135,7 @@ class Milvus {
 
     const res = await this.client.search({
       collection_name: VECTOR_COLLECTION_NAME,
-      data: [vector],
+      data: vector ? [vector] : vectors,
       limit,
       offset,
       filter,
@@ -145,7 +147,7 @@ class Milvus {
       throw new Error(res.status.reason);
     }
 
-    return res.results as (SearchResultData & {
+    return res.results.flat() as (SearchResultData & {
       [K in F]: ProductDataVectorEntity[K];
     })[];
   }

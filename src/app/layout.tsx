@@ -1,4 +1,6 @@
 import { CartProvider } from "@/components/cart/cart-context";
+import { ChatProvider } from "@/components/chat";
+import { ChatModal } from "@/components/chat/chat-modal";
 import Footer from "@/components/layout/footer";
 import { Navbar } from "@/components/layout/navbar";
 import { SessionProvider } from "@/components/session";
@@ -24,9 +26,12 @@ export default async function RootLayout({
       <body className={`${font.className}`}>
         <SessionProvider session={session}>
           <CartProvider initialSession={session}>
-            <Navbar />
-            {children}
-            <Footer />
+            <ChatProvider>
+              <Navbar />
+              {children}
+              <Footer />
+              <ChatModal />
+            </ChatProvider>
           </CartProvider>
         </SessionProvider>
         <Toaster />

@@ -25,8 +25,6 @@ export const embedder = new Embedder();
 export async function embedProduct(
   product: ProductEntity,
 ): Promise<Omit<ProductDataVectorEntity, "id">[]> {
-  console.log(`embedProduct: ${product.id}`);
-
   const content = outdent`
     ${product.name} information:
     Description: ${product.description}
@@ -45,7 +43,7 @@ export async function embedProduct(
       vector,
       content_type: "product_info",
       content_text: content,
-      user_review_id: -1,
+      user_review_id: 0,
     },
   ];
 }

@@ -6,6 +6,7 @@ import { CartModal } from "../cart";
 import { Logo } from "../logo";
 import { buttonVariants } from "../ui/button";
 import Search, { SearchSkeleton } from "./search";
+import { SignInButton } from "./sign-in-button";
 
 const menu = [
   {
@@ -61,9 +62,7 @@ export async function Navbar() {
             <span className="hidden md:block">My Account</span>
           </Link>
         ) : (
-          <Link href="/login" className={buttonVariants()} aria-label="Sign In">
-            Sign In
-          </Link>
+          <SignInButton />
         )}
         <CartModal />
       </div>

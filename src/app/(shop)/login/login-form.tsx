@@ -2,6 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { useSearchParams } from "next/navigation";
 import { useActionState } from "react";
 import { loginAction, LoginActionState } from "./actions";
 
@@ -13,6 +14,8 @@ const initialState: LoginActionState = {
 };
 
 export function LoginForm() {
+  const searchParams = useSearchParams();
+
   const [state, formAction, pending] = useActionState(
     loginAction,
     initialState,
@@ -35,6 +38,11 @@ export function LoginForm() {
           autoComplete="current-password"
           name="password"
           required
+        />
+        <input
+          type="hidden"
+          name="next"
+          value={searchParams.get("next") || ""}
         />
       </div>
       {state.result && "error" in state.result && (

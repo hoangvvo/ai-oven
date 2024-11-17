@@ -9,6 +9,7 @@ import { zfd } from "zod-form-data";
 const schema = zfd.formData({
   email: z.string().email().trim().toLowerCase(),
   password: z.string().min(6),
+  next: z.string().optional(),
 });
 
 const limiter = rateLimit({
@@ -66,7 +67,7 @@ export async function loginAction(
   const res = await loginUser(data.email, data.password);
 
   if ("user" in res) {
-    redirect("/");
+    redirect(data.next || "/");
   }
 
   return {

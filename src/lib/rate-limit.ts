@@ -22,6 +22,7 @@ export class RateLimitError extends Error {
 }
 
 export default function rateLimit(options?: Options) {
+  // In Production, a solution like Redis should be used
   const tokenCache = new LRUCache({
     max: options?.uniqueTokenPerInterval || 500,
     ttl: options?.interval || 60000,

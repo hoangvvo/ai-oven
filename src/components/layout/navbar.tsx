@@ -1,5 +1,5 @@
 import { getSession } from "@/lib/session";
-import { UserIcon } from "@heroicons/react/24/outline";
+import { Bars3Icon, UserIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import { Suspense } from "react";
 import { CartModal } from "../cart";
@@ -19,16 +19,30 @@ const menu = [
   },
   {
     title: "About",
-    path: "/about",
+    path: "#",
   },
 ];
+
+function MobileMenu() {
+  return (
+    <>
+      <button
+        aria-label="Open mobile menu"
+        className="flex h-11 w-11 flex-none items-center justify-center rounded-md border border-neutral-200 text-black transition-colors md:hidden"
+      >
+        <Bars3Icon className="h-4" />
+      </button>
+    </>
+  );
+}
 
 export async function Navbar() {
   const session = await getSession();
 
   return (
     <nav className="relative flex items-center justify-between p-4 lg:px-6 border-b border-gray-200">
-      <div className="flex gap-8 w-full md:w-1/3">
+      <div className="flex gap-4 md:gap-8 w-full md:w-1/3 items-center">
+        <MobileMenu />
         <Link href="/">
           <Logo />
         </Link>

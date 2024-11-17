@@ -17,7 +17,7 @@ const navLinks = [
   },
   {
     title: "ABOUT",
-    href: "/about",
+    href: "#",
   },
   {
     title: "REFUNDS & RETURNS",
@@ -101,11 +101,12 @@ export default function Footer() {
               ))}
             </div>
             <div className="flex flex-col gap-4 px-2">
-              <h4 className="text-xl font-semibold">Visit Us</h4>
+              <p className="text-xl font-semibold">Visit Us</p>
               <div className="flex flex-col gap-4 leading-none text-gray-700">
                 <p>268 Ly Thuong Kiet, Ward 14, District 10, HCMC</p>
               </div>
-              <iframe
+              {/* <iframe
+                title="map"
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d281.90780425095215!2d106.65756782772264!3d10.7726027309556!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752ec17709146b%3A0x54a1658a0639d341!2zxJDhuqFpIEjhu41jIELDoWNoIEtob2EgLSAyNjggTMO9IFRoxrDhu51uZyBLaeG7h3Q!5e0!3m2!1sen!2s!4v1731693851646!5m2!1sen!2s"
                 width="400"
                 height="300"
@@ -113,7 +114,7 @@ export default function Footer() {
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
                 className="rounded-lg max-w-full"
-              ></iframe>
+              ></iframe> */}
             </div>
           </div>
         </div>
@@ -140,7 +141,7 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="container mt-8 text-sm flex flex-col md:flex-row md:justify-between">
+      <div className="container mt-8 text-sm flex flex-col md:flex-row md:justify-between gap-8">
         <Link href="/policy" className="hover:underline">
           PRIVACY POLICY
         </Link>

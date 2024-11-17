@@ -60,7 +60,7 @@ const CollectionSection: React.FC<CollectionSectionProps> = ({
     <div className="container flex flex-col gap-8 items-center">
       <div className="flex flex-col max-w-xl gap-2 items-center">
         <h2 className="text-4xl font-semibold text-center">{title}</h2>
-        <p className="text-gray-500 text-center text-xl max-w-xl">
+        <p className="text-gray-700 text-center text-xl max-w-xl">
           {description}
         </p>
         <Link
@@ -105,7 +105,7 @@ const AboutSection: FC = () => (
           unwavering commitment to quality and tradition is evident in every
           creation, making each bite a testament to our rich heritage.
         </p>
-        <Link className={buttonVariants()} href="/about">
+        <Link className={buttonVariants()} href="#">
           Discover Our Story
           <ChevronRightIcon className="ml-1 h-4 w-4" />
         </Link>

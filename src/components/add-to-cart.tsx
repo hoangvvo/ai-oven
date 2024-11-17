@@ -38,6 +38,7 @@ export function AddToCart({ product }: { product: Product }) {
         min={1}
         step={1}
         onBlur={onBlur}
+        aria-label="Quantity"
       />
       <Button onClick={addToCart}>Add to Cart</Button>
     </div>

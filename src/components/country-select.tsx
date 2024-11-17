@@ -10,5 +10,7 @@ const countryOptions = Object.entries(countries)
   .sort((a, b) => a.label.localeCompare(b.label));
 
 export const CountrySelect: FC<Omit<SelectProps, "options">> = (props) => {
-  return <Select {...props} options={countryOptions} />;
+  return (
+    <Select {...props} options={countryOptions} aria-label="Select Country" />
+  );
 };

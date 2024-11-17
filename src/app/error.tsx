@@ -44,7 +44,7 @@ export default function Error({
       >
         Reload
       </button>
-      <Link href="/" className={buttonVariants()}>
+      <Link href="/" className={`${buttonVariants()} mt-2`}>
         Return to Home
       </Link>
     </div>

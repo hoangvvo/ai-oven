@@ -59,6 +59,18 @@ function ContactForm() {
           required
         />
       </div>
+      <div className="p-2 rounded-lg bg-neutral-100 text-neutral-700 text-sm">
+        <p>
+          You are checking out as a guest.{" "}
+          <Link
+            href={`/login?next=${encodeURIComponent("/checkout")}`}
+            className="underline text-teal-700"
+          >
+            Create an account
+          </Link>{" "}
+          to save your details for future purchases.
+        </p>
+      </div>
     </div>
   );
 }
@@ -123,7 +135,7 @@ function DeliveryForm({
             placeholder="First Name"
             autoComplete="given-name"
             name="shipping_first_name"
-            className="flex-1"
+            className="flex-1 min-w-0"
             defaultValue={session.user?.first_name || undefined}
             required
           />
@@ -132,7 +144,7 @@ function DeliveryForm({
             placeholder="Last Name"
             autoComplete="family-name"
             name="shipping_last_name"
-            className="flex-1"
+            className="flex-1 min-w-0"
             defaultValue={session.user?.last_name || undefined}
             required
           />

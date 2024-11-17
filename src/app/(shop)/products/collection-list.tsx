@@ -45,6 +45,7 @@ export function CollectionList({
           value={collectionId ?? "all"}
           className="w-full"
           onChange={(ev) => onOptionSelect(ev.currentTarget.value)}
+          aria-label="Select a collection"
         />
       </div>
 

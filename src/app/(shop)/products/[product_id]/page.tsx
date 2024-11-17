@@ -54,6 +54,7 @@ export default async function ProductPage(props: Props) {
             height={400}
             alt={product.name}
             className="w-full aspect-square object-cover rounded"
+            priority
           />
         </div>
 

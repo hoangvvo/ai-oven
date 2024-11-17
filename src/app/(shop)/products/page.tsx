@@ -52,9 +52,12 @@ async function ProductList({
       )}
 
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {products.map((product) => (
+        {products.map((product, index) => (
           <Link key={product.id} href={`/products/${product.id}`}>
-            <ProductCard product={product} />
+            <ProductCard
+              product={product}
+              imageProps={index < 3 ? { priority: true } : undefined}
+            />
           </Link>
         ))}
       </div>

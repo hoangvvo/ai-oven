@@ -1,5 +1,5 @@
 import { ProductEntity } from "@/db/schema";
-import { ProductDataVectorEntity } from "@/types";
+import { Product, ProductDataVectorEntity, ProductReview } from "@/types";
 import OpenAI from "openai";
 import outdent from "outdent";
 
@@ -46,4 +46,31 @@ export async function embedProduct(
       user_review_id: 0,
     },
   ];
+}
+
+export async function embedReviews(
+  reviews: ProductReview[],
+  product: Product,
+): Promise<Omit<ProductDataVectorEntity, "id">[]> {
+  const data = reviews.map((review): Omit<ProductDataVectorEntity, "id"> => {
+    const content = outdent`
+      Review for ${product.name}:
+      ${review.comment}
+    `;
+
+    return {
+      product_id: product.id,
+      vector: [],
+      content_type: "user_review",
+      content_text: content,
+      user_review_id: review.id,
+    };
+  });
+
+  const vectors = await embedder.embed(data.map((d) => d.content_text));
+
+  return data.map((d, i) => ({
+    ...d,
+    vector: vectors[i],
+  }));
 }

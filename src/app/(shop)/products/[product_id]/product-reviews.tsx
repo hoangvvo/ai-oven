@@ -92,7 +92,7 @@ function ProductReviewCard({ review }: { review: ProductReview }) {
       <div className="flex items-center gap-2">
         <div className="flex-1 min-w-0">
           <div className="text-lg font-medium">
-            {review.user?.first_name || review.user_id}
+            {review.user?.first_name} {review.user?.last_name}
           </div>
           <div className="text-sm text-gray-500">
             {format(new Date(review.created_at), "MMMM d, yyyy")}

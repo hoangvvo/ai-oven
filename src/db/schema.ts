@@ -14,7 +14,7 @@ import {
 export const userEnum = pgEnum("user_role", ["admin", "user"]);
 
 export const usersTable = pgTable("users", {
-  id: integer().primaryKey().generatedAlwaysAsIdentity(),
+  id: integer().primaryKey().generatedByDefaultAsIdentity(),
   first_name: varchar({ length: 255 }).notNull(),
   last_name: varchar({ length: 255 }).notNull(),
   email: varchar({ length: 255 }).notNull().unique(),
@@ -109,7 +109,7 @@ export const orderStatusEnum = pgEnum("order_status", [
 ]);
 
 export const ordersTable = pgTable("orders", {
-  id: integer().primaryKey().generatedAlwaysAsIdentity(),
+  id: integer().primaryKey().generatedByDefaultAsIdentity(),
   paypal_id: varchar({ length: 50 }),
   user_id: integer().references(() => usersTable.id, {
     onDelete: "set null",
@@ -166,7 +166,7 @@ export type OrderItemEntity = InferSelectModel<typeof orderItemsTable> & {
 };
 
 export const productReviewsTable = pgTable("product_reviews", {
-  id: integer().primaryKey().generatedAlwaysAsIdentity(),
+  id: integer().primaryKey().generatedByDefaultAsIdentity(),
   product_id: varchar({ length: 50 })
     .references(() => productsTable.id, {
       onDelete: "cascade",

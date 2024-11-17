@@ -71,6 +71,12 @@ npm run migrate
 npm run dev
 ```
 
+Optionally, you can seed the database with some initial data from the [data.sql](data.sql) file:
+
+```bash
+psql -U postgres -d postgres -a -f data.sql
+```
+
 ## License
 
 This project is licensed under the GNU General Public License v3.0 - see the [LICENSE](LICENSE) file for details.

@@ -120,7 +120,7 @@ export default function Footer() {
         </div>
 
         <div className="mt-10 md:mt-0">
-          <h4 className="text-xl font-semibold mb-4">Have a question?</h4>
+          <p className="text-xl font-semibold mb-4">Have a question?</p>
           <p className="mb-4">We&apos;re always here to lend a helping hand.</p>
           <p className="mb-8">
             We&apos;re open from <br /> Monday-Friday, 9am - 5pm ICT

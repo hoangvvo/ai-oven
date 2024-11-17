@@ -125,7 +125,7 @@ export default function Footer() {
           <p className="mb-8">
             We&apos;re open from <br /> Monday-Friday, 9am - 5pm ICT
           </p>
-          <h5 className="font-semibold mb-2">CONTACT US</h5>
+          <p className="font-semibold mb-2">CONTACT US</p>
           <div className="flex space-x-4">
             {socialIcons.map(({ icon, label, href }) => (
               <a

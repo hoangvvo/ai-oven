@@ -26,7 +26,8 @@ const systemPrompt = outdent`
   - search_product to find a specific product by name.
   - relevance_search to find the best products to recommend based on descriptive keywords. This will also return user reviews that may contain relevant information to help with the user query.
 
-  The user does not want to be prompted for every detail, so try performing some searches first and only ask for more information if needed.
+  Upon receiving a query, try performing some searches first and DO NOT ask the user for more information unless necessary.
+  Explain concisely about the reasons for the recommendations, whether it's based on product attributes or user reviews.
 
   Other services, such as making orders, should be directed to the website.
 

@@ -3,6 +3,7 @@ import { getProduct } from "@/lib/data";
 import { Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
+import { ProductReviewSection } from "./product-reviews";
 
 type Params = { product_id: string };
 
@@ -21,6 +22,24 @@ const getProductFromProps = async (props: Props) => {
 
   return product;
 };
+
+function ProductDetailSection({
+  title,
+  content,
+}: {
+  title: string;
+  content: string | null;
+}) {
+  if (!content) {
+    return null;
+  }
+  return (
+    <div className="flex flex-col gap-2">
+      <h2 className="text-xl md:text-2xl font-medium">{title}</h2>
+      <p className="text-base md:text-lg text-neutral-700">{content}</p>
+    </div>
+  );
+}
 
 export default async function ProductPage(props: Props) {
   const product = await getProductFromProps(props);
@@ -51,34 +70,27 @@ export default async function ProductPage(props: Props) {
       </div>
 
       <div className="flex flex-col gap-8">
-        <div className="flex flex-col gap-2">
-          <h2 className="text-xl md:text-2xl font-medium">Ingredients</h2>
-          <p className="text-base md:text-lg">{product.ingredients}</p>
-        </div>
-
-        <div className="flex flex-col gap-2">
-          <h2 className="text-xl md:text-2xl font-medium">Nutrition Facts</h2>
-          <p className="text-base md:text-lg">{product.nutritional_info}</p>
-        </div>
-
-        <div className="flex flex-col gap-2">
-          <h2 className="text-xl md:text-2xl font-medium">Allergens</h2>
-          <p className="text-base md:text-lg">{product.allergen_info}</p>
-        </div>
-
-        <div className="flex flex-col gap-2">
-          <h2 className="text-xl md:text-2xl font-medium">
-            Serving Instructions
-          </h2>
-          <p className="text-base md:text-lg">{product.serving_suggestions}</p>
-        </div>
-
-        <div className="flex flex-col gap-2">
-          <h2 className="text-xl md:text-2xl font-medium">
-            Storage Instructions
-          </h2>
-          <p className="text-base md:text-lg">{product.storage_instructions}</p>
-        </div>
+        <ProductDetailSection
+          title="Ingredients"
+          content={product.ingredients}
+        />
+        <ProductDetailSection
+          title="Nutritional Information"
+          content={product.nutritional_info}
+        />
+        <ProductDetailSection
+          title="Allergen Information"
+          content={product.allergen_info}
+        />
+        <ProductDetailSection
+          title="Serving Suggestions"
+          content={product.serving_suggestions}
+        />
+        <ProductDetailSection
+          title="Storage Instructions"
+          content={product.storage_instructions}
+        />
+        <ProductReviewSection product={product} />
       </div>
     </div>
   );

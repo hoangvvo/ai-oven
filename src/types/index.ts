@@ -3,6 +3,7 @@ import {
   OrderEntity,
   OrderItemEntity,
   ProductEntity,
+  ProductReviewEntity,
   UserEntity,
 } from "@/db/schema";
 
@@ -97,3 +98,5 @@ export type Message = {
   role: "user" | "assistant";
   content: string;
 };
+
+export type ProductReview = ProductReviewEntity;

@@ -54,7 +54,13 @@ export const productsTable = pgTable("products", {
   featured: boolean().notNull().default(false),
 });
 
-export type ProductEntity = InferSelectModel<typeof productsTable>;
+export const productRelations = relations(productsTable, ({ many }) => ({
+  productReviews: many(productReviewsTable),
+}));
+
+export type ProductEntity = InferSelectModel<typeof productsTable> & {
+  productReviews?: ProductReviewEntity[];
+};
 
 export const productCollectionsTable = pgTable(
   "product_collections",
@@ -106,7 +112,7 @@ export const ordersTable = pgTable("orders", {
   id: integer().primaryKey().generatedAlwaysAsIdentity(),
   paypal_id: varchar({ length: 50 }),
   user_id: integer().references(() => usersTable.id, {
-    onDelete: "cascade",
+    onDelete: "set null",
   }),
   guest_name: varchar({ length: 255 }),
   guest_email: varchar({ length: 255 }),
@@ -157,4 +163,43 @@ export const orderItemRelations = relations(orderItemsTable, ({ one }) => ({
 
 export type OrderItemEntity = InferSelectModel<typeof orderItemsTable> & {
   product?: ProductEntity;
+};
+
+export const productReviewsTable = pgTable("product_reviews", {
+  id: integer().primaryKey().generatedAlwaysAsIdentity(),
+  product_id: varchar({ length: 50 })
+    .references(() => productsTable.id, {
+      onDelete: "cascade",
+    })
+    .notNull(),
+  user_id: integer()
+    .references(() => usersTable.id, {
+      onDelete: "cascade",
+    })
+    .notNull(),
+  // 1 - 5
+  rating: integer().notNull(),
+  comment: text(),
+  created_at: timestamp().notNull().defaultNow(),
+});
+
+export const productReviewRelations = relations(
+  productReviewsTable,
+  ({ one }) => ({
+    product: one(productsTable, {
+      fields: [productReviewsTable.product_id],
+      references: [productsTable.id],
+    }),
+    user: one(usersTable, {
+      fields: [productReviewsTable.user_id],
+      references: [usersTable.id],
+    }),
+  }),
+);
+
+export type ProductReviewEntity = InferSelectModel<
+  typeof productReviewsTable
+> & {
+  product?: ProductEntity;
+  user?: Pick<UserEntity, "last_name" | "first_name">;
 };

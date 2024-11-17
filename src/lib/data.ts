@@ -5,6 +5,7 @@ import {
   collectionsTable,
   ordersTable,
   productCollectionsTable,
+  productReviewsTable,
   productsTable,
 } from "@/db/schema";
 import { Collection, Product } from "@/types";
@@ -31,6 +32,19 @@ export const getProduct = cache(async (id: string): Promise<Product | null> => {
   return db.query.productsTable
     .findFirst({
       where: eq(collectionsTable.id, id),
+      with: {
+        productReviews: {
+          with: {
+            user: {
+              columns: {
+                first_name: true,
+                last_name: true,
+              },
+            },
+          },
+          orderBy: desc(productReviewsTable.created_at),
+        },
+      },
     })
     .then((product) => product ?? null);
 });

@@ -1,8 +1,10 @@
 import { getProducts } from "@/lib/data";
 import type { MetadataRoute } from "next";
 
+export const revalidate = 60 * 60;
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const products = await getProducts();
+  const products = await getProducts().catch(() => []);
   return [
     {
       url: `${process.env.APP_URL}/`,

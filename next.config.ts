@@ -26,6 +26,7 @@ const nextConfig: NextConfig = {
   outputFileTracingIncludes: {
     "/api/**/*": ["node_modules/@zilliz/milvus2-sdk-node/dist/proto/**/*"],
   },
+  output: "standalone",
 };
 
 const withMDX = createMDX({});

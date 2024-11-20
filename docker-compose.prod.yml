@@ -34,7 +34,7 @@ services:
       timeout: 20s
       retries: 3
 
-  standalone:
+  milvus:
     container_name: milvus-standalone
     image: milvusdb/milvus:v2.4.15
     command: ["milvus", "run", "standalone"]
@@ -58,7 +58,7 @@ services:
       - "etcd"
       - "minio"
 
-  db:
+  postgres:
     image: postgres:16.5
     restart: always
     environment:
@@ -78,9 +78,27 @@ services:
   attu:
     image: zilliz/attu:v2.4.11
     environment:
-      MILVUS_URL: standalone:19530
+      MILVUS_URL: milvus:19530
     ports:
       - "8002:3000"
+
+  app:
+    build: .
+    environment:
+      - DATABASE_URL
+      - POSTGRES_PASSWORD
+      - PAYPAL_CLIENT_ID
+      - PAYPAL_CLIENT_SECRET
+      - JWT_SECRET
+      - OPENAI_API_KEY
+      - SECRET_KEY
+      - APP_URL
+    ports:
+      - "80:3000"
+    depends_on:
+      - "postgres"
+      - "redis"
+      - "milvus"
 
 networks:
   default:

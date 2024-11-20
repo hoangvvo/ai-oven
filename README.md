@@ -46,6 +46,7 @@ npm install
 DATABASE_URL=postgres://postgres:postgres@localhost:5432/postgres
 POSTGRES_PASSWORD=postgres
 MILVUS_HOST=localhost:19530
+MILVUS_TOKEN=milvus
 PAYPAL_CLIENT_ID=<YOUR_PAYPAL_CLIENT_ID>
 PAYPAL_CLIENT_SECRET=<YOUR_PAYPAL_CLIENT_SECRET>
 JWT_SECRET=<YOUR_JWT_SECRET>
@@ -76,6 +77,23 @@ Optionally, you can seed the database with some initial data from the [data.sql]
 ```bash
 psql -U postgres -d postgres -a -f data.sql
 ```
+
+### Deployment
+
+All services, including the Next.js server, can be conveniently deployed using Docker Compose.
+
+Due to the network setup in Docker, first change the `.env` file to use service names in the URLs:
+
+```bash
+DATABASE_URL=postgres://postgres:postgres@postgres:5432/postgres
+MILVUS_HOST=milvus:19530
+```
+
+````
+
+```bash
+docker compose up -d
+````
 
 ## License
 

@@ -14,6 +14,7 @@ class Milvus {
   constructor() {
     this.client = new MilvusClient({
       address: process.env.MILVUS_HOST as string,
+      token: process.env.MILVUS_TOKEN as string,
     });
   }
 

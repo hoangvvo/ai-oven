@@ -167,7 +167,7 @@ function DeliveryForm({
         />
         <CountrySelect
           name="shipping_country_code"
-          defaultValue={session.user?.country_code || undefined}
+          defaultValue={session.user?.country_code || "VN"}
           required
         />
         <Input

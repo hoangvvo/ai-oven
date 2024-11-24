@@ -48,16 +48,31 @@ export interface ApiError {
 
 export interface AppSession {
   user: User | null;
+  cart: SessionCart;
+}
+
+export interface FullAppSession {
+  user: User | null;
   cart: Cart;
 }
 
 export type CartItem = {
   product: Product;
+  product_id: string;
   quantity: number;
 };
 
 export type Cart = {
   items: CartItem[];
+};
+
+export type SessionCartItem = {
+  product_id: string;
+  quantity: number;
+};
+
+export type SessionCart = {
+  items: SessionCartItem[];
 };
 
 export type CreateOrderRequest = {

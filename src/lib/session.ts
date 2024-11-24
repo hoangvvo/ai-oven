@@ -1,6 +1,9 @@
 "use server";
 
-import { AppSession } from "@/types";
+import { db } from "@/db";
+import { productsTable } from "@/db/schema";
+import { AppSession, FullAppSession, SessionCartItem } from "@/types";
+import { inArray } from "drizzle-orm";
 import jwt from "jsonwebtoken";
 import { cookies } from "next/headers";
 import { cache } from "react";
@@ -14,6 +17,17 @@ export async function setSession(session: Partial<AppSession>): Promise<void> {
     ...existingSession,
     ...session,
   };
+
+  if (newSession.cart) {
+    newSession.cart.items = newSession.cart.items
+      .map(
+        (item): SessionCartItem => ({
+          product_id: item.product_id,
+          quantity: item.quantity,
+        }),
+      )
+      .filter((item) => item.quantity > 0);
+  }
 
   const token = jwt.sign(newSession, jwtSecret, {
     algorithm: "HS256",
@@ -31,14 +45,14 @@ export async function setSession(session: Partial<AppSession>): Promise<void> {
   });
 }
 
-const defaultSession: AppSession = {
+const defaultSession: FullAppSession = {
   user: null,
   cart: {
     items: [],
   },
 };
 
-export const getSession = cache(async (): Promise<AppSession> => {
+export const getSession = cache(async (): Promise<FullAppSession> => {
   const cookieStore = await cookies();
 
   const token = cookieStore.get("session");
@@ -52,13 +66,40 @@ export const getSession = cache(async (): Promise<AppSession> => {
     if (typeof jwtPayload === "object" && jwtPayload !== null) {
       const { user, cart } = jwtPayload as AppSession;
 
+      const products = await db.query.productsTable.findMany({
+        where: inArray(
+          productsTable.id,
+          cart.items.map((item) => item.product_id),
+        ),
+      });
+
       return {
         user,
-        cart,
+        cart: {
+          ...cart,
+          items: cart.items
+            .map((item) => {
+              const product = products.find(
+                (product) => product.id === item.product_id,
+              );
+
+              if (!product) {
+                return null;
+              }
+
+              return {
+                product,
+                product_id: item.product_id,
+                quantity: item.quantity,
+              };
+            })
+            .filter((item) => !!item),
+        },
       };
     }
     return defaultSession;
-  } catch {
+  } catch (err) {
+    console.error("invalid session", err);
     return defaultSession;
   }
 });

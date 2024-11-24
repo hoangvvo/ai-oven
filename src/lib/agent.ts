@@ -1,7 +1,7 @@
 import { db } from "@/db";
-import { productsTable } from "@/db/schema";
+import { productCollectionsTable, productsTable } from "@/db/schema";
 import { Message, User } from "@/types";
-import { and, eq, gt, inArray, like, SQL } from "drizzle-orm";
+import { and, eq, gt, inArray, like, or, SQL } from "drizzle-orm";
 import OpenAI from "openai";
 import { ChatCompletionMessageParam } from "openai/resources/index.mjs";
 import { outdent } from "outdent";
@@ -20,8 +20,11 @@ const systemPrompt = outdent`
   2. Provide detailed information about the products.
   3. List all products available in the store.
 
-  Product attributes include: name, description, ingredients, nutritional info, allergen info, serving suggestions, storage instructions, price (original), and discount percent. The URL to the product is ${process.env["APP_URL"]}/products/{product_id}.
+  Product attributes include: name, description, ingredients, nutritional info, allergen info, serving suggestions, storage instructions, price (original before discount), and discount percent. Calculate and display discounted price if discount percent is greater than 0.
   Only mention the name, price, and URL in the response by default unless the user asks for more details.
+  
+  The URL to the product is ${process.env["APP_URL"]}/products/{product_id}.
+  The URL to view a collection is ${process.env["APP_URL"]}/products?collection={collection_id}.
 
   Use the following tools:
   - relevance_search to find the best products to recommend based on descriptive keywords. This will also return user reviews that may contain relevant information to help with the user query.
@@ -52,9 +55,10 @@ export class Agent {
         parameters: {
           type: "object",
           properties: {
-            query: {
+            search: {
               type: ["string", "null"],
-              description: "Search query to filter products, if provided",
+              description:
+                "Search query to filter products by name and description, if provided",
             },
             offset: {
               type: "integer",
@@ -68,16 +72,32 @@ export class Agent {
               type: ["boolean", "null"],
               description: "Filter by discounted products",
             },
+            collection_id: {
+              type: ["string", "null"],
+              description:
+                "Filter by collection ID (This is the ID, not the name so you may need to fetch all collections first to match)",
+            },
           },
-          required: ["query", "offset", "featured", "discounted"],
+          required: [
+            "search",
+            "offset",
+            "featured",
+            "discounted",
+            "collection_id",
+          ],
           additionalProperties: false,
         },
         strict: true,
-        execute({ query, offset, featured, discounted }) {
+        execute({ search, offset, featured, discounted, collection_id }) {
           const conds: SQL[] = [];
 
-          if (query) {
-            conds.push(like(productsTable.name, `%${query}%`));
+          if (search) {
+            conds.push(
+              or(
+                like(productsTable.name, `%${search}%`),
+                like(productsTable.description, `%${search}%`),
+              )!,
+            );
           }
 
           if (featured !== null) {
@@ -88,26 +108,40 @@ export class Agent {
             conds.push(gt(productsTable.discount_percent, "0"));
           }
 
-          return db.query.productsTable.findMany({
-            ...(conds.length > 0 && {
-              where: conds.length > 1 ? and(...conds) : conds[0],
-            }),
-            columns: {
-              id: true,
-              name: true,
-              description: true,
-              ingredients: true,
-              nutritional_info: true,
-              allergen_info: true,
-              serving_suggestions: true,
-              storage_instructions: true,
-              price: true,
-              discount_percent: true,
-              featured: true,
-            },
-            offset,
-            limit: 10,
-          });
+          if (collection_id) {
+            conds.push(
+              eq(productCollectionsTable.collection_id, collection_id),
+            );
+          }
+
+          const query = db
+            .selectDistinctOn([productsTable.id], {
+              id: productsTable.id,
+              name: productsTable.name,
+              description: productsTable.description,
+              price: productsTable.price,
+              discount_percent: productsTable.discount_percent,
+              featured: productsTable.featured,
+              ingredients: productsTable.ingredients,
+              nutritional_info: productsTable.nutritional_info,
+              allergen_info: productsTable.allergen_info,
+              serving_suggestions: productsTable.serving_suggestions,
+              storage_instructions: productsTable.storage_instructions,
+            })
+            .from(productsTable)
+            .leftJoin(
+              productCollectionsTable,
+              eq(productsTable.id, productCollectionsTable.product_id),
+            );
+
+          if (conds.length) {
+            return query
+              .where(conds.length > 1 ? and(...conds) : conds[0])
+              .offset(offset)
+              .limit(10);
+          } else {
+            return query.offset(offset).limit(10);
+          }
         },
       },
       {
@@ -209,6 +243,19 @@ export class Agent {
           }
 
           return product;
+        },
+      },
+      {
+        name: "list_collections",
+        description: "List all product collections",
+        execute() {
+          return db.query.collectionsTable.findMany({
+            columns: {
+              id: true,
+              name: true,
+              description: true,
+            },
+          });
         },
       },
     ];

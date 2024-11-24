@@ -24,12 +24,12 @@ export function ProductCard({
         />
         <div className="absolute top-2 right-2 flex flex-col items-end gap-2">
           {product.featured && (
-            <span className="bg-yellow-700/50 backdrop-blur-sm text-white text-sm font-bold py-1.5 px-4 rounded">
+            <span className="bg-gradient-to-tr from-emerald-600 to-emerald-700 text-white text-xs font-bold py-1.5 px-4 rounded">
               Featured
             </span>
           )}
           {Number(product.discount_percent) > 0 && (
-            <span className="bg-red-600/50 backdrop-blur-sm text-white text-sm font-bold py-1.5 px-4 rounded">
+            <span className="bg-gradient-to-tr from-rose-600 to-rose-500 text-white text-xs font-bold py-1.5 px-4 rounded">
               {parseInt(product.discount_percent)}% off
             </span>
           )}

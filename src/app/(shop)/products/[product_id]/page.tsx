@@ -75,7 +75,7 @@ export default async function ProductPage(props: Props) {
                   ${productCost.originalPrice}
                 </span>{" "}
                 ${productCost.price}{" "}
-                <span className="bg-red-600 text-white font-semibold py-1 px-2 rounded text-sm">
+                <span className="bg-rose-600 text-white font-semibold py-1 px-2 rounded text-sm">
                   ({parseInt(product.discount_percent)}% off)
                 </span>
               </>

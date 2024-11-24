@@ -1324,3 +1324,28 @@ INSERT INTO product_reviews (product_id, user_id, rating, comment, created_at) V
 ('easter-cookies', 110, 5, 'Fun and delicious; they were a hit with both kids and adults.', now()),
 ('easter-cookies', 111, 5, 'We brought these to an Easter brunch, and they looked great on the dessert table.', now()),
 ('easter-cookies', 112, 5, 'A festive and tasty addition to any Easter celebration.', now());
+
+-- Adding products to the corporate-events collection
+INSERT INTO product_collections (product_id, collection_id) VALUES
+('mini-quiche', 'corporate-events'),
+('croissant', 'corporate-events'),
+('chocolate-chip-cookie', 'corporate-events'),
+('macarons', 'corporate-events'),
+('fruit-tart', 'corporate-events'),
+('blueberry-muffin', 'corporate-events'),
+('lemon-bar', 'corporate-events'),
+('chocolate-truffle', 'corporate-events'),
+('espresso-macarons', 'corporate-events');
+
+-- Adding products to the holidays collection
+INSERT INTO product_collections (product_id, collection_id) VALUES
+('gingerbread-cookies', 'holidays'),
+('pumpkin-pie', 'holidays'),
+('apple-strudel', 'holidays'),
+('red-velvet-cake', 'holidays'),
+('chocolate-peppermint-bark', 'holidays'),
+('churros', 'holidays'),
+('lavender-cookies', 'holidays'),
+('salted-caramel-brownie', 'holidays'),
+('raspberry-tart', 'holidays'),
+('matcha-pound-cake', 'holidays');

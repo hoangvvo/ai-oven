@@ -1,5 +1,6 @@
 import { AddToCart } from "@/components/add-to-cart";
 import { getProduct } from "@/lib/data";
+import { getProductCost } from "@/lib/utils";
 import { Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
@@ -44,6 +45,8 @@ function ProductDetailSection({
 export default async function ProductPage(props: Props) {
   const product = await getProductFromProps(props);
 
+  const productCost = getProductCost(product);
+
   return (
     <div className="container py-12 flex flex-col gap-8">
       <div className="flex flex-col md:flex-row gap-8">
@@ -64,7 +67,19 @@ export default async function ProductPage(props: Props) {
           </h1>
           <p className="text-base md:text-lg mb-4">{product.description}</p>
           <p className="text-xl md:text-2xl mb-6 text-gray-700">
-            ${product.price}
+            {productCost.price === productCost.originalPrice ? (
+              <>${productCost.price}</>
+            ) : (
+              <>
+                <span className="line-through text-neutral-500">
+                  ${productCost.originalPrice}
+                </span>{" "}
+                ${productCost.price}{" "}
+                <span className="bg-red-600 text-white font-semibold py-1 px-2 rounded text-sm">
+                  ({parseInt(product.discount_percent)}% off)
+                </span>
+              </>
+            )}
           </p>
           <AddToCart product={product} />
         </div>

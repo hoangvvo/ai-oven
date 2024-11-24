@@ -1,6 +1,7 @@
 "use client";
 
 import { syncCart } from "@/lib/cart";
+import { getCartItemCost, getCartTotalCost } from "@/lib/utils";
 import { CartItem } from "@/types";
 import {
   Dialog,
@@ -20,7 +21,7 @@ import { useCart } from "./cart-context";
 function CartItemCard({ item }: { item: CartItem }) {
   const { dispatch } = useCart();
 
-  const totalPrice = Number(item.product.price) * item.quantity;
+  const totalPrice = getCartItemCost(item);
 
   const onChange = (e: React.FocusEvent<HTMLInputElement>) => {
     let quantity = e.currentTarget.valueAsNumber;
@@ -57,7 +58,16 @@ function CartItemCard({ item }: { item: CartItem }) {
       <div className="flex-1 flex flex-col">
         <p className="text-lg font-semibold">{item.product.name}</p>
         <p className="text-lg text-neutral-800 mb-2">
-          ${totalPrice.toFixed(2)}
+          {totalPrice.cost === totalPrice.originalCost ? (
+            <>${totalPrice.cost}</>
+          ) : (
+            <>
+              <span className="line-through text-neutral-500">
+                ${totalPrice.originalCost}
+              </span>{" "}
+              ${totalPrice.cost}
+            </>
+          )}
         </p>
         <div className="flex items-center gap-4 justify-between">
           <div className="flex items-center gap-4">
@@ -84,7 +94,7 @@ function CartItemCard({ item }: { item: CartItem }) {
 }
 
 export function CartModal() {
-  const { cart, totalQuantities, totalPrice } = useCart();
+  const { cart, totalQuantities } = useCart();
 
   const [isOpen, setIsOpen] = useState(false);
   const openCart = () => setIsOpen(true);
@@ -118,6 +128,8 @@ export function CartModal() {
     };
     doSyncCart();
   }, [cart]);
+
+  const totalCartCost = getCartTotalCost(cart);
 
   return (
     <>
@@ -171,7 +183,13 @@ export function CartModal() {
                 </div>
                 <div className="flex items-center justify-between gap-4 pt-8 border-t">
                   <p className="text-lg font-semibold">
-                    Total: ${totalPrice.toFixed(2)}
+                    Total: ${totalCartCost.totalCost}
+                    {Number(totalCartCost.saving) > 0 && (
+                      <span className="text-neutral-500">
+                        {" "}
+                        (Saved ${totalCartCost.saving})
+                      </span>
+                    )}
                   </p>
                   <Link
                     href="/checkout"

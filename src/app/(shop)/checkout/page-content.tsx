@@ -5,7 +5,7 @@ import { CountrySelect } from "@/components/country-select";
 import { useSession } from "@/components/session";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { cn } from "@/lib/utils";
+import { cn, getCartItemCost, getCartTotalCost } from "@/lib/utils";
 import { CartItem, Order } from "@/types";
 import { ArrowRightIcon } from "@heroicons/react/24/outline";
 import {
@@ -19,7 +19,7 @@ import { CompleteScreen } from "./complete-screen";
 import { PaymentForm } from "./payment-form";
 
 function CartItemCard({ item }: { item: CartItem }) {
-  const totalPrice = Number(item.product.price) * item.quantity;
+  const itemPrice = getCartItemCost(item);
 
   return (
     <div className="flex items-start gap-4">
@@ -40,7 +40,18 @@ function CartItemCard({ item }: { item: CartItem }) {
         </div>
       </div>
       <div className="flex flex-col items-end">
-        <p className="text-lg text-neutral-800">${totalPrice.toFixed(2)}</p>
+        <p className="text-lg text-neutral-800">
+          {itemPrice.cost === itemPrice.originalCost ? (
+            <>${itemPrice.cost}</>
+          ) : (
+            <>
+              <span className="line-through text-neutral-500">
+                ${itemPrice.originalCost}
+              </span>{" "}
+              ${itemPrice.cost}
+            </>
+          )}
+        </p>
       </div>
     </div>
   );
@@ -222,6 +233,8 @@ export function CheckoutPageContent() {
     setCompletedOrder(order);
   };
 
+  const totalCost = getCartTotalCost(cart);
+
   return (
     <PayPalScriptProvider options={initialOptions}>
       <div className="container py-12 grid gap-8 grid-cols-1 lg:grid-cols-2">
@@ -258,12 +271,13 @@ export function CheckoutPageContent() {
           <div className="flex justify-between items-center border-t border-neutral-200 py-4">
             <p className="text-xl font-semibold">Total</p>
             <p className="text-xl font-semibold">
-              $
-              {cart.items
-                .reduce((total, item) => {
-                  return total + Number(item.product.price) * item.quantity;
-                }, 0)
-                .toFixed(2)}
+              ${totalCost.totalCost}
+              {Number(totalCost.saving) > 0 && (
+                <span className="text-neutral-500">
+                  {" "}
+                  (Saved ${totalCost.saving})
+                </span>
+              )}
             </p>
           </div>
         </div>

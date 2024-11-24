@@ -1,8 +1,9 @@
+import { getCartItemCost } from "@/lib/utils";
 import { CartItem } from "@/types";
 import Image from "next/image";
 
 export function CartItemCard({ item }: { item: CartItem }) {
-  const totalPrice = Number(item.product.price) * item.quantity;
+  const itemPrice = getCartItemCost(item);
 
   return (
     <div className="flex items-start gap-4">
@@ -23,7 +24,18 @@ export function CartItemCard({ item }: { item: CartItem }) {
         </div>
       </div>
       <div className="flex flex-col items-end">
-        <p className="text-lg text-neutral-800">${totalPrice.toFixed(2)}</p>
+        <p className="text-lg text-neutral-800">
+          {itemPrice.cost === itemPrice.originalCost ? (
+            <>${itemPrice.cost}</>
+          ) : (
+            <>
+              <span className="line-through text-neutral-500">
+                ${itemPrice.originalCost}
+              </span>{" "}
+              ${itemPrice.cost}
+            </>
+          )}
+        </p>
       </div>
     </div>
   );

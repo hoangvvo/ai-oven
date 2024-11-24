@@ -4,10 +4,10 @@ import { db } from "@/db";
 import { orderItemsTable, ordersTable } from "@/db/schema";
 import {
   ApiError,
-  AppSession,
   CaptureOrderResponse,
   CreateOrderRequest,
   CreateOrderResponse,
+  FullAppSession,
 } from "@/types";
 import {
   ApiResponse,
@@ -20,6 +20,7 @@ import {
 } from "@paypal/paypal-server-sdk";
 import { eq } from "drizzle-orm";
 import { parsePhoneNumber } from "libphonenumber-js/min";
+import { getCartItemCost } from "./utils";
 
 const { PAYPAL_CLIENT_ID, PAYPAL_CLIENT_SECRET } = process.env;
 
@@ -35,7 +36,7 @@ const client = new Client({
 const ordersController = new OrdersController(client);
 
 export async function createOrder(
-  session: AppSession,
+  session: FullAppSession,
   input: CreateOrderRequest,
 ): Promise<CreateOrderResponse | ApiError> {
   const { guest_email, ...shippingInformation } = input;
@@ -59,7 +60,7 @@ export async function createOrder(
         purchaseUnits: session.cart.items.map((item) => ({
           amount: {
             currencyCode: "USD",
-            value: (Number(item.product.price) * item.quantity).toFixed(2),
+            value: getCartItemCost(item).cost,
           },
           description: item.product.name,
           quantity: item.quantity.toString(),

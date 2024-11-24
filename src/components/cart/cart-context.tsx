@@ -7,7 +7,6 @@ type CartContextType = {
   cart: Cart;
   dispatch: (action: CartAction) => void;
   totalQuantities: number;
-  totalPrice: number;
 };
 
 const CartContext = createContext({} as CartContextType);
@@ -90,10 +89,6 @@ export function CartProvider({
     (total, item) => total + item.quantity,
     0,
   );
-  const totalPrice = cart.items.reduce(
-    (total, item) => total + Number(item.product.price) * item.quantity,
-    0,
-  );
 
   return (
     <CartContext.Provider
@@ -101,7 +96,6 @@ export function CartProvider({
         cart,
         dispatch,
         totalQuantities,
-        totalPrice,
       }}
     >
       {children}

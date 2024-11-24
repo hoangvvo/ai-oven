@@ -75,293 +75,1252 @@ INSERT INTO products (
 ('easter-cookies', 'Easter Cookies', 'Colorful cookies decorated for the Easter holiday.', 'Flour, Sugar, Butter, Food Coloring', 1.99, 0.00, ARRAY['https://plus.unsplash.com/premium_photo-1710438379123-2d27dfd6a1b9'], 50, true,
  'Calories: 120 per cookie, Fat: 5g, Carbs: 18g, Protein: 1g', 'Contains: Gluten, Dairy', 'Perfect for holiday celebrations.', 'Store in an airtight container for up to 5 days.');
 
-INSERT INTO product_collections (product_id, collection_id) VALUES
-('sourdough-loaf', 'artisan-bread'),
-('baguette', 'artisan-bread'),
-('focaccia', 'artisan-bread'),
-
-('croissant', 'exquisite-pastries'),
-('chocolate-eclair', 'exquisite-pastries'),
-('almond-croissant', 'exquisite-pastries'),
-
-('red-velvet-cake', 'gourmet-cakes'),
-('wedding-cake', 'gourmet-cakes'),
-('birthday-cake', 'gourmet-cakes'),
-('carrot-cake', 'gourmet-cakes'),
-
-('chocolate-chip-cookie', 'cookies'),
-('easter-cookies', 'cookies'),
-('macarons', 'cookies'),
-
-('vanilla-muffin', 'muffins'),
-('blueberry-muffin', 'muffins'),
-
-('fruit-tart', 'tarts'),
-('raspberry-tart', 'tarts'),
-('cherry-pie', 'tarts'),
-
-('pumpkin-pie', 'holidays'),
-('easter-cookies', 'holidays'),
-
-('birthday-cupcake', 'birthdays'),
-('birthday-cake', 'birthdays'),
-
-('wedding-cake', 'weddings'),
-
-('mini-quiche', 'corporate-events'),
-
-('chocolate-truffle', 'exquisite-pastries'),
-('lemon-bar', 'exquisite-pastries'),
-('cinnamon-roll', 'exquisite-pastries'),
-('apple-strudel', 'tarts'),
-('banana-bread', 'artisan-bread'),
-('vegan-brownie', 'exquisite-pastries'),
-('gluten-free-cupcake', 'birthdays'),
-('pretzel', 'artisan-bread');
-
 INSERT INTO users (id, first_name, last_name, email, password_hash, phone_number, address, city, country_code, role, created_at) VALUES
 (100, 'Anh', 'Smith', 'anh.smith@example.com', 'hashed_password_1', '0123456789', '123 Main St', 'Hanoi', 'VN', 'user', now()),
 (101, 'David', 'Nguyen', 'david.nguyen@example.com', 'hashed_password_2', '0987654321', '456 Elm St', 'Ho Chi Minh City', 'VN', 'user', now()),
 (102, 'Emily', 'Tran', 'emily.tran@example.com', 'hashed_password_3', '0111222333', '789 Pine St', 'Da Nang', 'VN', 'user', now());
 
--- Inserting all product reviews for each product
-
--- Reviews for Sourdough Loaf
 INSERT INTO product_reviews (product_id, user_id, rating, comment, created_at) VALUES
 ('sourdough-loaf', 100, 5, 'The sourdough loaf held up beautifully for sandwiches and had the perfect crust-to-softness ratio.', now()),
 ('sourdough-loaf', 101, 4, 'A good loaf with a nice crust, though a bit too tangy for my preference.', now()),
 ('sourdough-loaf', 102, 5, 'We loved using this bread for avocado toast, absolutely delicious.', now()),
-('sourdough-loaf', 100, 4, 'Great crust and chewy interior, but it dried out quickly if not stored properly.', now()),
-('sourdough-loaf', 101, 5, 'Perfect for making grilled cheese sandwiches, the crust added a great texture.', now());
-
--- Reviews for Baguette
-INSERT INTO product_reviews (product_id, user_id, rating, comment, created_at) VALUES
 ('baguette', 102, 5, 'The baguette was fantastic for making bruschetta, perfect crunch!', now()),
 ('baguette', 100, 4, 'Good flavor but could have been a bit fluffier on the inside.', now()),
 ('baguette', 101, 5, 'Excellent for pairing with soups, the crust held up well without getting soggy.', now()),
-('baguette', 102, 4, 'I enjoyed it with olive oil and balsamic vinegar, very authentic taste.', now()),
-('baguette', 100, 5, 'Reminded me of the ones I had in France, great for charcuterie boards.', now());
-
--- Reviews for Croissant
-INSERT INTO product_reviews (product_id, user_id, rating, comment, created_at) VALUES
 ('croissant', 101, 5, 'The croissants were amazing with my morning coffee, so flaky and buttery.', now()),
 ('croissant', 102, 5, 'Perfectly baked with a rich buttery flavor, ideal for breakfast.', now()),
 ('croissant', 100, 4, 'Good, but a little too rich for my taste. Still paired well with jam.', now()),
-('croissant', 101, 5, 'Best croissants I’ve had outside of Paris, my kids loved them.', now()),
-('croissant', 102, 4, 'Great texture, but I prefer them warm right out of the oven.', now());
-
--- Reviews for Chocolate Eclair
-INSERT INTO product_reviews (product_id, user_id, rating, comment, created_at) VALUES
 ('chocolate-eclair', 100, 5, 'We ordered these for a birthday party, and they were a huge hit.', now()),
 ('chocolate-eclair', 101, 5, 'The cream filling was smooth and delicious, with the perfect amount of chocolate.', now()),
 ('chocolate-eclair', 102, 4, 'Very rich and decadent, great with a cup of tea.', now()),
-('chocolate-eclair', 100, 5, 'Loved the contrast between the creamy filling and the chocolate topping.', now()),
-('chocolate-eclair', 101, 4, 'Good overall, but could have used a bit more filling.', now());
-
--- Reviews for Vanilla Muffin
-INSERT INTO product_reviews (product_id, user_id, rating, comment, created_at) VALUES
 ('vanilla-muffin', 102, 5, 'Perfect with my morning coffee, soft and full of flavor.', now()),
 ('vanilla-muffin', 100, 4, 'A bit sweet for my taste but still very moist and fluffy.', now()),
 ('vanilla-muffin', 101, 5, 'The vanilla flavor was rich and authentic, loved it!', now()),
-('vanilla-muffin', 102, 4, 'Great as a quick breakfast or snack, very satisfying.', now()),
-('vanilla-muffin', 100, 5, 'Paired wonderfully with some fresh berries, a real treat.', now());
-
--- Reviews for Blueberry Muffin
-INSERT INTO product_reviews (product_id, user_id, rating, comment, created_at) VALUES
 ('blueberry-muffin', 101, 5, 'Loaded with fresh blueberries, perfect for a healthy snack.', now()),
 ('blueberry-muffin', 102, 5, 'Enjoyed with a dollop of cream cheese, highly recommend.', now()),
 ('blueberry-muffin', 100, 4, 'Very moist and flavorful, but I wish it had more blueberries.', now()),
-('blueberry-muffin', 101, 5, 'Perfectly sweet and tangy, great for a mid-morning pick-me-up.', now()),
-('blueberry-muffin', 102, 4, 'Delicious, but a bit crumbly compared to others I’ve tried.', now());
-
--- Reviews for Red Velvet Cake
-INSERT INTO product_reviews (product_id, user_id, rating, comment, created_at) VALUES
 ('red-velvet-cake', 100, 5, 'We served this at a wedding reception, and everyone loved it.', now()),
 ('red-velvet-cake', 101, 5, 'Rich and decadent, the cream cheese frosting was perfect.', now()),
 ('red-velvet-cake', 102, 4, 'Very moist and flavorful, but a bit too sweet for my taste.', now()),
-('red-velvet-cake', 100, 5, 'The texture was perfect, and the color was beautiful for events.', now()),
-('red-velvet-cake', 101, 4, 'Great cake, but would have preferred a bit less frosting.', now());
-
--- Reviews for Wedding Cake
-INSERT INTO product_reviews (product_id, user_id, rating, comment, created_at) VALUES
 ('wedding-cake', 102, 5, 'We ordered this for our wedding, and it looked and tasted amazing.', now()),
 ('wedding-cake', 100, 5, 'Beautiful design and delicious flavor, guests were impressed.', now()),
 ('wedding-cake', 101, 4, 'Stunning presentation, though a bit expensive.', now()),
-('wedding-cake', 102, 5, 'The fondant was perfect, and the cake layers were moist.', now()),
-('wedding-cake', 100, 4, 'Loved the flavor, but would have liked more customization options.', now());
-
--- Reviews for Birthday Cupcake
-INSERT INTO product_reviews (product_id, user_id, rating, comment, created_at) VALUES
 ('birthday-cupcake', 101, 5, 'Perfect for birthday celebrations, the kids loved the colorful sprinkles.', now()),
 ('birthday-cupcake', 102, 5, 'Super moist and flavorful, a great party treat.', now()),
 ('birthday-cupcake', 100, 4, 'Fun and festive, but a bit too sweet for my liking.', now()),
-('birthday-cupcake', 101, 5, 'Great for parties, and the frosting was spot on.', now()),
-('birthday-cupcake', 102, 4, 'Loved the design and flavor, but could have used more variety.', now());
-
--- Reviews for Chocolate Chip Cookie
-INSERT INTO product_reviews (product_id, user_id, rating, comment, created_at) VALUES
 ('chocolate-chip-cookie', 100, 5, 'Chewy and delicious, just like homemade.', now()),
 ('chocolate-chip-cookie', 101, 5, 'Perfect with a glass of milk, highly recommend.', now()),
 ('chocolate-chip-cookie', 102, 4, 'Great flavor, but I prefer a crispier edge.', now()),
-('chocolate-chip-cookie', 100, 5, 'Loved the generous chocolate chips, a real treat.', now()),
-('chocolate-chip-cookie', 101, 4, 'Tasty, but could have been a bit more chewy in the middle.', now());
-
--- Reviews for Macarons
-INSERT INTO product_reviews (product_id, user_id, rating, comment, created_at) VALUES
 ('macarons', 102, 5, 'The best macarons I’ve had, delicate and flavorful.', now()),
 ('macarons', 100, 5, 'Perfect for a special occasion, great flavor variety.', now()),
 ('macarons', 101, 4, 'Lovely texture, but the flavors were a bit subtle.', now()),
-('macarons', 102, 5, 'Great as a gift, the packaging was also very nice.', now()),
-('macarons', 100, 4, 'Enjoyed them, but some were a bit too sweet for my taste.', now());
-
--- Reviews for Fruit Tart
-INSERT INTO product_reviews (product_id, user_id, rating, comment, created_at) VALUES
 ('fruit-tart', 101, 5, 'The perfect balance of sweet and tart, loved the fresh fruit.', now()),
 ('fruit-tart', 102, 5, 'Beautifully presented and delicious, great for a summer dessert.', now()),
 ('fruit-tart', 100, 4, 'Very tasty, but the crust was a bit too hard.', now()),
-('fruit-tart', 101, 5, 'Refreshing and not overly sweet, loved it.', now()),
-('fruit-tart', 102, 4, 'Great flavor, but would have liked more custard.', now());
-
--- Reviews for Cherry Pie
-INSERT INTO product_reviews (product_id, user_id, rating, comment, created_at) VALUES
 ('cherry-pie', 100, 5, 'Perfect for the holidays, everyone loved it.', now()),
 ('cherry-pie', 101, 5, 'Great flavor with just the right amount of tartness.', now()),
 ('cherry-pie', 102, 4, 'The crust was perfect, but the filling could have been thicker.', now()),
-('cherry-pie', 100, 5, 'Loved it warm with a scoop of vanilla ice cream.', now()),
-('cherry-pie', 101, 4, 'Tasty, but I prefer a sweeter filling.', now());
-
--- Reviews for Pound Cake
-INSERT INTO product_reviews (product_id, user_id, rating, comment, created_at) VALUES
 ('pound-cake', 102, 5, 'Dense and flavorful, perfect with a cup of tea.', now()),
 ('pound-cake', 100, 5, 'Moist and rich, loved it with fresh berries.', now()),
 ('pound-cake', 101, 4, 'Delicious, but a bit heavy for my taste.', now()),
-('pound-cake', 102, 5, 'Great texture and flavor, will buy again.', now()),
-('pound-cake', 100, 4, 'Good, but could have used a touch more vanilla.', now());
-
--- Reviews for Lemon Bar
-INSERT INTO product_reviews (product_id, user_id, rating, comment, created_at) VALUES
 ('lemon-bar', 101, 5, 'Tangy and sweet, the perfect balance.', now()),
 ('lemon-bar', 102, 5, 'Loved the lemon flavor, great as a summer treat.', now()),
 ('lemon-bar', 100, 4, 'Very tasty, but the crust was a bit too thick.', now()),
-('lemon-bar', 101, 5, 'Refreshing and not too sweet, highly recommend.', now()),
-('lemon-bar', 102, 4, 'Good flavor, but a bit too tart for my preference.', now());
-
--- Reviews for Carrot Cake
-INSERT INTO product_reviews (product_id, user_id, rating, comment, created_at) VALUES
 ('carrot-cake', 100, 5, 'Moist and full of flavor, the frosting was perfect.', now()),
 ('carrot-cake', 101, 5, 'Loved the walnuts on top, great texture.', now()),
 ('carrot-cake', 102, 4, 'Very tasty, but I prefer it with more spice.', now()),
-('carrot-cake', 100, 5, 'Perfect for a family gathering, everyone enjoyed it.', now()),
-('carrot-cake', 101, 4, 'Great cake, but the frosting was a bit too sweet.', now());
-
--- Reviews for Cinnamon Roll
-INSERT INTO product_reviews (product_id, user_id, rating, comment, created_at) VALUES
 ('cinnamon-roll', 102, 5, 'Warm and gooey, the cream cheese glaze was amazing.', now()),
 ('cinnamon-roll', 100, 5, 'Perfect for a Sunday brunch, very indulgent.', now()),
 ('cinnamon-roll', 101, 4, 'Delicious, but I wish there was more cinnamon filling.', now()),
-('cinnamon-roll', 102, 5, 'Best when warm, loved every bite.', now()),
-('cinnamon-roll', 100, 4, 'Very tasty, but a bit too rich for breakfast.', now());
-
--- Reviews for Pretzel
-INSERT INTO product_reviews (product_id, user_id, rating, comment, created_at) VALUES
 ('pretzel', 100, 5, 'Soft and salty, perfect with mustard.', now()),
 ('pretzel', 101, 5, 'Great snack, loved the chewy texture.', now()),
 ('pretzel', 102, 4, 'Tasty, but could have used a bit more salt.', now()),
-('pretzel', 100, 5, 'Reminded me of pretzels in Germany, very authentic.', now()),
-('pretzel', 101, 4, 'Good flavor, but a bit dry the next day.', now());
-
--- Reviews for Chocolate Truffle
-INSERT INTO product_reviews (product_id, user_id, rating, comment, created_at) VALUES
 ('chocolate-truffle', 102, 5, 'Rich and decadent, perfect for chocolate lovers.', now()),
 ('chocolate-truffle', 100, 5, 'Smooth and creamy, loved the cocoa dusting.', now()),
 ('chocolate-truffle', 101, 4, 'Very indulgent, but a bit too rich for me.', now()),
-('chocolate-truffle', 102, 5, 'Great as a gift, beautifully packaged.', now()),
-('chocolate-truffle', 100, 4, 'Good flavor, but I prefer a darker chocolate.', now());
-
--- Reviews for Pumpkin Pie
-INSERT INTO product_reviews (product_id, user_id, rating, comment, created_at) VALUES
 ('pumpkin-pie', 100, 5, 'Perfectly spiced, great for the holidays.', now()),
 ('pumpkin-pie', 101, 5, 'Loved it with a dollop of whipped cream.', now()),
 ('pumpkin-pie', 102, 4, 'Very tasty, but a bit too sweet for me.', now()),
-('pumpkin-pie', 100, 5, 'Great texture and flavor, will buy again.', now()),
-('pumpkin-pie', 101, 4, 'Delicious, but could have used more spice.', now());
-
--- Reviews for Apple Strudel
-INSERT INTO product_reviews (product_id, user_id, rating, comment, created_at) VALUES
 ('apple-strudel', 102, 5, 'Flaky and delicious, the apple filling was perfect.', now()),
 ('apple-strudel', 100, 5, 'Best served warm with ice cream, highly recommend.', now()),
 ('apple-strudel', 101, 4, 'Very tasty, but the pastry was a bit dry.', now()),
-('apple-strudel', 102, 5, 'Reminded me of homemade strudel, loved it.', now()),
-('apple-strudel', 100, 4, 'Great flavor, but could have used more raisins.', now());
-
--- Reviews for Raspberry Tart
-INSERT INTO product_reviews (product_id, user_id, rating, comment, created_at) VALUES
 ('raspberry-tart', 101, 5, 'Fresh and delicious, loved the raspberry glaze.', now()),
 ('raspberry-tart', 102, 5, 'Perfect for a summer dessert, very refreshing.', now()),
 ('raspberry-tart', 100, 4, 'Tasty, but the crust was a bit too hard.', now()),
-('raspberry-tart', 101, 5, 'Beautiful presentation and great flavor.', now()),
-('raspberry-tart', 102, 4, 'Good, but I wish it had more raspberries.', now());
-
--- Reviews for Banana Bread
-INSERT INTO product_reviews (product_id, user_id, rating, comment, created_at) VALUES
 ('banana-bread', 100, 5, 'Moist and flavorful, perfect with coffee.', now()),
 ('banana-bread', 101, 5, 'Great banana flavor, not too sweet.', now()),
 ('banana-bread', 102, 4, 'Very tasty, but a bit dense for my preference.', now()),
-('banana-bread', 100, 5, 'Loved it warm with butter, very comforting.', now()),
-('banana-bread', 101, 4, 'Good, but could have used more cinnamon.', now());
-
--- Reviews for Vegan Brownie
-INSERT INTO product_reviews (product_id, user_id, rating, comment, created_at) VALUES
 ('vegan-brownie', 102, 5, 'Rich and fudgy, you’d never guess it’s vegan.', now()),
 ('vegan-brownie', 100, 5, 'Perfect with almond milk, very indulgent.', now()),
 ('vegan-brownie', 101, 4, 'Great flavor, but a bit too dense for my liking.', now()),
-('vegan-brownie', 102, 5, 'Loved it as a guilt-free dessert.', now()),
-('vegan-brownie', 100, 4, 'Good, but could have used more chocolate chips.', now());
-
--- Reviews for Gluten-Free Cupcake
-INSERT INTO product_reviews (product_id, user_id, rating, comment, created_at) VALUES
 ('gluten-free-cupcake', 101, 5, 'Moist and delicious, couldn’t tell it was gluten-free.', now()),
 ('gluten-free-cupcake', 102, 5, 'Perfect for those with dietary restrictions, very tasty.', now()),
 ('gluten-free-cupcake', 100, 4, 'Good flavor, but a bit crumbly.', now()),
-('gluten-free-cupcake', 101, 5, 'Loved it with fresh fruit, highly recommend.', now()),
-('gluten-free-cupcake', 102, 4, 'Great texture, but a bit too sweet for my taste.', now());
-
--- Reviews for Birthday Cake
-INSERT INTO product_reviews (product_id, user_id, rating, comment, created_at) VALUES
 ('birthday-cake', 100, 5, 'Perfect for a birthday celebration, everyone loved it.', now()),
 ('birthday-cake', 101, 5, 'The sprinkles made it so festive, great flavor.', now()),
 ('birthday-cake', 102, 4, 'Very tasty, but a bit too sweet for my preference.', now()),
-('birthday-cake', 100, 5, 'Beautiful design and delicious, will order again.', now()),
-('birthday-cake', 101, 4, 'Good cake, but the frosting was a bit too heavy.', now());
-
--- Reviews for Almond Croissant
-INSERT INTO product_reviews (product_id, user_id, rating, comment, created_at) VALUES
 ('almond-croissant', 102, 5, 'Rich and flavorful, the almond paste was perfect.', now()),
 ('almond-croissant', 100, 5, 'Great with my morning coffee, very indulgent.', now()),
 ('almond-croissant', 101, 4, 'Delicious, but a bit too sweet for my liking.', now()),
-('almond-croissant', 102, 5, 'Loved the flaky texture and rich filling.', now()),
-('almond-croissant', 100, 4, 'Good, but could have used more almond filling.', now());
-
--- Reviews for Mini Quiche
-INSERT INTO product_reviews (product_id, user_id, rating, comment, created_at) VALUES
 ('mini-quiche', 100, 5, 'Perfect for brunch, very flavorful.', now()),
 ('mini-quiche', 101, 5, 'Loved the savory flavor, great for a quick breakfast.', now()),
 ('mini-quiche', 102, 4, 'Tasty, but a bit dry when reheated.', now()),
-('mini-quiche', 100, 5, 'Great as an appetizer, everyone enjoyed them.', now()),
-('mini-quiche', 101, 4, 'Good flavor, but could have used more cheese.', now());
-
--- Reviews for Focaccia
-INSERT INTO product_reviews (product_id, user_id, rating, comment, created_at) VALUES
 ('focaccia', 102, 5, 'Soft and full of flavor, loved the rosemary.', now()),
 ('focaccia', 100, 5, 'Great for dipping in olive oil, very authentic.', now()),
 ('focaccia', 101, 4, 'Delicious, but a bit too salty.', now()),
-('focaccia', 102, 5, 'Perfect with soup, will buy again.', now()),
-('focaccia', 100, 4, 'Good, but could have used more olive oil.', now());
-
--- Reviews for Easter Cookies
-INSERT INTO product_reviews (product_id, user_id, rating, comment, created_at) VALUES
 ('easter-cookies', 101, 5, 'Fun and festive, perfect for the holiday.', now()),
 ('easter-cookies', 102, 5, 'The kids loved decorating these, very tasty.', now()),
-('easter-cookies', 100, 4, 'Good flavor, but a bit too sweet for me.', now()),
-('easter-cookies', 101, 5, 'Great for parties, loved the colorful icing.', now()),
-('easter-cookies', 102, 4, 'Very tasty, but could have used more variety.', now());
+('easter-cookies', 100, 4, 'Good flavor, but a bit too sweet for me.', now());
+
+
+INSERT INTO products (
+    id, name, description, ingredients, price, discount_percent, image_urls, stock_quantity, featured,
+    nutritional_info, allergen_info, serving_suggestions, storage_instructions
+) VALUES
+('chocolate-mousse', 'Chocolate Mousse', 'Rich and creamy chocolate mousse topped with whipped cream.', 'Chocolate, Cream, Sugar, Eggs', 5.99, 0.00, ARRAY['https://plus.unsplash.com/premium_photo-1674176787622-3955074496b0'], 50, true,
+ 'Calories: 300 per serving, Fat: 20g, Carbs: 25g, Protein: 5g', 'Contains: Dairy, Eggs', 'Serve chilled with fresh berries.', 'Keep refrigerated and consume within 3 days.'),
+('strawberry-shortcake', 'Strawberry Shortcake', 'Layers of soft sponge cake, whipped cream, and fresh strawberries.', 'Flour, Sugar, Eggs, Cream, Strawberries', 6.49, 0.00, ARRAY['https://images.unsplash.com/photo-1679654596647-faf434b35796'], 40, true,
+ 'Calories: 280 per serving, Fat: 15g, Carbs: 30g, Protein: 4g', 'Contains: Gluten, Dairy, Eggs', 'Best enjoyed fresh, pairs well with tea.', 'Keep refrigerated and consume within 2 days.'),
+('blueberry-cheesecake', 'Blueberry Cheesecake', 'A creamy cheesecake with a luscious blueberry topping.', 'Cream Cheese, Sugar, Eggs, Blueberries', 8.99, 0.00, ARRAY['https://images.unsplash.com/photo-1567327613485-fbc7bf196198'], 25, true,
+ 'Calories: 350 per slice, Fat: 22g, Carbs: 30g, Protein: 6g', 'Contains: Dairy, Eggs', 'Serve chilled with extra blueberries on the side.', 'Keep refrigerated and consume within 5 days.'),
+('chocolate-fudge-cake', 'Chocolate Fudge Cake', 'Decadent layers of chocolate cake and fudge frosting.', 'Flour, Cocoa, Sugar, Butter, Eggs', 18.99, 10.00, ARRAY['https://images.unsplash.com/photo-1565808229224-264b6fcc5052'], 15, true,
+ 'Calories: 450 per slice, Fat: 25g, Carbs: 50g, Protein: 6g', 'Contains: Gluten, Dairy, Eggs', 'Pair with a glass of cold milk.', 'Keep refrigerated and consume within 4 days.'),
+('coconut-macaroon', 'Coconut Macaroon', 'Sweet and chewy macaroons made with toasted coconut.', 'Coconut, Sugar, Egg Whites', 2.49, 0.00, ARRAY['https://images.unsplash.com/photo-1518090878263-90511084a1ba'], 60, false,
+ 'Calories: 120 per piece, Fat: 6g, Carbs: 15g, Protein: 2g', 'Contains: Eggs', 'Enjoy as a light dessert.', 'Store in an airtight container for up to 5 days.'),
+('peach-cobbler', 'Peach Cobbler', 'Classic peach cobbler with a buttery biscuit topping.', 'Peaches, Flour, Sugar, Butter', 12.99, 0.00, ARRAY['https://images.unsplash.com/photo-1678983462001-1da6642e1afd'], 20, true,
+ 'Calories: 320 per serving, Fat: 15g, Carbs: 40g, Protein: 4g', 'Contains: Gluten, Dairy', 'Serve warm with a scoop of vanilla ice cream.', 'Keep refrigerated and consume within 3 days.'),
+('mango-sorbet', 'Mango Sorbet', 'A refreshing dairy-free mango sorbet.', 'Mango, Sugar, Water', 4.99, 0.00, ARRAY['https://images.unsplash.com/photo-1627373717559-17b8b84b2c84'], 30, true,
+ 'Calories: 120 per serving, Fat: 0g, Carbs: 28g, Protein: 1g', 'No common allergens.', 'Serve as a light dessert or palate cleanser.', 'Store frozen and consume within 1 month.'),
+('pistachio-ice-cream', 'Pistachio Ice Cream', 'Creamy pistachio ice cream with roasted pistachio bits.', 'Cream, Sugar, Pistachios', 6.99, 0.00, ARRAY['https://images.unsplash.com/photo-1534706936160-d5ee67737249'], 25, true,
+ 'Calories: 220 per serving, Fat: 14g, Carbs: 20g, Protein: 4g', 'Contains: Dairy, Nuts', 'Enjoy as a cooling dessert.', 'Keep frozen and consume within 2 weeks.'),
+('pineapple-upside-down-cake', 'Pineapple Upside-Down Cake', 'Moist sponge cake topped with caramelized pineapple.', 'Flour, Sugar, Butter, Pineapple', 10.99, 0.00, ARRAY['https://plus.unsplash.com/premium_photo-1664392154731-9921da9c5b41'], 15, true,
+ 'Calories: 300 per slice, Fat: 12g, Carbs: 40g, Protein: 3g', 'Contains: Gluten, Dairy', 'Serve warm or at room temperature.', 'Keep refrigerated and consume within 3 days.'),
+('black-forest-cake', 'Black Forest Cake', 'A chocolate cake layered with cherries and whipped cream.', 'Flour, Cocoa, Sugar, Cherries, Cream', 25.99, 5.00, ARRAY['https://images.unsplash.com/photo-1606890737304-57a1ca8a5b62'], 10, true,
+ 'Calories: 400 per slice, Fat: 20g, Carbs: 45g, Protein: 5g', 'Contains: Gluten, Dairy', 'Best served chilled.', 'Keep refrigerated and consume within 4 days.'),
+('lemon-cheesecake', 'Lemon Cheesecake', 'Zesty lemon cheesecake with a graham cracker crust.', 'Cream Cheese, Lemon Juice, Eggs, Sugar', 7.99, 0.00, ARRAY['https://images.unsplash.com/photo-1710362778452-07fabf048bb1'], 20, true,
+ 'Calories: 340 per slice, Fat: 18g, Carbs: 35g, Protein: 5g', 'Contains: Dairy, Eggs', 'Serve chilled with whipped cream.', 'Keep refrigerated and consume within 5 days.'),
+('peanut-butter-cup', 'Peanut Butter Cup', 'A rich chocolate shell filled with creamy peanut butter.', 'Chocolate, Peanut Butter, Sugar', 1.99, 0.00, ARRAY['https://images.unsplash.com/photo-1597781349108-ad99823f9fb9'], 100, false,
+ 'Calories: 150 per piece, Fat: 9g, Carbs: 15g, Protein: 4g', 'Contains: Nuts, Dairy', 'Enjoy as a snack or dessert.', 'Store in an airtight container for up to 3 days.'),
+('raspberry-linzer', 'Raspberry Linzer Cookie', 'Buttery sandwich cookies filled with raspberry jam.', 'Flour, Sugar, Butter, Raspberry Jam', 3.99, 0.00, ARRAY['https://images.unsplash.com/photo-1693941072719-88b26e82b522'], 30, true,
+ 'Calories: 180 per piece, Fat: 8g, Carbs: 25g, Protein: 2g', 'Contains: Gluten, Dairy', 'Serve with tea or coffee.', 'Store in an airtight container for up to 5 days.'),
+('mocha-latte-cake', 'Mocha Latte Cake', 'Chocolate cake infused with coffee and topped with mocha frosting.', 'Flour, Cocoa, Coffee, Cream, Sugar', 22.99, 0.00, ARRAY['https://images.unsplash.com/photo-1512223792601-592a9809eed4'], 10, true,
+ 'Calories: 450 per slice, Fat: 22g, Carbs: 50g, Protein: 6g', 'Contains: Gluten, Dairy', 'Enjoy with a cup of coffee.', 'Keep refrigerated and consume within 4 days.'),
+('peach-mango-pie', 'Peach Mango Pie', 'A tropical fruit pie with a flaky crust.', 'Peaches, Mangoes, Flour, Butter, Sugar', 12.99, 0.00, ARRAY['https://images.unsplash.com/photo-1601000938259-9e92002320b2'], 15, true,
+ 'Calories: 280 per slice, Fat: 10g, Carbs: 40g, Protein: 3g', 'Contains: Gluten, Dairy', 'Serve warm with ice cream.', 'Keep refrigerated and consume within 3 days.'),
+('churros', 'Churros', 'Crispy fried dough rolled in cinnamon sugar.', 'Flour, Sugar, Butter, Eggs', 2.99, 0.00, ARRAY['https://images.unsplash.com/photo-1505851498219-ee2449c18936'], 50, false,
+ 'Calories: 220 per piece, Fat: 10g, Carbs: 30g, Protein: 3g', 'Contains: Gluten, Dairy, Eggs', 'Serve warm with chocolate sauce.', 'Consume immediately for best texture.'),
+('salted-caramel-brownie', 'Salted Caramel Brownie', 'Rich chocolate brownie with a gooey salted caramel topping.', 'Flour, Cocoa, Butter, Sugar, Caramel', 3.99, 0.00, ARRAY['https://images.unsplash.com/photo-1607920591941-daa73b2dc368'], 40, true,
+ 'Calories: 300 per piece, Fat: 15g, Carbs: 35g, Protein: 4g', 'Contains: Gluten, Dairy', 'Enjoy with a cup of milk.', 'Keep refrigerated and consume within 3 days.'),
+('hazelnut-donut', 'Hazelnut Donut', 'Fluffy donuts topped with hazelnut glaze and crushed hazelnuts.', 'Flour, Hazelnuts, Sugar, Eggs, Butter', 2.49, 0.00, ARRAY['https://images.unsplash.com/photo-1631143070441-d5e9b20ceb84'], 30, false,
+ 'Calories: 250 per piece, Fat: 12g, Carbs: 30g, Protein: 3g', 'Contains: Gluten, Nuts, Dairy', 'Best enjoyed fresh.', 'Store in an airtight container for up to 2 days.'),
+('berry-parfait', 'Berry Parfait', 'Layers of yogurt, granola, and fresh berries.', 'Yogurt, Granola, Strawberries, Blueberries', 4.49, 0.00, ARRAY['https://images.unsplash.com/photo-1588911550568-a57c5b30642c'], 30, true,
+ 'Calories: 180 per serving, Fat: 5g, Carbs: 25g, Protein: 6g', 'Contains: Dairy', 'Serve chilled for a healthy snack.', 'Keep refrigerated and consume within 2 days.'),
+('cherry-cheesecake-bar', 'Cherry Cheesecake Bar', 'A creamy cheesecake bar with a cherry topping.', 'Cream Cheese, Sugar, Eggs, Cherries', 3.99, 0.00, ARRAY['https://plus.unsplash.com/premium_photo-1667546202654-e7574a20872c'], 25, true,
+ 'Calories: 200 per piece, Fat: 10g, Carbs: 22g, Protein: 4g', 'Contains: Dairy, Eggs', 'Serve chilled with coffee.', 'Keep refrigerated and consume within 4 days.'),
+('pumpkin-roll', 'Pumpkin Roll', 'Pumpkin sponge cake rolled with cream cheese filling.', 'Flour, Pumpkin, Cream Cheese, Sugar, Eggs', 10.99, 0.00, ARRAY['https://images.unsplash.com/photo-1577805138276-e97bd32536db'], 15, true,
+ 'Calories: 280 per slice, Fat: 12g, Carbs: 30g, Protein: 4g', 'Contains: Gluten, Dairy, Eggs', 'Best served chilled.', 'Keep refrigerated and consume within 3 days.'),
+ ('espresso-macarons', 'Espresso Macarons', 'Delicate French macarons with a bold espresso filling.', 'Almond Flour, Egg Whites, Sugar, Coffee', 2.99, 0.00, ARRAY['https://images.unsplash.com/photo-1575041513129-ebdf8124115a'], 50, true,
+ 'Calories: 120 per piece, Fat: 6g, Carbs: 15g, Protein: 2g', 'Contains: Nuts, Eggs', 'Enjoy as a light dessert.', 'Keep refrigerated and consume within 3 days.'),
+('gingerbread-cookies', 'Gingerbread Cookies', 'Classic spiced gingerbread cookies with icing decorations.', 'Flour, Butter, Sugar, Ginger, Spices', 3.49, 0.00, ARRAY['https://images.unsplash.com/photo-1608769240116-a45a6ac33a55'], 40, true,
+ 'Calories: 140 per piece, Fat: 5g, Carbs: 20g, Protein: 2g', 'Contains: Gluten, Dairy', 'Perfect for holiday gatherings.', 'Store in an airtight container for up to 5 days.'),
+('matcha-pound-cake', 'Matcha Pound Cake', 'Moist pound cake infused with matcha green tea.', 'Flour, Sugar, Butter, Eggs, Matcha Powder', 7.99, 0.00, ARRAY['https://plus.unsplash.com/premium_photo-1694599324074-d5479407e7c7'], 30, true,
+ 'Calories: 300 per slice, Fat: 15g, Carbs: 35g, Protein: 4g', 'Contains: Gluten, Dairy, Eggs', 'Pair with green tea for a delightful snack.', 'Store in an airtight container for up to 3 days.'),
+('peanut-butter-brownie', 'Peanut Butter Brownie', 'Rich chocolate brownie swirled with creamy peanut butter.', 'Flour, Cocoa, Butter, Sugar, Peanut Butter', 3.99, 0.00, ARRAY['https://images.unsplash.com/photo-1706145787134-01a647fb8edb'], 40, true,
+ 'Calories: 320 per piece, Fat: 18g, Carbs: 35g, Protein: 4g', 'Contains: Gluten, Dairy, Nuts', 'Great with a scoop of vanilla ice cream.', 'Keep refrigerated and consume within 3 days.'),
+('caramel-popcorn', 'Caramel Popcorn', 'Crunchy popcorn coated in sweet caramel.', 'Popcorn, Sugar, Butter', 4.49, 0.00, ARRAY['https://plus.unsplash.com/premium_photo-1695869572319-02af5973e20e'], 50, false,
+ 'Calories: 150 per serving, Fat: 7g, Carbs: 20g, Protein: 2g', 'Contains: Dairy', 'Enjoy as a sweet snack.', 'Store in an airtight container for up to 7 days.'),
+('apple-cinnamon-muffin', 'Apple Cinnamon Muffin', 'A moist muffin loaded with spiced apples.', 'Flour, Apples, Sugar, Butter, Eggs, Cinnamon', 2.99, 0.00, ARRAY['https://plus.unsplash.com/premium_photo-1669559808797-04f22cc80fce'], 70, false,
+ 'Calories: 240 per muffin, Fat: 10g, Carbs: 35g, Protein: 4g', 'Contains: Gluten, Dairy, Eggs', 'Perfect for breakfast or a snack.', 'Store in an airtight container for up to 3 days.'),
+('lavender-cookies', 'Lavender Cookies', 'Delicate shortbread cookies infused with lavender.', 'Flour, Butter, Sugar, Lavender', 2.99, 0.00, ARRAY['https://images.unsplash.com/photo-1702747558545-68b3dbbdc46e'], 30, true,
+ 'Calories: 120 per piece, Fat: 6g, Carbs: 15g, Protein: 2g', 'Contains: Gluten, Dairy', 'Serve with tea for an elegant treat.', 'Store in an airtight container for up to 5 days.'),
+('chocolate-chip-banana-muffin', 'Chocolate Chip Banana Muffin', 'A moist muffin loaded with ripe bananas and chocolate chips.', 'Flour, Bananas, Sugar, Butter, Eggs, Chocolate Chips', 2.99, 0.00, ARRAY['https://images.unsplash.com/photo-1553452118-621e1f860f43'], 70, false,
+ 'Calories: 250 per muffin, Fat: 12g, Carbs: 35g, Protein: 4g', 'Contains: Gluten, Dairy, Eggs', 'Best enjoyed warm.', 'Store in an airtight container for up to 3 days.'),
+('tiramisu', 'Tiramisu', 'Layers of coffee-soaked ladyfingers and mascarpone cream.', 'Mascarpone, Coffee, Sugar, Ladyfingers, Cocoa', 16.99, 0.00, ARRAY['https://plus.unsplash.com/premium_photo-1695028378225-97fbe39df62a'], 20, true,
+ 'Calories: 400 per slice, Fat: 25g, Carbs: 35g, Protein: 6g', 'Contains: Dairy, Gluten, Eggs', 'Serve chilled.', 'Keep refrigerated and consume within 3 days.'),
+('chocolate-peppermint-bark', 'Chocolate Peppermint Bark', 'Layers of dark and white chocolate with crushed peppermint.', 'Dark Chocolate, White Chocolate, Peppermint Candy', 5.99, 0.00, ARRAY['https://images.unsplash.com/photo-1483125796430-526962b9830b'], 50, false,
+ 'Calories: 200 per piece, Fat: 12g, Carbs: 20g, Protein: 2g', 'Contains: Dairy', 'Perfect for holiday gifting.', 'Store in an airtight container for up to 1 week.');
+
+ INSERT INTO collections (id, name, description, image_url) VALUES
+('vegan-delights', 'Vegan Delights', 'Discover our plant-based desserts that everyone can enjoy.', 'https://images.unsplash.com/photo-1614692225934-d6f4eaeada8c'),
+('holiday-specialties', 'Holiday Specialties', 'Celebrate the holidays with our festive treats.', 'https://images.unsplash.com/photo-1576618148132-d7b673cfd8db'),
+('frozen-treats', 'Frozen Treats', 'Cool off with our refreshing ice creams and sorbets.', 'https://images.unsplash.com/photo-1576536223454-8c813b2560b1'),
+('luxury-desserts', 'Luxury Desserts', 'Indulge in our premium, handcrafted luxury desserts.', 'https://images.unsplash.com/photo-1616607898887-3326b8ebae24');
+
+INSERT INTO users (id, first_name, last_name, email, password_hash, phone_number, address, city, country_code, role, created_at) VALUES
+
+(103, 'Linh', 'Pham', 'linh.pham@example.com', 'hashed_password_4', '0123456780', '789 Maple Ave', 'Hue', 'VN', 'user', now()),
+(104, 'Michael', 'Vu', 'michael.vu@example.com', 'hashed_password_5', '0987654322', '321 Oak St', 'Nha Trang', 'VN', 'user', now()),
+(105, 'Sophia', 'Hoang', 'sophia.hoang@example.com', 'hashed_password_6', '0111222334', '456 Birch St', 'Can Tho', 'VN', 'user', now()),
+(106, 'James', 'Le', 'james.le@example.com', 'hashed_password_7', '0998877665', '123 Cherry St', 'Bien Hoa', 'VN', 'user', now()),
+(107, 'Anna', 'Nguyen', 'anna.nguyen@example.com', 'hashed_password_8', '0945567890', '222 Cedar Ln', 'Haiphong', 'VN', 'user', now()),
+(108, 'Ethan', 'Tran', 'ethan.tran@example.com', 'hashed_password_9', '0912345678', '987 Pine Rd', 'Dalat', 'VN', 'user', now()),
+(109, 'Emma', 'Bui', 'emma.bui@example.com', 'hashed_password_10', '0977645678', '654 Palm St', 'Vung Tau', 'VN', 'user', now()),
+(110, 'Oliver', 'Pham', 'oliver.pham@example.com', 'hashed_password_11', '0900123456', '321 Sunset Blvd', 'Sa Dec', 'VN', 'user', now()),
+(111, 'Ava', 'Dang', 'ava.dang@example.com', 'hashed_password_12', '0933445566', '111 Hilltop Dr', 'My Tho', 'VN', 'user', now()),
+(112, 'William', 'Vuong', 'william.vuong@example.com', 'hashed_password_13', '0967788990', '789 Ocean Ave', 'Phan Thiet', 'VN', 'user', now()),
+(113, 'Mia', 'Ngo', 'mia.ngo@example.com', 'hashed_password_14', '0955567890', '456 Forest Dr', 'Quy Nhon', 'VN', 'user', now()),
+(114, 'Lucas', 'Ly', 'lucas.ly@example.com', 'hashed_password_15', '0922233445', '123 Valley Rd', 'Cam Ranh', 'VN', 'user', now()),
+(115, 'Isabella', 'Vo', 'isabella.vo@example.com', 'hashed_password_16', '0911765432', '222 Greenway Blvd', 'Pleiku', 'VN', 'user', now()),
+(116, 'Henry', 'Dao', 'henry.dao@example.com', 'hashed_password_17', '0909988776', '789 Park Ave', 'Dong Hoi', 'VN', 'user', now()),
+(117, 'Charlotte', 'Le', 'charlotte.le@example.com', 'hashed_password_18', '0988997765', '321 Lakeview Dr', 'Buon Ma Thuot', 'VN', 'user', now()),
+(118, 'Alexander', 'Quach', 'alexander.quach@example.com', 'hashed_password_19', '0912349876', '987 Highland St', 'Rach Gia', 'VN', 'user', now()),
+(119, 'Amelia', 'Dinh', 'amelia.dinh@example.com', 'hashed_password_20', '0907765543', '654 Meadow Ln', 'Lao Cai', 'VN', 'user', now()),
+(120, 'Elijah', 'Luong', 'elijah.luong@example.com', 'hashed_password_21', '0923456712', '456 Mountain Dr', 'Hoa Binh', 'VN', 'user', now()),
+(121, 'Elizabeth', 'Thai', 'elizabeth.thai@example.com', 'hashed_password_22', '0933345567', '222 Blossom St', 'Cao Lanh', 'VN', 'user', now()),
+(122, 'Daniel', 'Nguyen', 'daniel.nguyen@example.com', 'hashed_password_23', '0979988765', '123 River Rd', 'Tam Ky', 'VN', 'user', now());
+
+
+INSERT INTO product_reviews (product_id, user_id, rating, comment, created_at) VALUES
+('chocolate-mousse', 103, 5, 'I served this at a dinner party, and everyone loved the creamy texture.', now()),
+('chocolate-mousse', 104, 4, 'Perfect dessert for a romantic evening, though a bit rich for me.', now()),
+('chocolate-mousse', 105, 5, 'My kids enjoyed this as a weekend treat. It pairs wonderfully with strawberries.', now()),
+('chocolate-mousse', 106, 5, 'Great dessert to indulge in after a long day. Loved the richness.', now()),
+('chocolate-mousse', 107, 4, 'Good flavor but could have been a bit lighter. Still enjoyed it with whipped cream.', now()),
+('chocolate-mousse', 108, 5, 'Perfect for a chocolate lover like me. Served chilled, it was heavenly.', now()),
+('chocolate-mousse', 109, 4, 'A bit too sweet for my taste, but my guests found it perfect.', now()),
+('chocolate-mousse', 110, 5, 'I paired this with espresso, and it was an instant hit.', now()),
+('chocolate-mousse', 111, 5, 'Loved the velvety texture. Ideal for a light but indulgent dessert.', now()),
+('chocolate-mousse', 112, 4, 'Would have preferred a bit more chocolate intensity, but still great.', now()),
+('chocolate-mousse', 113, 5, 'Used this for a dessert tasting event; the presentation and taste were flawless.', now()),
+('chocolate-mousse', 114, 5, 'Best served with fresh raspberries. Absolutely decadent.', now()),
+('chocolate-mousse', 115, 5, 'Loved the rich texture. Perfect for layering in dessert cups.', now()),
+('chocolate-mousse', 116, 4, 'A little too rich for me, but my family couldn’t get enough.', now()),
+('chocolate-mousse', 117, 5, 'Served this with shortbread cookies. A fantastic combination!', now()),
+('chocolate-mousse', 118, 5, 'Ideal for a quick, elegant dessert after dinner.', now()),
+('chocolate-mousse', 119, 4, 'Enjoyed it but found it slightly too sweet.', now()),
+('chocolate-mousse', 120, 5, 'Perfect for sharing with friends. The texture was spot on.', now()),
+('chocolate-mousse', 121, 5, 'This has become a go-to dessert for special occasions.', now()),
+('chocolate-mousse', 122, 5, 'Chilled mousse served in wine glasses made for a classy presentation.', now());
+
+
+INSERT INTO product_reviews (product_id, user_id, rating, comment, created_at) VALUES
+('strawberry-shortcake', 103, 5, 'Served this as a birthday dessert, and it was a huge success.', now()),
+('strawberry-shortcake', 104, 4, 'Great flavor but the cream could have been a bit lighter.', now()),
+('strawberry-shortcake', 105, 5, 'Perfect summer dessert with its fresh strawberry layers.', now()),
+('strawberry-shortcake', 106, 5, 'I paired this with champagne, and it was a crowd-pleaser.', now()),
+('strawberry-shortcake', 107, 5, 'Used this for a family picnic. Everyone enjoyed it.', now()),
+('strawberry-shortcake', 108, 4, 'Good overall but could use a bit more cream.', now()),
+('strawberry-shortcake', 109, 5, 'Best dessert I’ve had in ages! The strawberries were so fresh.', now()),
+('strawberry-shortcake', 110, 4, 'Very tasty but slightly dry sponge. Still loved it with extra cream.', now()),
+('strawberry-shortcake', 111, 5, 'Served it as a tea-time treat, and it was perfect.', now()),
+('strawberry-shortcake', 112, 5, 'The layers were beautifully done. Great for special occasions.', now()),
+('strawberry-shortcake', 113, 5, 'Absolutely loved it! Paired well with iced tea.', now()),
+('strawberry-shortcake', 114, 5, 'Used it as a centerpiece dessert for a bridal shower.', now()),
+('strawberry-shortcake', 115, 4, 'Delicious but a bit too sweet for my taste.', now()),
+('strawberry-shortcake', 116, 5, 'Perfect for spring gatherings. Everyone wanted seconds.', now()),
+('strawberry-shortcake', 117, 5, 'Topped it with extra strawberries for a personal touch. Amazing!', now()),
+('strawberry-shortcake', 118, 4, 'Good dessert but could use a bit more creaminess.', now()),
+('strawberry-shortcake', 119, 5, 'Served this with fresh mint leaves. A total delight!', now()),
+('strawberry-shortcake', 120, 5, 'Loved the combination of fluffy sponge and fresh strawberries.', now()),
+('strawberry-shortcake', 121, 4, 'Great flavor but wish the cake layers were softer.', now()),
+('strawberry-shortcake', 122, 5, 'Perfectly balanced dessert. Great for warm days.', now());
+
+
+INSERT INTO product_reviews (product_id, user_id, rating, comment, created_at) VALUES
+('blueberry-cheesecake', 103, 5, 'This cheesecake was perfect for a dinner party. The blueberry topping was fresh and flavorful.', now()),
+('blueberry-cheesecake', 104, 5, 'I used this as a centerpiece dessert for a small gathering. Everyone loved it.', now()),
+('blueberry-cheesecake', 105, 4, 'Great taste, but I wish the crust was a bit thicker.', now()),
+('blueberry-cheesecake', 106, 5, 'Paired it with coffee, and it was a delightful treat.', now()),
+('blueberry-cheesecake', 107, 5, 'The creamy texture made it an instant favorite at our potluck.', now()),
+('blueberry-cheesecake', 108, 5, 'Best enjoyed chilled. Perfect for a summer dessert.', now()),
+('blueberry-cheesecake', 109, 4, 'Loved it, but it could have used more blueberries.', now()),
+('blueberry-cheesecake', 110, 5, 'Made for a perfect birthday dessert. The tangy blueberry topping was superb.', now()),
+('blueberry-cheesecake', 111, 5, 'This dessert stole the show at my dinner party. Highly recommend.', now()),
+('blueberry-cheesecake', 112, 4, 'Great overall, but the cheesecake was slightly too sweet for my taste.', now()),
+('blueberry-cheesecake', 113, 5, 'A fantastic dessert for celebrations. Loved every bite.', now()),
+('blueberry-cheesecake', 114, 5, 'The balance of sweetness and tanginess was perfect.', now()),
+('blueberry-cheesecake', 115, 5, 'Served this with a dollop of whipped cream, and it was divine.', now()),
+('blueberry-cheesecake', 116, 4, 'A bit rich for my taste, but my family adored it.', now()),
+('blueberry-cheesecake', 117, 5, 'Best cheesecake I’ve had in years. Ideal for gifting.', now()),
+('blueberry-cheesecake', 118, 5, 'The crust was buttery and complemented the filling perfectly.', now()),
+('blueberry-cheesecake', 119, 4, 'Good, but the blueberry topping could have been more generous.', now()),
+('blueberry-cheesecake', 120, 5, 'Used this for a brunch dessert. A total hit!', now()),
+('blueberry-cheesecake', 121, 5, 'Perfect for summer evenings. The flavors were spot on.', now()),
+('blueberry-cheesecake', 122, 5, 'Great for sharing. The freshness of the blueberries made it exceptional.', now());
+
+
+INSERT INTO product_reviews (product_id, user_id, rating, comment, created_at) VALUES
+('chocolate-fudge-cake', 103, 5, 'Rich and indulgent, perfect for chocoholics.', now()),
+('chocolate-fudge-cake', 104, 5, 'I served this as a birthday cake. Everyone asked for seconds!', now()),
+('chocolate-fudge-cake', 105, 4, 'A bit too rich for me, but the chocolate lovers in my family adored it.', now()),
+('chocolate-fudge-cake', 106, 5, 'Paired perfectly with a scoop of vanilla ice cream.', now()),
+('chocolate-fudge-cake', 107, 5, 'Made for a decadent treat after dinner. Highly recommend.', now()),
+('chocolate-fudge-cake', 108, 5, 'The fudge layers were deliciously creamy. A hit at our party.', now()),
+('chocolate-fudge-cake', 109, 4, 'Great flavor, but a bit too sweet for my liking.', now()),
+('chocolate-fudge-cake', 110, 5, 'I brought this to a potluck, and it disappeared within minutes.', now()),
+('chocolate-fudge-cake', 111, 5, 'Served with fresh strawberries. A perfect combination.', now()),
+('chocolate-fudge-cake', 112, 5, 'This cake is a showstopper for any chocolate lover.', now()),
+('chocolate-fudge-cake', 113, 4, 'Would have liked a lighter texture, but the flavor was amazing.', now()),
+('chocolate-fudge-cake', 114, 5, 'Ideal for celebrations. It looks and tastes fantastic.', now()),
+('chocolate-fudge-cake', 115, 5, 'Used this as a centerpiece for a dessert table. Absolutely stunning.', now()),
+('chocolate-fudge-cake', 116, 4, 'Great flavor, but it’s a bit heavy for one sitting.', now()),
+('chocolate-fudge-cake', 117, 5, 'This is a must-try for chocolate lovers. The fudge frosting was amazing.', now()),
+('chocolate-fudge-cake', 118, 5, 'Topped with some whipped cream, this was an indulgent treat.', now()),
+('chocolate-fudge-cake', 119, 5, 'Perfect for gifting. Everyone I shared it with loved it.', now()),
+('chocolate-fudge-cake', 120, 5, 'I used this for a special anniversary dinner. It was perfect.', now()),
+('chocolate-fudge-cake', 121, 4, 'Would have liked a bit more balance in sweetness, but still excellent.', now()),
+('chocolate-fudge-cake', 122, 5, 'Served this with coffee, and it paired perfectly.', now());
+
+
+INSERT INTO product_reviews (product_id, user_id, rating, comment, created_at) VALUES
+('coconut-macaroon', 103, 5, 'These were perfect for a light snack after lunch.', now()),
+('coconut-macaroon', 104, 5, 'I paired these with coffee, and they were fantastic.', now()),
+('coconut-macaroon', 105, 4, 'A bit too sweet for my taste, but the coconut flavor was lovely.', now()),
+('coconut-macaroon', 106, 5, 'I served these at a tea party, and everyone raved about them.', now()),
+('coconut-macaroon', 107, 5, 'Perfect for a tropical-themed party. Loved the chewy texture.', now()),
+('coconut-macaroon', 108, 5, 'My kids loved these as a school snack.', now()),
+('coconut-macaroon', 109, 4, 'Would have liked them a bit less sweet, but overall great.', now()),
+('coconut-macaroon', 110, 5, 'Perfect for gifting. The presentation was beautiful.', now()),
+('coconut-macaroon', 111, 5, 'Served these with a fruit platter. A total hit!', now()),
+('coconut-macaroon', 112, 5, 'The toasted coconut added a fantastic crunch. Loved it.', now()),
+('coconut-macaroon', 113, 4, 'Great for tea-time snacks. I just wish they were a bit bigger.', now()),
+('coconut-macaroon', 114, 5, 'These were great as party favors. Highly recommend.', now()),
+('coconut-macaroon', 115, 5, 'Served with hot chocolate. The pairing was perfect.', now()),
+('coconut-macaroon', 116, 4, 'A bit dense for my liking, but the flavor was wonderful.', now()),
+('coconut-macaroon', 117, 5, 'I added these to a dessert charcuterie board. Everyone loved them.', now()),
+('coconut-macaroon', 118, 5, 'Perfect for an afternoon snack. They were a big hit.', now()),
+('coconut-macaroon', 119, 5, 'Great for those who love coconut desserts. I enjoyed them thoroughly.', now()),
+('coconut-macaroon', 120, 5, 'These were perfect as a post-dinner treat.', now()),
+('coconut-macaroon', 121, 4, 'Loved the flavor but found them a bit too sweet.', now()),
+('coconut-macaroon', 122, 5, 'I gifted these to a friend, and they couldn’t stop praising them.', now());
+
+
+INSERT INTO product_reviews (product_id, user_id, rating, comment, created_at) VALUES
+('peach-cobbler', 103, 5, 'Best served warm with a scoop of vanilla ice cream. Delicious!', now()),
+('peach-cobbler', 104, 5, 'I baked this for a family dinner, and everyone asked for the recipe.', now()),
+('peach-cobbler', 105, 4, 'Lovely dessert, though I wish the peach filling was a bit thicker.', now()),
+('peach-cobbler', 106, 5, 'Perfect for a summer gathering. The flavors were spot on.', now()),
+('peach-cobbler', 107, 5, 'Used this as a dessert for a barbecue party. Everyone enjoyed it.', now()),
+('peach-cobbler', 108, 4, 'Good flavor, but the crust could have been more buttery.', now()),
+('peach-cobbler', 109, 5, 'I paired it with whipped cream, and it was heavenly.', now()),
+('peach-cobbler', 110, 5, 'This was the star dessert at my potluck. A must-try!', now()),
+('peach-cobbler', 111, 5, 'Perfectly balanced sweetness. Loved every bite.', now()),
+('peach-cobbler', 112, 4, 'Would have preferred a crunchier topping, but still tasty.', now()),
+('peach-cobbler', 113, 5, 'Served this with coffee, and it was delightful.', now()),
+('peach-cobbler', 114, 5, 'A classic dessert done right. Highly recommend.', now()),
+('peach-cobbler', 115, 4, 'Good dessert, but it could use a bit more cinnamon.', now()),
+('peach-cobbler', 116, 5, 'This brought back memories of homemade cobblers. Loved it.', now()),
+('peach-cobbler', 117, 5, 'I served this with caramel sauce for added decadence.', now()),
+('peach-cobbler', 118, 4, 'The flavors were good, but the crust was a bit dry.', now()),
+('peach-cobbler', 119, 5, 'Ideal for summer evenings. My family couldn’t get enough.', now()),
+('peach-cobbler', 120, 5, 'Best cobbler I’ve had in years. The peaches were so fresh.', now()),
+('peach-cobbler', 121, 4, 'Loved it overall but found the crust a bit dense.', now()),
+('peach-cobbler', 122, 5, 'This was perfect for a cozy dessert night. Would order again.', now());
+
+
+INSERT INTO product_reviews (product_id, user_id, rating, comment, created_at) VALUES
+('mango-sorbet', 103, 5, 'A refreshing dessert for hot days. Loved the natural mango flavor.', now()),
+('mango-sorbet', 104, 5, 'Perfect as a palate cleanser between courses.', now()),
+('mango-sorbet', 105, 4, 'The flavor was great, but it melted a bit too quickly.', now()),
+('mango-sorbet', 106, 5, 'Best enjoyed on a summer afternoon. My kids loved it.', now()),
+('mango-sorbet', 107, 5, 'This was the perfect dairy-free option for my lactose-intolerant guests.', now()),
+('mango-sorbet', 108, 5, 'Used this as a base for a tropical cocktail. It was amazing.', now()),
+('mango-sorbet', 109, 4, 'Great flavor, but I wish it was a bit creamier.', now()),
+('mango-sorbet', 110, 5, 'Perfect for serving alongside fresh fruit. A total hit.', now()),
+('mango-sorbet', 111, 5, 'The mango flavor was authentic and refreshing. Loved it!', now()),
+('mango-sorbet', 112, 4, 'Great dessert but a bit pricey for the portion size.', now()),
+('mango-sorbet', 113, 5, 'This was the highlight of our summer barbecue.', now()),
+('mango-sorbet', 114, 5, 'A fantastic light dessert. Served it with mint leaves.', now()),
+('mango-sorbet', 115, 4, 'Loved the flavor but wished for a smoother texture.', now()),
+('mango-sorbet', 116, 5, 'Perfect for serving after a heavy meal. Very refreshing.', now()),
+('mango-sorbet', 117, 5, 'Great for cooling off on a hot day. My family enjoyed it.', now()),
+('mango-sorbet', 118, 4, 'Would have liked a bit more sweetness, but still great.', now()),
+('mango-sorbet', 119, 5, 'This was a lifesaver for hot summer evenings. Loved it.', now()),
+('mango-sorbet', 120, 5, 'Perfectly balanced sweetness. Would buy again.', now()),
+('mango-sorbet', 121, 4, 'Good dessert, but it melted faster than expected.', now()),
+('mango-sorbet', 122, 5, 'Served with a sprinkle of coconut flakes. A tropical delight!', now());
+
+
+INSERT INTO product_reviews (product_id, user_id, rating, comment, created_at) VALUES
+('pistachio-ice-cream', 103, 5, 'The roasted pistachio bits made this ice cream exceptional. Loved it!', now()),
+('pistachio-ice-cream', 104, 5, 'Served this as a dessert for a family gathering. Everyone loved it.', now()),
+('pistachio-ice-cream', 105, 4, 'Good flavor, but the pistachio taste could be stronger.', now()),
+('pistachio-ice-cream', 106, 5, 'Perfect for serving with a slice of pound cake.', now()),
+('pistachio-ice-cream', 107, 5, 'This was the highlight of my dessert platter. Great texture.', now()),
+('pistachio-ice-cream', 108, 5, 'Enjoyed this with a drizzle of honey. A total delight!', now()),
+('pistachio-ice-cream', 109, 4, 'Good, but a bit too sweet for my taste.', now()),
+('pistachio-ice-cream', 110, 5, 'Ideal for pairing with fruit tarts. Will order again.', now()),
+('pistachio-ice-cream', 111, 5, 'A creamy and nutty treat that my kids couldn’t get enough of.', now()),
+('pistachio-ice-cream', 112, 5, 'The perfect dessert for a summer evening. Refreshing and delicious.', now()),
+('pistachio-ice-cream', 113, 5, 'Used this to make a pistachio milkshake. Amazing results!', now()),
+('pistachio-ice-cream', 114, 5, 'Best enjoyed with some crushed pistachios sprinkled on top.', now()),
+('pistachio-ice-cream', 115, 4, 'The flavor was great, but I found it a bit heavy.', now()),
+('pistachio-ice-cream', 116, 5, 'Perfect for serving in cones. My guests were impressed.', now()),
+('pistachio-ice-cream', 117, 5, 'This was a luxurious treat after dinner. Highly recommend.', now()),
+('pistachio-ice-cream', 118, 5, 'Great as a standalone dessert or paired with chocolate cake.', now()),
+('pistachio-ice-cream', 119, 4, 'Loved the creamy texture, but the portion size could be bigger.', now()),
+('pistachio-ice-cream', 120, 5, 'I served this with waffles, and it was fantastic.', now()),
+('pistachio-ice-cream', 121, 5, 'A rich and flavorful ice cream that’s worth every penny.', now()),
+('pistachio-ice-cream', 122, 5, 'Perfectly balanced pistachio flavor. Great for gifting.', now());
+
+
+INSERT INTO product_reviews (product_id, user_id, rating, comment, created_at) VALUES
+('pineapple-upside-down-cake', 103, 5, 'The caramelized pineapple topping was a standout feature. Loved it!', now()),
+('pineapple-upside-down-cake', 104, 5, 'I served this at a barbecue party, and everyone raved about it.', now()),
+('pineapple-upside-down-cake', 105, 4, 'Great flavor, but the cake was a bit too dense.', now()),
+('pineapple-upside-down-cake', 106, 5, 'Best enjoyed warm with a scoop of vanilla ice cream.', now()),
+('pineapple-upside-down-cake', 107, 5, 'The balance of sweetness and tartness was perfect. Ideal for brunch.', now()),
+('pineapple-upside-down-cake', 108, 4, 'Good flavor, but the pineapple could have been more caramelized.', now()),
+('pineapple-upside-down-cake', 109, 5, 'This was the highlight of my dessert table. Highly recommend.', now()),
+('pineapple-upside-down-cake', 110, 5, 'Used this as a centerpiece dessert for a tropical-themed dinner.', now()),
+('pineapple-upside-down-cake', 111, 5, 'The caramelized edges were absolutely delicious!', now()),
+('pineapple-upside-down-cake', 112, 4, 'Loved the flavor, but I wish it was a bit more moist.', now()),
+('pineapple-upside-down-cake', 113, 5, 'Served this with a drizzle of caramel sauce. A total hit!', now()),
+('pineapple-upside-down-cake', 114, 5, 'Perfect for summer gatherings. Everyone wanted seconds.', now()),
+('pineapple-upside-down-cake', 115, 5, 'The presentation was stunning, and the taste matched it.', now()),
+('pineapple-upside-down-cake', 116, 4, 'A bit too sweet for me, but my family loved it.', now()),
+('pineapple-upside-down-cake', 117, 5, 'Great for sharing. The flavors were well-balanced.', now()),
+('pineapple-upside-down-cake', 118, 5, 'I paired this with coconut ice cream, and it was amazing.', now()),
+('pineapple-upside-down-cake', 119, 4, 'Good dessert, but the cake was slightly dry.', now()),
+('pineapple-upside-down-cake', 120, 5, 'Loved it! The pineapple topping was beautifully caramelized.', now()),
+('pineapple-upside-down-cake', 121, 5, 'This cake brought back childhood memories. Absolutely delicious.', now()),
+('pineapple-upside-down-cake', 122, 5, 'A great dessert for any occasion. Will order again.', now());
+
+
+INSERT INTO product_reviews (product_id, user_id, rating, comment, created_at) VALUES
+('black-forest-cake', 103, 5, 'The cherry and chocolate combination was heavenly. Perfect for celebrations.', now()),
+('black-forest-cake', 104, 5, 'I served this at a birthday party, and everyone loved the layers.', now()),
+('black-forest-cake', 105, 4, 'Great cake but slightly heavy for my taste.', now()),
+('black-forest-cake', 106, 5, 'Paired it with a glass of red wine for a luxurious treat.', now()),
+('black-forest-cake', 107, 5, 'The whipped cream and cherries made this cake a showstopper.', now()),
+('black-forest-cake', 108, 5, 'Used this as a wedding dessert, and it was a hit with all the guests.', now()),
+('black-forest-cake', 109, 4, 'The cherries were fresh and delicious, but the cake could use more cream.', now()),
+('black-forest-cake', 110, 5, 'Perfect for chocolate lovers. The cherry filling was fantastic.', now()),
+('black-forest-cake', 111, 5, 'This was a star at my dinner party. Great balance of flavors.', now()),
+('black-forest-cake', 112, 4, 'Good dessert but slightly sweeter than I expected.', now()),
+('black-forest-cake', 113, 5, 'Best served chilled. A classic cake done right.', now()),
+('black-forest-cake', 114, 5, 'Great for gifting. Everyone loved it.', now()),
+('black-forest-cake', 115, 4, 'The chocolate layers were perfect, but the whipped cream could be fluffier.', now()),
+('black-forest-cake', 116, 5, 'Made this a centerpiece for my anniversary dinner. Amazing!', now()),
+('black-forest-cake', 117, 5, 'The cherry filling gave it a fresh and fruity twist. Highly recommend.', now()),
+('black-forest-cake', 118, 5, 'This cake was rich and decadent. Loved the moist texture.', now()),
+('black-forest-cake', 119, 4, 'Great for celebrations, but a bit too large for a small family.', now()),
+('black-forest-cake', 120, 5, 'Served with extra whipped cream for indulgence. A hit!', now()),
+('black-forest-cake', 121, 5, 'Perfect for festive occasions. Will definitely order again.', now()),
+('black-forest-cake', 122, 5, 'The best Black Forest Cake I’ve had in years. Great job!', now());
+
+
+INSERT INTO product_reviews (product_id, user_id, rating, comment, created_at) VALUES
+('lemon-cheesecake', 103, 5, 'The zesty lemon flavor was perfect for a summer dessert.', now()),
+('lemon-cheesecake', 104, 5, 'Served this at a bridal shower, and it was a massive hit.', now()),
+('lemon-cheesecake', 105, 4, 'Great texture but slightly too tangy for my taste.', now()),
+('lemon-cheesecake', 106, 5, 'Paired it with a cup of green tea. Absolutely refreshing.', now()),
+('lemon-cheesecake', 107, 5, 'Perfect for a light dessert after a heavy meal.', now()),
+('lemon-cheesecake', 108, 5, 'Used this for a dessert competition and won! The lemon flavor was a highlight.', now()),
+('lemon-cheesecake', 109, 4, 'Good cheesecake, but I wish the crust was a bit crunchier.', now()),
+('lemon-cheesecake', 110, 5, 'The lemon flavor was balanced perfectly. A new family favorite.', now()),
+('lemon-cheesecake', 111, 5, 'Best served with fresh berries. Loved it!', now()),
+('lemon-cheesecake', 112, 5, 'This was a showstopper at my garden party.', now()),
+('lemon-cheesecake', 113, 4, 'Would have liked it less tangy, but still enjoyed it.', now()),
+('lemon-cheesecake', 114, 5, 'Perfectly creamy and smooth. Highly recommend.', now()),
+('lemon-cheesecake', 115, 5, 'The graham cracker crust was buttery and delicious.', now()),
+('lemon-cheesecake', 116, 5, 'A refreshing dessert for any occasion. Will order again.', now()),
+('lemon-cheesecake', 117, 5, 'The zesty flavor paired well with sweet iced tea.', now()),
+('lemon-cheesecake', 118, 4, 'Good dessert but could use a thicker crust.', now()),
+('lemon-cheesecake', 119, 5, 'I loved this with a dollop of whipped cream. Perfect balance.', now()),
+('lemon-cheesecake', 120, 5, 'The presentation was beautiful, and the taste was even better.', now()),
+('lemon-cheesecake', 121, 5, 'Perfectly tangy and sweet. A real crowd-pleaser.', now()),
+('lemon-cheesecake', 122, 5, 'Served this with a sprinkle of powdered sugar. Delicious.', now());
+
+
+INSERT INTO product_reviews (product_id, user_id, rating, comment, created_at) VALUES
+('peanut-butter-cup', 103, 5, 'These were perfect as a small snack during work. Loved the flavor.', now()),
+('peanut-butter-cup', 104, 5, 'I added these to a dessert platter, and they were gone in minutes.', now()),
+('peanut-butter-cup', 105, 4, 'A bit too sweet for me, but the peanut butter filling was delicious.', now()),
+('peanut-butter-cup', 106, 5, 'Best served chilled. Perfect as a movie-night snack.', now()),
+('peanut-butter-cup', 107, 5, 'These are great for gifting. Everyone I gave them to loved them.', now()),
+('peanut-butter-cup', 108, 5, 'Perfect balance of chocolate and peanut butter. Highly recommend.', now()),
+('peanut-butter-cup', 109, 4, 'Good treat, but I found the chocolate a bit too thick.', now()),
+('peanut-butter-cup', 110, 5, 'The perfect addition to a dessert charcuterie board.', now()),
+('peanut-butter-cup', 111, 5, 'My kids loved these as an after-school snack.', now()),
+('peanut-butter-cup', 112, 5, 'Ideal for small gatherings. They were a hit.', now()),
+('peanut-butter-cup', 113, 4, 'Loved the filling, but the chocolate could be less sweet.', now()),
+('peanut-butter-cup', 114, 5, 'These were great as party favors. Highly recommend.', now()),
+('peanut-butter-cup', 115, 5, 'Perfect for a quick dessert craving. Will order again.', now()),
+('peanut-butter-cup', 116, 5, 'I paired these with coffee, and it was delightful.', now()),
+('peanut-butter-cup', 117, 5, 'A luxurious snack for peanut butter lovers.', now()),
+('peanut-butter-cup', 118, 4, 'Would have liked a softer filling, but still great.', now()),
+('peanut-butter-cup', 119, 5, 'Great for movie nights. The flavors were perfect.', now()),
+('peanut-butter-cup', 120, 5, 'These were a huge hit at my office party.', now()),
+('peanut-butter-cup', 121, 5, 'A rich and creamy treat that everyone should try.', now()),
+('peanut-butter-cup', 122, 5, 'I used these as cupcake toppers, and they worked beautifully.', now());
+
+
+INSERT INTO product_reviews (product_id, user_id, rating, comment, created_at) VALUES
+('raspberry-linzer', 103, 5, 'These cookies were a hit at my tea party. The raspberry filling was delightful.', now()),
+('raspberry-linzer', 104, 5, 'Perfect as a snack with afternoon coffee. Loved the buttery texture.', now()),
+('raspberry-linzer', 105, 4, 'A bit crumbly for my liking, but the flavor was amazing.', now()),
+('raspberry-linzer', 106, 5, 'I served these at a bridal shower, and everyone raved about them.', now()),
+('raspberry-linzer', 107, 5, 'Used them as a gift for a friend, and they couldn’t stop praising them.', now()),
+('raspberry-linzer', 108, 5, 'The raspberry filling was just the right balance of sweet and tart.', now()),
+('raspberry-linzer', 109, 4, 'Good cookies, but I wish the filling was more generous.', now()),
+('raspberry-linzer', 110, 5, 'Paired these with a glass of milk, and they were perfect.', now()),
+('raspberry-linzer', 111, 5, 'Best cookies I’ve had in a long time. The buttery crust was amazing.', now()),
+('raspberry-linzer', 112, 5, 'Ideal for gifting. They were beautifully packaged and tasted great.', now()),
+('raspberry-linzer', 113, 4, 'Would have preferred a bit more jam, but still very tasty.', now()),
+('raspberry-linzer', 114, 5, 'Perfect for holiday cookie platters. Highly recommend.', now()),
+('raspberry-linzer', 115, 5, 'I served these with hot chocolate, and they were a hit.', now()),
+('raspberry-linzer', 116, 5, 'A classic cookie done right. Will order again.', now()),
+('raspberry-linzer', 117, 5, 'These were great as party favors. Everyone loved them.', now()),
+('raspberry-linzer', 118, 4, 'Good cookies, but they were slightly too sweet for me.', now()),
+('raspberry-linzer', 119, 5, 'Perfect for a light dessert after dinner.', now()),
+('raspberry-linzer', 120, 5, 'These cookies were a hit at my office holiday party.', now()),
+('raspberry-linzer', 121, 5, 'The raspberry filling was fresh and flavorful. Highly recommend.', now()),
+('raspberry-linzer', 122, 5, 'I used these as part of a dessert platter, and they were perfect.', now());
+
+
+INSERT INTO product_reviews (product_id, user_id, rating, comment, created_at) VALUES
+('mocha-latte-cake', 103, 5, 'The coffee flavor in this cake was fantastic. Perfect for coffee lovers.', now()),
+('mocha-latte-cake', 104, 5, 'Served this at a coffee-themed party, and it was the highlight of the evening.', now()),
+('mocha-latte-cake', 105, 4, 'A bit too rich for me, but the coffee and chocolate combo was great.', now()),
+('mocha-latte-cake', 106, 5, 'Best enjoyed with a cup of espresso. Highly recommend.', now()),
+('mocha-latte-cake', 107, 5, 'Used this as a dessert for a dinner party, and everyone loved it.', now()),
+('mocha-latte-cake', 108, 5, 'The frosting was creamy and full of flavor. Perfectly balanced.', now()),
+('mocha-latte-cake', 109, 4, 'Great cake, but I found the coffee flavor a bit overpowering.', now()),
+('mocha-latte-cake', 110, 5, 'This cake paired perfectly with whipped cream. A must-try.', now()),
+('mocha-latte-cake', 111, 5, 'The moist layers and bold coffee flavor made this a favorite.', now()),
+('mocha-latte-cake', 112, 5, 'Perfect for gifting to coffee enthusiasts. Loved it!', now()),
+('mocha-latte-cake', 113, 4, 'Good cake, but I wish it was slightly less sweet.', now()),
+('mocha-latte-cake', 114, 5, 'Served this with cappuccino, and it was amazing.', now()),
+('mocha-latte-cake', 115, 5, 'I used this as a centerpiece for a dessert table. Stunning!', now()),
+('mocha-latte-cake', 116, 5, 'The coffee flavor was bold but not overwhelming. Highly recommend.', now()),
+('mocha-latte-cake', 117, 5, 'Perfect for brunch gatherings. Everyone loved it.', now()),
+('mocha-latte-cake', 118, 4, 'Good dessert, but the coffee frosting was a bit too rich for me.', now()),
+('mocha-latte-cake', 119, 5, 'Best enjoyed with fresh strawberries. A great pairing.', now()),
+('mocha-latte-cake', 120, 5, 'This cake was a hit at my family gathering. Would buy again.', now()),
+('mocha-latte-cake', 121, 5, 'The chocolate and coffee combination was perfectly executed.', now()),
+('mocha-latte-cake', 122, 5, 'Served this with ice cream for an indulgent dessert.', now());
+
+
+INSERT INTO product_reviews (product_id, user_id, rating, comment, created_at) VALUES
+('peach-mango-pie', 103, 5, 'The fruity filling was perfect for summer. Served with vanilla ice cream.', now()),
+('peach-mango-pie', 104, 5, 'I used this as a dessert for a tropical-themed dinner, and it was fantastic.', now()),
+('peach-mango-pie', 105, 4, 'Great pie, but I wish the crust was flakier.', now()),
+('peach-mango-pie', 106, 5, 'Best served warm with whipped cream. Everyone loved it.', now()),
+('peach-mango-pie', 107, 5, 'The mango and peach combination was delightful. A real treat.', now()),
+('peach-mango-pie', 108, 4, 'Good flavor but slightly too sweet for my taste.', now()),
+('peach-mango-pie', 109, 5, 'This was a hit at my potluck dinner. Highly recommend.', now()),
+('peach-mango-pie', 110, 5, 'Perfectly balanced sweetness. The crust held up beautifully.', now()),
+('peach-mango-pie', 111, 5, 'Served this as a breakfast dessert. Loved the fruity freshness.', now()),
+('peach-mango-pie', 112, 4, 'Good pie, but I wish the filling had more mango flavor.', now()),
+('peach-mango-pie', 113, 5, 'The pie was beautifully presented and tasted even better.', now()),
+('peach-mango-pie', 114, 5, 'A refreshing and light dessert. Perfect for summer evenings.', now()),
+('peach-mango-pie', 115, 5, 'The fruity filling paired well with a cup of iced tea.', now()),
+('peach-mango-pie', 116, 4, 'A bit too tangy for me, but my family adored it.', now()),
+('peach-mango-pie', 117, 5, 'Served this with fresh cream. It was a total crowd-pleaser.', now()),
+('peach-mango-pie', 118, 5, 'The mango flavor really shone through. Loved it!', now()),
+('peach-mango-pie', 119, 4, 'Good dessert but slightly heavy crust.', now()),
+('peach-mango-pie', 120, 5, 'Best enjoyed with tropical drinks. A perfect pairing.', now()),
+('peach-mango-pie', 121, 5, 'Great dessert for a casual dinner. Everyone asked for seconds.', now()),
+('peach-mango-pie', 122, 5, 'This pie reminded me of homemade desserts. Absolutely delightful.', now());
+
+INSERT INTO product_reviews (product_id, user_id, rating, comment, created_at) VALUES
+('churros', 103, 5, 'These churros were perfectly crispy and paired well with hot chocolate.', now()),
+('churros', 104, 5, 'I served these at a movie night, and they were a huge hit.', now()),
+('churros', 105, 4, 'Good overall, but I found them slightly too oily.', now()),
+('churros', 106, 5, 'Best churros I’ve had outside of Spain. Absolutely loved them!', now()),
+('churros', 107, 5, 'Perfect as a snack with a caramel dipping sauce. Highly recommend.', now()),
+('churros', 108, 5, 'These were the highlight of my dessert table. So tasty!', now()),
+('churros', 109, 4, 'Good churros, but they cooled down quickly and lost some crispiness.', now()),
+('churros', 110, 5, 'I served these at a family gathering, and everyone loved them.', now()),
+('churros', 111, 5, 'The cinnamon sugar coating was spot on. Delicious!', now()),
+('churros', 112, 4, 'Great churros, but I wish the portion size was larger.', now()),
+('churros', 113, 5, 'Perfectly crispy on the outside and soft inside. A must-try!', now()),
+('churros', 114, 5, 'I paired these with chocolate sauce, and it was a total win.', now()),
+('churros', 115, 5, 'Great snack for sharing. The kids especially loved them.', now()),
+('churros', 116, 4, 'Good flavor but slightly greasy for my liking.', now()),
+('churros', 117, 5, 'These reminded me of my travels to Spain. Highly nostalgic!', now()),
+('churros', 118, 5, 'Best served fresh. The texture and flavor were perfect.', now()),
+('churros', 119, 4, 'Good snack, but I found them a bit too sweet.', now()),
+('churros', 120, 5, 'The churros were crispy and delicious. A crowd-pleaser.', now()),
+('churros', 121, 5, 'Perfect dessert for a fun party. Everyone loved them.', now()),
+('churros', 122, 5, 'These were perfect with a sprinkle of powdered sugar. Amazing!', now());
+
+INSERT INTO product_reviews (product_id, user_id, rating, comment, created_at) VALUES
+('salted-caramel-brownie', 103, 5, 'The salted caramel topping was rich and decadent. Perfect for chocolate lovers.', now()),
+('salted-caramel-brownie', 104, 5, 'I served these with ice cream, and the combination was amazing.', now()),
+('salted-caramel-brownie', 105, 4, 'Good brownie, but the caramel could have been a bit less salty.', now()),
+('salted-caramel-brownie', 106, 5, 'The fudgy texture and caramel topping made this a winner.', now()),
+('salted-caramel-brownie', 107, 5, 'Perfect for an afternoon snack with a cup of coffee.', now()),
+('salted-caramel-brownie', 108, 5, 'I brought these to an office party, and everyone wanted the recipe.', now()),
+('salted-caramel-brownie', 109, 4, 'Good overall, but I found the brownie slightly dense.', now()),
+('salted-caramel-brownie', 110, 5, 'The balance of sweet and salty was spot on. Highly recommend.', now()),
+('salted-caramel-brownie', 111, 5, 'The caramel topping was the highlight. Best brownie I’ve had!', now()),
+('salted-caramel-brownie', 112, 4, 'Good flavor but slightly too sweet for my taste.', now()),
+('salted-caramel-brownie', 113, 5, 'Perfect for gifting. Everyone loved them.', now()),
+('salted-caramel-brownie', 114, 5, 'These brownies were a total hit at my potluck dinner.', now()),
+('salted-caramel-brownie', 115, 5, 'Best served warm with a dollop of whipped cream.', now()),
+('salted-caramel-brownie', 116, 5, 'The caramel topping gave it a luxurious touch. Loved it!', now()),
+('salted-caramel-brownie', 117, 5, 'I paired these with salted caramel ice cream for an indulgent dessert.', now()),
+('salted-caramel-brownie', 118, 5, 'These brownies were rich and gooey. Perfect for any occasion.', now()),
+('salted-caramel-brownie', 119, 4, 'Good dessert but a bit heavy for my preference.', now()),
+('salted-caramel-brownie', 120, 5, 'A delightful treat for chocolate and caramel fans.', now()),
+('salted-caramel-brownie', 121, 5, 'The texture and flavor were absolutely perfect.', now()),
+('salted-caramel-brownie', 122, 5, 'Best brownies I’ve ever had. Will definitely buy again.', now());
+
+INSERT INTO product_reviews (product_id, user_id, rating, comment, created_at) VALUES
+('hazelnut-donut', 103, 5, 'These donuts were a perfect treat with my morning coffee. Loved the hazelnut glaze.', now()),
+('hazelnut-donut', 104, 5, 'I brought these to a brunch party, and everyone asked where I got them.', now()),
+('hazelnut-donut', 105, 4, 'Great flavor, but I found them a bit too sweet.', now()),
+('hazelnut-donut', 106, 5, 'The hazelnut topping was deliciously nutty and added great texture.', now()),
+('hazelnut-donut', 107, 5, 'Perfect as a quick snack. My kids loved them too!', now()),
+('hazelnut-donut', 108, 5, 'These donuts were a highlight of our weekend breakfast. Highly recommend.', now()),
+('hazelnut-donut', 109, 4, 'Good donuts, but I found the glaze slightly too thick.', now()),
+('hazelnut-donut', 110, 5, 'Served these with a glass of cold milk. A perfect pairing.', now()),
+('hazelnut-donut', 111, 5, 'The donuts were soft, fluffy, and absolutely delicious.', now()),
+('hazelnut-donut', 112, 4, 'Great flavor overall, but I wish they were a bit fresher.', now()),
+('hazelnut-donut', 113, 5, 'Perfect for sharing with friends over coffee. Loved them!', now()),
+('hazelnut-donut', 114, 5, 'I used these as a dessert option for a party, and they were a hit.', now()),
+('hazelnut-donut', 115, 5, 'The hazelnut bits on top added a nice crunch. Highly recommend.', now()),
+('hazelnut-donut', 116, 5, 'These donuts reminded me of a bakery in Paris. Will buy again.', now()),
+('hazelnut-donut', 117, 5, 'Best enjoyed fresh. The flavor was exceptional.', now()),
+('hazelnut-donut', 118, 5, 'The glaze was rich and perfectly sweet. Loved every bite.', now()),
+('hazelnut-donut', 119, 4, 'Good donuts, but they were slightly too heavy for my preference.', now()),
+('hazelnut-donut', 120, 5, 'A great treat for any time of the day. Everyone in my family enjoyed them.', now()),
+('hazelnut-donut', 121, 5, 'The perfect balance of sweetness and nuttiness. Highly recommend.', now()),
+('hazelnut-donut', 122, 5, 'I served these at a small gathering, and they were gone in no time.', now());
+
+INSERT INTO product_reviews (product_id, user_id, rating, comment, created_at) VALUES
+('berry-parfait', 103, 5, 'This parfait was the perfect healthy dessert for my brunch. Loved the fresh berries.', now()),
+('berry-parfait', 104, 5, 'Served this as a breakfast treat, and everyone loved it.', now()),
+('berry-parfait', 105, 4, 'Good overall, but I wish the granola was crunchier.', now()),
+('berry-parfait', 106, 5, 'Best enjoyed chilled. The layers of yogurt and berries were perfectly balanced.', now()),
+('berry-parfait', 107, 5, 'A light and refreshing option for a mid-morning snack.', now()),
+('berry-parfait', 108, 5, 'This was a hit at my family gathering. Everyone appreciated the healthy option.', now()),
+('berry-parfait', 109, 4, 'The berries were fresh, but the yogurt could have been creamier.', now()),
+('berry-parfait', 110, 5, 'Perfect for a quick dessert. Loved the presentation in cups.', now()),
+('berry-parfait', 111, 5, 'This was my go-to snack during a picnic. The freshness was amazing.', now()),
+('berry-parfait', 112, 5, 'A great option for those who want a light but satisfying dessert.', now()),
+('berry-parfait', 113, 4, 'Good parfait, but I wish the berry portion was larger.', now()),
+('berry-parfait', 114, 5, 'The combination of sweet and tart was perfect. Highly recommend.', now()),
+('berry-parfait', 115, 5, 'Served this with a drizzle of honey. Absolutely delicious.', now()),
+('berry-parfait', 116, 5, 'Perfect for breakfast or a snack. A refreshing choice.', now()),
+('berry-parfait', 117, 5, 'Loved the mix of textures with the yogurt, granola, and berries.', now()),
+('berry-parfait', 118, 5, 'Great for a summer dessert. Will order again.', now()),
+('berry-parfait', 119, 4, 'Good flavor overall, but slightly more berries would be nice.', now()),
+('berry-parfait', 120, 5, 'A fantastic option for those looking for a healthier dessert.', now()),
+('berry-parfait', 121, 5, 'Served this as an appetizer, and it was very well received.', now()),
+('berry-parfait', 122, 5, 'The parfait was beautifully layered and tasted amazing.', now());
+
+INSERT INTO product_reviews (product_id, user_id, rating, comment, created_at) VALUES
+('cherry-cheesecake-bar', 103, 5, 'The cherry topping on these bars was so fresh and flavorful. Loved it!', now()),
+('cherry-cheesecake-bar', 104, 5, 'I brought these to a family dinner, and everyone praised them.', now()),
+('cherry-cheesecake-bar', 105, 4, 'Great flavor, but the crust was slightly too thick for me.', now()),
+('cherry-cheesecake-bar', 106, 5, 'Best served chilled. These bars were a hit at my brunch.', now()),
+('cherry-cheesecake-bar', 107, 5, 'Perfect for a quick dessert. My kids enjoyed them too.', now()),
+('cherry-cheesecake-bar', 108, 5, 'The cherry and cheesecake combination was delightful. Highly recommend.', now()),
+('cherry-cheesecake-bar', 109, 4, 'Good bars, but I found them slightly too sweet.', now()),
+('cherry-cheesecake-bar', 110, 5, 'These bars were perfect for sharing at a potluck dinner.', now()),
+('cherry-cheesecake-bar', 111, 5, 'The creamy cheesecake paired perfectly with the cherry topping.', now()),
+('cherry-cheesecake-bar', 112, 5, 'Great for gifting. Everyone loved the presentation.', now()),
+('cherry-cheesecake-bar', 113, 4, 'Good flavor, but I wish the bars were slightly bigger.', now()),
+('cherry-cheesecake-bar', 114, 5, 'Perfect as a dessert option for any party. Highly recommend.', now()),
+('cherry-cheesecake-bar', 115, 5, 'I served these with a dollop of whipped cream, and they were amazing.', now()),
+('cherry-cheesecake-bar', 116, 5, 'These bars reminded me of homemade desserts. Absolutely delicious.', now()),
+('cherry-cheesecake-bar', 117, 5, 'Perfectly creamy and sweet. A great dessert for any occasion.', now()),
+('cherry-cheesecake-bar', 118, 4, 'Good bars, but slightly too rich for my preference.', now()),
+('cherry-cheesecake-bar', 119, 5, 'Best enjoyed with a cup of tea. Loved the flavors.', now()),
+('cherry-cheesecake-bar', 120, 5, 'These bars were a hit at my office holiday party.', now()),
+('cherry-cheesecake-bar', 121, 5, 'The cheesecake was smooth and the cherries were fresh. Perfect!', now()),
+('cherry-cheesecake-bar', 122, 5, 'Served these at a baby shower, and they were gone in minutes.', now());
+
+INSERT INTO product_reviews (product_id, user_id, rating, comment, created_at) VALUES
+('pumpkin-roll', 103, 5, 'This pumpkin roll was perfect for Thanksgiving. The cream cheese filling was delightful.', now()),
+('pumpkin-roll', 104, 5, 'I brought this to a holiday dinner, and everyone asked where I got it.', now()),
+('pumpkin-roll', 105, 4, 'Great flavor, but the roll could have been slightly more moist.', now()),
+('pumpkin-roll', 106, 5, 'The spices in this roll were perfect. Best enjoyed with a cup of coffee.', now()),
+('pumpkin-roll', 107, 5, 'This was a hit at my fall gathering. Everyone loved it.', now()),
+('pumpkin-roll', 108, 5, 'I used this as a dessert for a potluck, and it was a total success.', now()),
+('pumpkin-roll', 109, 4, 'Good overall, but I found the cream cheese filling slightly too sweet.', now()),
+('pumpkin-roll', 110, 5, 'Perfectly spiced and balanced. Great for the holiday season.', now()),
+('pumpkin-roll', 111, 5, 'This pumpkin roll reminded me of homemade desserts. So comforting.', now()),
+('pumpkin-roll', 112, 5, 'Served this as part of a dessert table, and it was gone in minutes.', now()),
+('pumpkin-roll', 113, 4, 'Good dessert, but I wish the roll was a bit thicker.', now()),
+('pumpkin-roll', 114, 5, 'Perfect for gifting during the fall season. Highly recommend.', now()),
+('pumpkin-roll', 115, 5, 'Best enjoyed with a dollop of whipped cream. Loved every bite.', now()),
+('pumpkin-roll', 116, 5, 'The spices and cream cheese were perfectly balanced. Will order again.', now()),
+('pumpkin-roll', 117, 5, 'This was a great dessert for a cozy evening. Highly nostalgic.', now()),
+('pumpkin-roll', 118, 5, 'The cream cheese filling was smooth and not overly sweet. Fantastic!', now()),
+('pumpkin-roll', 119, 4, 'Good roll, but slightly too rich for my preference.', now()),
+('pumpkin-roll', 120, 5, 'A delightful treat for fall gatherings. My family loved it.', now()),
+('pumpkin-roll', 121, 5, 'The pumpkin flavor was spot on. Great dessert for any occasion.', now()),
+('pumpkin-roll', 122, 5, 'This roll was perfect for my Thanksgiving dinner. Everyone raved about it.', now());
+
+INSERT INTO product_reviews (product_id, user_id, rating, comment, created_at) VALUES
+('espresso-macarons', 103, 5, 'The espresso flavor in these macarons was amazing. Perfect for coffee lovers.', now()),
+('espresso-macarons', 104, 5, 'I served these at a coffee-themed party, and they were a huge hit.', now()),
+('espresso-macarons', 105, 4, 'Great macarons, but I wish they were slightly less sweet.', now()),
+('espresso-macarons', 106, 5, 'The texture was perfect, and the espresso filling was rich and creamy.', now()),
+('espresso-macarons', 107, 5, 'These were a highlight at my dessert table. Everyone loved them.', now()),
+('espresso-macarons', 108, 5, 'I paired these with cappuccino, and it was a delightful experience.', now()),
+('espresso-macarons', 109, 4, 'Good macarons, but the shells were slightly too delicate.', now()),
+('espresso-macarons', 110, 5, 'These macarons were perfect for gifting. Beautifully crafted.', now()),
+('espresso-macarons', 111, 5, 'The espresso flavor was bold and balanced. Highly recommend.', now()),
+('espresso-macarons', 112, 5, 'I used these as a dessert for a baby shower, and they were a hit.', now()),
+('espresso-macarons', 113, 4, 'Good macarons, but slightly too rich for my taste.', now()),
+('espresso-macarons', 114, 5, 'The presentation and flavor were exceptional. A must-try.', now()),
+('espresso-macarons', 115, 5, 'These were perfect as party favors. Everyone appreciated them.', now()),
+('espresso-macarons', 116, 5, 'The coffee filling was creamy and perfectly complemented the shells.', now()),
+('espresso-macarons', 117, 5, 'These reminded me of macarons I had in Paris. Will order again.', now()),
+('espresso-macarons', 118, 5, 'Perfect for pairing with afternoon tea or coffee. Loved them.', now()),
+('espresso-macarons', 119, 4, 'Great flavor, but I found the filling slightly overpowering.', now()),
+('espresso-macarons', 120, 5, 'These were perfect for my coffee bar setup. Everyone enjoyed them.', now()),
+('espresso-macarons', 121, 5, 'The espresso flavor was bold without being too bitter. Fantastic.', now()),
+('espresso-macarons', 122, 5, 'These macarons were beautifully made and tasted incredible.', now());
+
+INSERT INTO product_reviews (product_id, user_id, rating, comment, created_at) VALUES
+('gingerbread-cookies', 103, 5, 'These cookies were a huge hit at my Christmas party. The spices were perfect.', now()),
+('gingerbread-cookies', 104, 5, 'I used these for decorating with my kids, and they loved it.', now()),
+('gingerbread-cookies', 105, 4, 'Good flavor, but I found them slightly too hard.', now()),
+('gingerbread-cookies', 106, 5, 'Best served with hot cocoa. These were a delightful treat.', now()),
+('gingerbread-cookies', 107, 5, 'These cookies were perfect for my holiday cookie exchange.', now()),
+('gingerbread-cookies', 108, 5, 'The spices and sweetness were perfectly balanced. Loved them!', now()),
+('gingerbread-cookies', 109, 4, 'Good cookies, but I wish they were slightly softer.', now()),
+('gingerbread-cookies', 110, 5, 'These reminded me of homemade gingerbread from my childhood.', now()),
+('gingerbread-cookies', 111, 5, 'The icing decorations were beautiful and added a nice touch.', now()),
+('gingerbread-cookies', 112, 5, 'These were great as stocking stuffers for my family.', now()),
+('gingerbread-cookies', 113, 4, 'Good cookies, but they were slightly too crunchy for me.', now()),
+('gingerbread-cookies', 114, 5, 'Perfect for holiday gifting. Everyone appreciated them.', now()),
+('gingerbread-cookies', 115, 5, 'These cookies paired perfectly with mulled cider.', now()),
+('gingerbread-cookies', 116, 5, 'The spices in these cookies were spot on. A total hit.', now()),
+('gingerbread-cookies', 117, 5, 'These cookies brought back memories of Christmas traditions. Loved them!', now()),
+('gingerbread-cookies', 118, 5, 'Perfect for holiday decorating parties. A must-have.', now()),
+('gingerbread-cookies', 119, 4, 'Good cookies, but I found the icing slightly too sweet.', now()),
+('gingerbread-cookies', 120, 5, 'These were a hit at my holiday cookie swap. Everyone wanted the recipe.', now()),
+('gingerbread-cookies', 121, 5, 'The spices and sweetness were perfectly balanced. Loved them.', now()),
+('gingerbread-cookies', 122, 5, 'These cookies were perfect for dunking in hot chocolate. Fantastic!', now());
+
+INSERT INTO product_reviews (product_id, user_id, rating, comment, created_at) VALUES
+('matcha-pound-cake', 103, 5, 'The matcha flavor in this cake was perfectly balanced. Loved it with green tea.', now()),
+('matcha-pound-cake', 104, 5, 'I served this as a dessert for a Japanese-themed dinner, and it was a hit.', now()),
+('matcha-pound-cake', 105, 4, 'Good cake, but I found it slightly too dense.', now()),
+('matcha-pound-cake', 106, 5, 'The earthy flavor of matcha paired well with the buttery texture.', now()),
+('matcha-pound-cake', 107, 5, 'This cake was a standout dessert at my brunch gathering. Highly recommend.', now()),
+('matcha-pound-cake', 108, 5, 'I used this as an afternoon snack, and it was delightful.', now()),
+('matcha-pound-cake', 109, 4, 'Good flavor but slightly sweeter than I expected for matcha.', now()),
+('matcha-pound-cake', 110, 5, 'The presentation was lovely, and the flavor was even better.', now()),
+('matcha-pound-cake', 111, 5, 'Perfect for gifting. Everyone who tried it loved the matcha twist.', now()),
+('matcha-pound-cake', 112, 4, 'Good cake, but I wish it was slightly more moist.', now()),
+('matcha-pound-cake', 113, 5, 'The flavor was authentic and reminded me of traditional Japanese desserts.', now()),
+('matcha-pound-cake', 114, 5, 'Best enjoyed with a dollop of whipped cream. A total delight.', now()),
+('matcha-pound-cake', 115, 5, 'This was a perfect addition to my tea party. The flavor was on point.', now()),
+('matcha-pound-cake', 116, 5, 'The matcha gave it a unique and refreshing flavor. Will buy again.', now()),
+('matcha-pound-cake', 117, 5, 'This cake was a hit at my family dinner. Highly recommend.', now()),
+('matcha-pound-cake', 118, 4, 'Good cake, but I wish the matcha flavor was slightly stronger.', now()),
+('matcha-pound-cake', 119, 5, 'A perfect dessert for matcha lovers. The buttery texture was amazing.', now()),
+('matcha-pound-cake', 120, 5, 'I paired this with honey, and it elevated the flavor even more.', now()),
+('matcha-pound-cake', 121, 5, 'This was a unique dessert that everyone enjoyed. Great job!', now()),
+('matcha-pound-cake', 122, 5, 'Perfectly balanced sweetness and matcha flavor. Loved it.', now());
+
+INSERT INTO product_reviews (product_id, user_id, rating, comment, created_at) VALUES
+('peanut-butter-brownie', 103, 5, 'The peanut butter swirl in these brownies was rich and delicious. A must-try!', now()),
+('peanut-butter-brownie', 104, 5, 'I brought these to a potluck dinner, and they disappeared in no time.', now()),
+('peanut-butter-brownie', 105, 4, 'Great brownies, but I found them slightly too dense.', now()),
+('peanut-butter-brownie', 106, 5, 'The combination of chocolate and peanut butter was perfect. Loved every bite.', now()),
+('peanut-butter-brownie', 107, 5, 'These brownies were a hit with my kids. Perfect for an after-school snack.', now()),
+('peanut-butter-brownie', 108, 5, 'I served these with vanilla ice cream, and the pairing was amazing.', now()),
+('peanut-butter-brownie', 109, 4, 'Good brownies, but the peanut butter could have been more evenly distributed.', now()),
+('peanut-butter-brownie', 110, 5, 'The fudgy texture was spot on. Best brownies I’ve had in a while.', now()),
+('peanut-butter-brownie', 111, 5, 'Perfect for gifting. Everyone who tried them loved them.', now()),
+('peanut-butter-brownie', 112, 4, 'Good brownies, but I found them slightly too sweet.', now()),
+('peanut-butter-brownie', 113, 5, 'The peanut butter gave them a unique and indulgent twist. Highly recommend.', now()),
+('peanut-butter-brownie', 114, 5, 'These brownies were perfect for a movie night treat.', now()),
+('peanut-butter-brownie', 115, 5, 'I served these as a dessert for a casual dinner, and everyone loved them.', now()),
+('peanut-butter-brownie', 116, 5, 'Best enjoyed warm with a glass of milk. Absolutely delightful.', now()),
+('peanut-butter-brownie', 117, 5, 'The peanut butter swirl added a lovely texture and flavor. Will order again.', now()),
+('peanut-butter-brownie', 118, 4, 'Good brownies, but I wish they were slightly less dense.', now()),
+('peanut-butter-brownie', 119, 5, 'These were perfect for a quick dessert craving. Loved them!', now()),
+('peanut-butter-brownie', 120, 5, 'A rich and indulgent treat. Perfect for any occasion.', now()),
+('peanut-butter-brownie', 121, 5, 'The peanut butter and chocolate combo was executed perfectly. Highly recommend.', now()),
+('peanut-butter-brownie', 122, 5, 'I used these as a base for an ice cream sundae, and it worked beautifully.', now());
+
+INSERT INTO product_reviews (product_id, user_id, rating, comment, created_at) VALUES
+('caramel-popcorn', 103, 5, 'This caramel popcorn was the perfect snack for movie night. Loved the crunch!', now()),
+('caramel-popcorn', 104, 5, 'I served this at a party, and it was a huge hit with both kids and adults.', now()),
+('caramel-popcorn', 105, 4, 'Good flavor, but I found the caramel slightly too sweet.', now()),
+('caramel-popcorn', 106, 5, 'The caramel coating was even and perfectly crisp. Highly recommend.', now()),
+('caramel-popcorn', 107, 5, 'Perfect for snacking during a road trip. Loved every bite.', now()),
+('caramel-popcorn', 108, 5, 'This popcorn reminded me of the ones sold at fairs. So nostalgic!', now()),
+('caramel-popcorn', 109, 4, 'Good popcorn, but I wish the portion size was slightly larger.', now()),
+('caramel-popcorn', 110, 5, 'The balance of sweetness and crunch was perfect. Will buy again.', now()),
+('caramel-popcorn', 111, 5, 'This was a great addition to my dessert table. Everyone loved it.', now()),
+('caramel-popcorn', 112, 5, 'Perfect for gifting. The packaging was lovely, and the flavor was fantastic.', now()),
+('caramel-popcorn', 113, 4, 'Good popcorn, but the caramel was slightly too sticky for me.', now()),
+('caramel-popcorn', 114, 5, 'This was the perfect snack for my movie marathon. Highly recommend.', now()),
+('caramel-popcorn', 115, 5, 'I paired this with chocolate-covered nuts, and it was a fantastic combo.', now()),
+('caramel-popcorn', 116, 5, 'The caramel was rich and buttery. A total delight.', now()),
+('caramel-popcorn', 117, 5, 'Great for sharing with friends. This is my new go-to snack.', now()),
+('caramel-popcorn', 118, 4, 'Good flavor, but I found it slightly too sweet for my preference.', now()),
+('caramel-popcorn', 119, 5, 'The crunch and flavor were perfect. This is the best caramel popcorn I’ve had.', now()),
+('caramel-popcorn', 120, 5, 'Perfect as a snack for game night. Everyone enjoyed it.', now()),
+('caramel-popcorn', 121, 5, 'The caramel was smooth and buttery. Highly recommend for any occasion.', now()),
+('caramel-popcorn', 122, 5, 'This popcorn was the highlight of our snack bar. Absolutely delicious!', now());
+
+INSERT INTO product_reviews (product_id, user_id, rating, comment, created_at) VALUES
+('apple-cinnamon-muffin', 103, 5, 'The muffins were moist and packed with apple and cinnamon flavors. Perfect for breakfast.', now()),
+('apple-cinnamon-muffin', 104, 5, 'Served these at a brunch, and everyone loved them. The spices were just right.', now()),
+('apple-cinnamon-muffin', 105, 4, 'Great muffins, but I found them slightly too sweet for my taste.', now()),
+('apple-cinnamon-muffin', 106, 5, 'These muffins were a hit with my kids. Best enjoyed warm with butter.', now()),
+('apple-cinnamon-muffin', 107, 5, 'The combination of apples and cinnamon made these muffins irresistible.', now()),
+('apple-cinnamon-muffin', 108, 5, 'I paired these with coffee for a quick breakfast, and they were perfect.', now()),
+('apple-cinnamon-muffin', 109, 4, 'Good flavor, but I wish there were more apple chunks.', now()),
+('apple-cinnamon-muffin', 110, 5, 'These muffins were the highlight of my morning. Loved the texture.', now()),
+('apple-cinnamon-muffin', 111, 5, 'Perfect for gifting. Everyone who tried them asked for more.', now()),
+('apple-cinnamon-muffin', 112, 4, 'Good muffins, but I found the cinnamon a bit overpowering.', now()),
+('apple-cinnamon-muffin', 113, 5, 'The texture was perfect, and the flavors were comforting. Highly recommend.', now()),
+('apple-cinnamon-muffin', 114, 5, 'These muffins reminded me of fall mornings. A must-try!', now()),
+('apple-cinnamon-muffin', 115, 5, 'Best served with a dollop of cream cheese. Absolutely delicious.', now()),
+('apple-cinnamon-muffin', 116, 5, 'The spices and sweetness were perfectly balanced. Will order again.', now()),
+('apple-cinnamon-muffin', 117, 5, 'These muffins were a great addition to my breakfast table. Highly recommend.', now()),
+('apple-cinnamon-muffin', 118, 4, 'Good muffins, but I wish they were slightly less dense.', now()),
+('apple-cinnamon-muffin', 119, 5, 'Perfect for a quick snack or breakfast. My family loved them.', now()),
+('apple-cinnamon-muffin', 120, 5, 'The cinnamon aroma was delightful. Best muffins I’ve had in a while.', now()),
+('apple-cinnamon-muffin', 121, 5, 'These muffins were packed with flavor and perfect with tea.', now()),
+('apple-cinnamon-muffin', 122, 5, 'I served these at a potluck, and they were gone in minutes.', now());
+
+INSERT INTO product_reviews (product_id, user_id, rating, comment, created_at) VALUES
+('lavender-cookies', 103, 5, 'These cookies were elegant and had a subtle lavender flavor. Perfect with tea.', now()),
+('lavender-cookies', 104, 5, 'I served these at a garden party, and they were a big hit.', now()),
+('lavender-cookies', 105, 4, 'Good cookies, but I found the lavender flavor slightly too strong.', now()),
+('lavender-cookies', 106, 5, 'The texture was buttery and crisp. Loved the unique flavor.', now()),
+('lavender-cookies', 107, 5, 'Perfect for gifting. The floral flavor was delightful.', now()),
+('lavender-cookies', 108, 5, 'I paired these with Earl Grey tea, and they were a perfect match.', now()),
+('lavender-cookies', 109, 4, 'Good cookies, but they were slightly too sweet for me.', now()),
+('lavender-cookies', 110, 5, 'These cookies were a standout at my tea party. Highly recommend.', now()),
+('lavender-cookies', 111, 5, 'The lavender flavor was subtle and not overpowering. Perfectly balanced.', now()),
+('lavender-cookies', 112, 4, 'Good cookies, but I wish they were slightly softer.', now()),
+('lavender-cookies', 113, 5, 'These cookies reminded me of a Parisian bakery. Lovely and unique.', now()),
+('lavender-cookies', 114, 5, 'Perfect for a light dessert or snack. Loved the floral notes.', now()),
+('lavender-cookies', 115, 5, 'Best enjoyed with a cup of chamomile tea. Will buy again.', now()),
+('lavender-cookies', 116, 5, 'The packaging was beautiful, and the flavor was even better.', now()),
+('lavender-cookies', 117, 5, 'These cookies were a delightful addition to my afternoon tea.', now()),
+('lavender-cookies', 118, 4, 'Good flavor, but I found the cookies slightly crumbly.', now()),
+('lavender-cookies', 119, 5, 'A unique and refreshing flavor. Perfect for gifting.', now()),
+('lavender-cookies', 120, 5, 'I served these as part of a dessert platter, and they were a hit.', now()),
+('lavender-cookies', 121, 5, 'The lavender gave these cookies a sophisticated touch. Loved them.', now()),
+('lavender-cookies', 122, 5, 'Perfect for special occasions. The flavor was elegant and memorable.', now());
+
+INSERT INTO product_reviews (product_id, user_id, rating, comment, created_at) VALUES
+('chocolate-chip-banana-muffin', 103, 5, 'These muffins were moist and packed with banana and chocolate flavors. Loved them!', now()),
+('chocolate-chip-banana-muffin', 104, 5, 'I served these at a breakfast meeting, and everyone enjoyed them.', now()),
+('chocolate-chip-banana-muffin', 105, 4, 'Good muffins, but I found them slightly too sweet for my liking.', now()),
+('chocolate-chip-banana-muffin', 106, 5, 'Best served warm with a spread of butter. These were a hit with my family.', now()),
+('chocolate-chip-banana-muffin', 107, 5, 'The combination of bananas and chocolate chips was perfect. Highly recommend.', now()),
+('chocolate-chip-banana-muffin', 108, 5, 'These muffins were great for a quick breakfast. Loved the texture.', now()),
+('chocolate-chip-banana-muffin', 109, 4, 'Good muffins, but I wish the banana flavor was stronger.', now()),
+('chocolate-chip-banana-muffin', 110, 5, 'These muffins were a highlight of my morning routine. Will buy again.', now()),
+('chocolate-chip-banana-muffin', 111, 5, 'Perfect for gifting. Everyone who tried them asked for the recipe.', now()),
+('chocolate-chip-banana-muffin', 112, 4, 'Good muffins, but slightly dense for my preference.', now()),
+('chocolate-chip-banana-muffin', 113, 5, 'The chocolate chips were evenly distributed and perfectly melted. Loved them!', now()),
+('chocolate-chip-banana-muffin', 114, 5, 'Best muffins I’ve had in a while. The flavors were perfectly balanced.', now()),
+('chocolate-chip-banana-muffin', 115, 5, 'These muffins were a great addition to my brunch menu. Highly recommend.', now()),
+('chocolate-chip-banana-muffin', 116, 5, 'The combination of banana and chocolate was classic and delightful.', now()),
+('chocolate-chip-banana-muffin', 117, 5, 'These muffins were a hit at my family breakfast. Everyone loved them.', now()),
+('chocolate-chip-banana-muffin', 118, 4, 'Good muffins, but I found them slightly too sweet for my taste.', now()),
+('chocolate-chip-banana-muffin', 119, 5, 'Perfect for a quick snack or dessert. My kids loved them.', now()),
+('chocolate-chip-banana-muffin', 120, 5, 'The chocolate chips added just the right amount of sweetness. Will order again.', now()),
+('chocolate-chip-banana-muffin', 121, 5, 'These muffins were moist and flavorful. Perfect with a cup of coffee.', now()),
+('chocolate-chip-banana-muffin', 122, 5, 'I served these at a brunch party, and they were gone in minutes.', now());
+
+INSERT INTO product_reviews (product_id, user_id, rating, comment, created_at) VALUES
+('tiramisu', 103, 5, 'This tiramisu was rich and creamy with the perfect coffee flavor. A true classic.', now()),
+('tiramisu', 104, 5, 'I served this as the dessert for a dinner party, and it was a huge success.', now()),
+('tiramisu', 105, 4, 'Great flavor, but I found the mascarpone layer a bit too sweet.', now()),
+('tiramisu', 106, 5, 'The coffee and cocoa combination was perfectly balanced. Loved every bite.', now()),
+('tiramisu', 107, 5, 'This was a standout dessert at my family gathering. Highly recommend.', now()),
+('tiramisu', 108, 5, 'I paired this with espresso, and the combination was heavenly.', now()),
+('tiramisu', 109, 4, 'Good tiramisu, but I wish the coffee flavor was slightly stronger.', now()),
+('tiramisu', 110, 5, 'The layers were beautifully done, and the flavor was authentic.', now()),
+('tiramisu', 111, 5, 'Perfect for gifting to friends. Everyone who tried it loved it.', now()),
+('tiramisu', 112, 4, 'Good dessert, but I found the texture slightly too soft.', now()),
+('tiramisu', 113, 5, 'This tiramisu reminded me of an Italian cafe. Truly exceptional.', now()),
+('tiramisu', 114, 5, 'Best enjoyed with a sprinkle of cocoa powder. Will definitely order again.', now()),
+('tiramisu', 115, 5, 'I served this at a coffee-themed party, and it was a big hit.', now()),
+('tiramisu', 116, 5, 'The creaminess and bold coffee flavor were perfectly balanced.', now()),
+('tiramisu', 117, 5, 'This was the highlight of my dessert table. Everyone raved about it.', now()),
+('tiramisu', 118, 4, 'Good dessert, but I wish the portion size was slightly larger.', now()),
+('tiramisu', 119, 5, 'The mascarpone was rich and creamy. Loved the flavor combination.', now()),
+('tiramisu', 120, 5, 'This tiramisu was a true treat for coffee lovers. Highly recommend.', now()),
+('tiramisu', 121, 5, 'The presentation was beautiful, and the taste was even better.', now()),
+('tiramisu', 122, 5, 'I served this at a dinner party, and it was gone in minutes.', now());
+
+INSERT INTO product_reviews (product_id, user_id, rating, comment, created_at) VALUES
+('chocolate-peppermint-bark', 103, 5, 'The peppermint flavor was refreshing, and the chocolate was rich. A great holiday treat.', now()),
+('chocolate-peppermint-bark', 104, 5, 'I served this as part of a holiday dessert platter, and everyone loved it.', now()),
+('chocolate-peppermint-bark', 105, 4, 'Good flavor, but I found the peppermint a bit overpowering.', now()),
+('chocolate-peppermint-bark', 106, 5, 'The combination of dark chocolate and peppermint was perfect. Loved it!', now()),
+('chocolate-peppermint-bark', 107, 5, 'This was a great treat for gifting during the holidays. Highly recommend.', now()),
+('chocolate-peppermint-bark', 108, 5, 'I paired this with hot chocolate, and it was a delightful combination.', now()),
+('chocolate-peppermint-bark', 109, 4, 'Good bark, but I wish the chocolate was slightly thicker.', now()),
+('chocolate-peppermint-bark', 110, 5, 'The crunch and flavor were perfectly balanced. Will buy again.', now()),
+('chocolate-peppermint-bark', 111, 5, 'Perfect for holiday snacking. Everyone in my family enjoyed it.', now()),
+('chocolate-peppermint-bark', 112, 4, 'Good treat, but I found the peppermint pieces slightly too large.', now()),
+('chocolate-peppermint-bark', 113, 5, 'The presentation was beautiful, and the taste was even better. Loved it!', now()),
+('chocolate-peppermint-bark', 114, 5, 'This bark reminded me of holiday traditions. A must-try!', now()),
+('chocolate-peppermint-bark', 115, 5, 'I served this at a holiday gathering, and it was a huge hit.', now()),
+('chocolate-peppermint-bark', 116, 5, 'The minty freshness and rich chocolate were perfectly balanced.', now()),
+('chocolate-peppermint-bark', 117, 5, 'This was a perfect addition to my holiday dessert table.', now()),
+('chocolate-peppermint-bark', 118, 4, 'Good bark, but I found it slightly too sweet for my preference.', now()),
+('chocolate-peppermint-bark', 119, 5, 'Perfect for sharing with friends. Everyone loved it!', now()),
+('chocolate-peppermint-bark', 120, 5, 'This was a delightful treat during the holidays. Highly recommend.', now()),
+('chocolate-peppermint-bark', 121, 5, 'The chocolate was rich, and the peppermint added a refreshing touch.', now()),
+('chocolate-peppermint-bark', 122, 5, 'I gifted this to a friend, and they couldn’t stop praising it.', now());
+
+INSERT INTO product_collections (product_id, collection_id) VALUES
+('sourdough-loaf', 'artisan-bread'),
+('baguette', 'artisan-bread'),
+('croissant', 'artisan-bread'),
+('croissant', 'exquisite-pastries'),
+('chocolate-eclair', 'exquisite-pastries'),
+('vanilla-muffin', 'muffins'),
+('blueberry-muffin', 'muffins'),
+('red-velvet-cake', 'gourmet-cakes'),
+('wedding-cake', 'gourmet-cakes'),
+('wedding-cake', 'weddings'),
+('birthday-cupcake', 'birthdays'),
+('birthday-cupcake', 'gourmet-cakes'),
+('chocolate-chip-cookie', 'cookies'),
+('macarons', 'exquisite-pastries'),
+('macarons', 'luxury-desserts'),
+('fruit-tart', 'tarts'),
+('cherry-pie', 'tarts'),
+('pound-cake', 'gourmet-cakes'),
+('lemon-bar', 'tarts'),
+('carrot-cake', 'gourmet-cakes'),
+('cinnamon-roll', 'exquisite-pastries'),
+('pretzel', 'artisan-bread'),
+('chocolate-truffle', 'luxury-desserts'),
+('pumpkin-pie', 'tarts'),
+('apple-strudel', 'exquisite-pastries'),
+('raspberry-tart', 'tarts'),
+('banana-bread', 'artisan-bread'),
+('vegan-brownie', 'vegan-delights'),
+('vegan-brownie', 'luxury-desserts'),
+('gluten-free-cupcake', 'vegan-delights'),
+('gluten-free-cupcake', 'birthdays'),
+('birthday-cake', 'birthdays'),
+('birthday-cake', 'gourmet-cakes'),
+('almond-croissant', 'artisan-bread'),
+('almond-croissant', 'exquisite-pastries'),
+('mini-quiche', 'exquisite-pastries'),
+('focaccia', 'artisan-bread'),
+('easter-cookies', 'cookies'),
+('easter-cookies', 'holiday-specialties'),
+('chocolate-mousse', 'luxury-desserts'),
+('strawberry-shortcake', 'gourmet-cakes'),
+('blueberry-cheesecake', 'luxury-desserts'),
+('chocolate-fudge-cake', 'gourmet-cakes'),
+('coconut-macaroon', 'cookies'),
+('peach-cobbler', 'tarts'),
+('mango-sorbet', 'frozen-treats'),
+('pistachio-ice-cream', 'frozen-treats'),
+('pineapple-upside-down-cake', 'gourmet-cakes'),
+('black-forest-cake', 'gourmet-cakes'),
+('lemon-cheesecake', 'luxury-desserts'),
+('peanut-butter-cup', 'luxury-desserts'),
+('raspberry-linzer', 'cookies'),
+('mocha-latte-cake', 'gourmet-cakes'),
+('peach-mango-pie', 'tarts'),
+('churros', 'exquisite-pastries'),
+('salted-caramel-brownie', 'luxury-desserts'),
+('hazelnut-donut', 'exquisite-pastries'),
+('berry-parfait', 'luxury-desserts'),
+('cherry-cheesecake-bar', 'luxury-desserts'),
+('pumpkin-roll', 'holiday-specialties'),
+('espresso-macarons', 'luxury-desserts'),
+('gingerbread-cookies', 'holiday-specialties'),
+('gingerbread-cookies', 'cookies'),
+('matcha-pound-cake', 'gourmet-cakes'),
+('peanut-butter-brownie', 'luxury-desserts'),
+('caramel-popcorn', 'holiday-specialties'),
+('apple-cinnamon-muffin', 'muffins'),
+('lavender-cookies', 'cookies'),
+('chocolate-chip-banana-muffin', 'muffins'),
+('tiramisu', 'luxury-desserts'),
+('chocolate-peppermint-bark', 'holiday-specialties');
+
+INSERT INTO product_reviews (product_id, user_id, rating, comment, created_at) VALUES
+('sourdough-loaf', 103, 5, 'I love using this loaf to make grilled cheese sandwiches; the crust toasts perfectly and the inside remains soft.', now()),
+('sourdough-loaf', 104, 4, 'This bread is excellent for dipping into soups like tomato or French onion.', now()),
+('sourdough-loaf', 105, 5, 'The tangy flavor complements savory spreads like hummus and tapenade.', now()),
+('sourdough-loaf', 106, 4, 'Great for morning toast with butter and jam, though a bit too dense for my liking.', now()),
+('sourdough-loaf', 107, 5, 'Perfect for making croutons for Caesar salad; the texture holds up well.', now()),
+('sourdough-loaf', 108, 5, 'We used it to make bread pudding, and it turned out fantastic.', now()),
+('sourdough-loaf', 109, 4, 'Ideal for hearty sandwiches like pastrami or turkey club.', now()),
+('sourdough-loaf', 110, 5, 'It pairs beautifully with cheese and wine for a charcuterie board.', now()),
+('sourdough-loaf', 111, 4, 'Good for avocado toast, but the crust was slightly harder than I prefer.', now()),
+('sourdough-loaf', 112, 5, 'I made garlic bread with this loaf, and it was a hit at our family dinner.', now()),
+
+('baguette', 103, 5, 'The baguette was perfect for slicing and serving with olive oil and balsamic vinegar.', now()),
+('baguette', 104, 4, 'I used it to make a classic French dip sandwich, and it worked well.', now()),
+('baguette', 105, 5, 'Ideal for bruschetta, topped with fresh tomatoes and basil.', now()),
+('baguette', 106, 4, 'Great for making crostini, but I found the crust a bit too crunchy.', now()),
+('baguette', 107, 5, 'We served this with cheese and charcuterie for a wine night, and everyone loved it.', now()),
+('baguette', 108, 5, 'I made garlic bread with this baguette, and it was a huge success.', now()),
+('baguette', 109, 4, 'Good for dipping into soup, but I wish it were a bit softer inside.', now()),
+('baguette', 110, 5, 'The perfect accompaniment for a seafood chowder.', now()),
+('baguette', 111, 4, 'Great for sandwiches, though the crust was slightly too hard for my preference.', now()),
+('baguette', 112, 5, 'Used it for a fondue night; it paired excellently with melted cheese.', now()),
+
+('croissant', 103, 5, 'Flaky and buttery, these croissants are amazing for breakfast with jam.', now()),
+('croissant', 104, 4, 'I enjoyed these with a cup of tea, though they were slightly richer than I expected.', now()),
+('croissant', 105, 5, 'Perfect for making ham and cheese croissants for a quick lunch.', now()),
+('croissant', 106, 5, 'Great as a base for almond croissants when filled with frangipane and baked again.', now()),
+('croissant', 107, 4, 'Delicious, but I prefer a slightly less buttery flavor.', now()),
+('croissant', 108, 5, 'Excellent when paired with a hot latte for a quick morning snack.', now()),
+('croissant', 109, 4, 'I used these to make a croissant pudding, and it turned out great.', now()),
+('croissant', 110, 5, 'Perfectly baked, and great with chocolate spread for a dessert treat.', now()),
+('croissant', 111, 4, 'Tasty, but I wish they were a bit bigger.', now()),
+('croissant', 112, 5, 'We used them for a brunch spread, and they were a huge hit.', now()),
+
+('chocolate-eclair', 103, 5, 'Perfect for dessert after dinner, rich and satisfying.', now()),
+('chocolate-eclair', 104, 4, 'Enjoyed these with coffee; the filling was smooth but a bit too sweet for me.', now()),
+('chocolate-eclair', 105, 5, 'I served these at a tea party, and everyone loved the decadent chocolate topping.', now()),
+('chocolate-eclair', 106, 4, 'Delicious, but the pastry was a bit too soft for my liking.', now()),
+('chocolate-eclair', 107, 5, 'Great as a centerpiece for a dessert platter at gatherings.', now()),
+('chocolate-eclair', 108, 5, 'Loved these as a late-night treat; the cream filling was perfect.', now()),
+('chocolate-eclair', 109, 4, 'Rich and tasty, but I prefer a slightly darker chocolate.', now()),
+('chocolate-eclair', 110, 5, 'The perfect dessert for special occasions; they look and taste amazing.', now()),
+('chocolate-eclair', 111, 4, 'Very good, but I wish the pastry had more crunch.', now()),
+('chocolate-eclair', 112, 5, 'We used these as a dessert option at a baby shower, and they were very popular.', now()),
+
+('vanilla-muffin', 103, 5, 'Great for breakfast on the go; the vanilla flavor was perfect.', now()),
+('vanilla-muffin', 104, 4, 'I enjoyed this with a cup of milk, though it was slightly sweet for my taste.', now()),
+('vanilla-muffin', 105, 5, 'Soft and fluffy, these muffins were perfect for a picnic snack.', now()),
+('vanilla-muffin', 106, 4, 'The flavor was good, but I found them a bit dry after a day.', now()),
+('vanilla-muffin', 107, 5, 'Perfect for tea time with friends; they were gone in minutes.', now()),
+('vanilla-muffin', 108, 5, 'I added some cream cheese frosting on top, and they turned into perfect mini cakes.', now()),
+('vanilla-muffin', 109, 4, 'Good flavor, but I wish they had a slightly more pronounced vanilla taste.', now()),
+('vanilla-muffin', 110, 5, 'Great for packing into lunchboxes for a sweet midday treat.', now()),
+('vanilla-muffin', 111, 4, 'Very tasty, but I prefer them warmed up a bit.', now()),
+('vanilla-muffin', 112, 5, 'Soft, moist, and perfect with my morning espresso.', now()),
+('birthday-cupcake', 103, 5, 'These cupcakes were perfect for my niece’s birthday party; the kids loved the colorful sprinkles.', now()),
+('birthday-cupcake', 104, 4, 'Great as a party treat, though they were a bit too sweet for my preference.', now()),
+('birthday-cupcake', 105, 5, 'Perfectly moist and festive, ideal for any celebration.', now()),
+('birthday-cupcake', 106, 5, 'We served these at a work celebration, and they were a hit with everyone.', now()),
+('birthday-cupcake', 107, 4, 'Good for parties, but I wish they had more frosting options.', now()),
+('birthday-cupcake', 108, 5, 'I loved how easy they were to serve; no mess and everyone enjoyed them.', now()),
+('birthday-cupcake', 109, 4, 'Fun and festive, but the frosting was a bit too rich for me.', now()),
+('birthday-cupcake', 110, 5, 'Great for kids’ parties and even as a quick dessert for adults.', now()),
+('birthday-cupcake', 111, 4, 'Tasty and festive, but I would prefer less sugar in the frosting.', now()),
+('birthday-cupcake', 112, 5, 'A fantastic centerpiece for our birthday dessert table, they looked adorable.', now()),
+
+('red-velvet-cake', 103, 5, 'Served this at a family dinner, and everyone loved the rich cream cheese frosting.', now()),
+('red-velvet-cake', 104, 4, 'The cake was moist and flavorful, but a bit too sweet for my taste.', now()),
+('red-velvet-cake', 105, 5, 'Perfect for anniversaries or special occasions, the presentation is stunning.', now()),
+('red-velvet-cake', 106, 5, 'I ordered this for a friend’s birthday, and they couldn’t stop raving about it.', now()),
+('red-velvet-cake', 107, 4, 'Delicious, though I would have liked a slightly tangier frosting.', now()),
+('red-velvet-cake', 108, 5, 'Perfectly paired with a glass of milk, rich and satisfying.', now()),
+('red-velvet-cake', 109, 5, 'We used this as a wedding cake alternative, and it was a big hit.', now()),
+('red-velvet-cake', 110, 4, 'Great flavor, but I wish the cake layers were a bit thicker.', now()),
+('red-velvet-cake', 111, 5, 'Ideal for celebrations; the bright red color makes it extra special.', now()),
+('red-velvet-cake', 112, 5, 'We served this at a Valentine’s Day event, and it was a perfect match.', now()),
+
+('chocolate-chip-cookie', 103, 5, 'Chewy and delicious, perfect for a midnight snack.', now()),
+('chocolate-chip-cookie', 104, 5, 'I paired these with ice cream to make cookie sandwiches, and they were fantastic.', now()),
+('chocolate-chip-cookie', 105, 4, 'Tasty, but I prefer a slightly crunchier texture.', now()),
+('chocolate-chip-cookie', 106, 5, 'Perfect with a glass of milk, just like homemade.', now()),
+('chocolate-chip-cookie', 107, 5, 'These cookies were a hit at a bake sale; they sold out quickly.', now()),
+('chocolate-chip-cookie', 108, 5, 'Great for movie nights; they’re soft and full of chocolate chunks.', now()),
+('chocolate-chip-cookie', 109, 4, 'Delicious, but I wish they had more chocolate chips.', now()),
+('chocolate-chip-cookie', 110, 5, 'Perfect for an afternoon snack; they’re just the right size.', now()),
+('chocolate-chip-cookie', 111, 4, 'Good flavor, but they could use a bit more butter for richness.', now()),
+('chocolate-chip-cookie', 112, 5, 'Great for sharing with friends; everyone loved them.', now()),
+
+('macarons', 103, 5, 'These macarons were perfect for a tea party; delicate and flavorful.', now()),
+('macarons', 104, 5, 'The variety of flavors was amazing; my favorite was the pistachio.', now()),
+('macarons', 105, 4, 'Beautifully presented, though I found some flavors a bit too sweet.', now()),
+('macarons', 106, 5, 'We used these as party favors, and they were a big hit with guests.', now()),
+('macarons', 107, 5, 'Delicious and perfect for gifting; the packaging was lovely.', now()),
+('macarons', 108, 4, 'Tasty, but the shells were slightly harder than I expected.', now()),
+('macarons', 109, 5, 'A great addition to a dessert table; they look and taste exquisite.', now()),
+('macarons', 110, 5, 'I paired these with champagne for a luxurious treat.', now()),
+('macarons', 111, 4, 'Very good, though I wish the filling were a bit creamier.', now()),
+('macarons', 112, 5, 'Perfect for special occasions like birthdays or anniversaries.', now()),
+
+('fruit-tart', 103, 5, 'The fresh fruit on this tart made it perfect for a summer dessert.', now()),
+('fruit-tart', 104, 4, 'Delicious, but the crust was slightly too hard for my liking.', now()),
+('fruit-tart', 105, 5, 'Ideal for serving at tea parties; it looks beautiful and tastes even better.', now()),
+('fruit-tart', 106, 5, 'We used this as a dessert at a family picnic, and it was a hit.', now()),
+('fruit-tart', 107, 4, 'Great flavor, but I would prefer a slightly sweeter glaze.', now()),
+('fruit-tart', 108, 5, 'Perfect for impressing guests at dinner parties.', now()),
+('fruit-tart', 109, 4, 'Tasty, but I wish there were more fruit toppings.', now()),
+('fruit-tart', 110, 5, 'A refreshing dessert that pairs well with a cup of coffee.', now()),
+('fruit-tart', 111, 5, 'Served this at a bridal shower, and everyone loved it.', now()),
+('fruit-tart', 112, 5, 'Beautifully presented, perfect for any formal event.', now()),
+
+('cherry-pie', 103, 5, 'We served this cherry pie at Thanksgiving, and it was a crowd favorite.', now()),
+('cherry-pie', 104, 4, 'The filling was flavorful, though I wish the crust was a bit flakier.', now()),
+('cherry-pie', 105, 5, 'Perfect for dessert with a scoop of vanilla ice cream.', now()),
+('cherry-pie', 106, 5, 'Great balance of sweet and tart flavors; ideal for holiday dinners.', now()),
+('cherry-pie', 107, 4, 'The filling was excellent, but the crust could have been a little softer.', now()),
+('cherry-pie', 108, 5, 'This pie was a hit at our family reunion; everyone went back for seconds.', now()),
+('cherry-pie', 109, 4, 'Good for afternoon tea, but a bit sweet for my preference.', now()),
+('cherry-pie', 110, 5, 'Best enjoyed warm with whipped cream; the flavor is incredible.', now()),
+('cherry-pie', 111, 5, 'We used this as part of a dessert buffet, and it stood out among the options.', now()),
+('cherry-pie', 112, 5, 'Great for potlucks; the tartness of the cherries is perfect.', now()),
+
+('pound-cake', 103, 5, 'The perfect base for strawberry shortcake; moist and rich.', now()),
+('pound-cake', 104, 4, 'Enjoyed with a cup of tea, though it was slightly heavy for my taste.', now()),
+('pound-cake', 105, 5, 'Great for serving with whipped cream and fresh fruit.', now()),
+('pound-cake', 106, 5, 'We served this at a brunch gathering, and it was a big hit.', now()),
+('pound-cake', 107, 4, 'The flavor was excellent, but I found it a bit dense for my liking.', now()),
+('pound-cake', 108, 5, 'Perfect for toasting and spreading with jam for breakfast.', now()),
+('pound-cake', 109, 4, 'Tasty on its own, but even better with a drizzle of lemon glaze.', now()),
+('pound-cake', 110, 5, 'This cake pairs wonderfully with a hot cup of coffee.', now()),
+('pound-cake', 111, 5, 'We used it as a dessert option at a wedding, and it was very well received.', now()),
+('pound-cake', 112, 5, 'Great for gifting during the holidays; the packaging was lovely.', now()),
+
+('lemon-bar', 103, 5, 'The perfect balance of tangy and sweet, great for a summer picnic.', now()),
+('lemon-bar', 104, 4, 'Tasty and refreshing, though the crust was a bit too thick for me.', now()),
+('lemon-bar', 105, 5, 'We served these at a bridal shower, and everyone asked for the recipe.', now()),
+('lemon-bar', 106, 5, 'A refreshing dessert that pairs wonderfully with iced tea.', now()),
+('lemon-bar', 107, 4, 'Delicious, but I would have liked a slightly stronger lemon flavor.', now()),
+('lemon-bar', 108, 5, 'Great for afternoon snacks; the tanginess wakes up your palate.', now()),
+('lemon-bar', 109, 4, 'Perfect for summer gatherings, though I found the crust a little dry.', now()),
+('lemon-bar', 110, 5, 'The best treat for lemon lovers; it’s both rich and light at the same time.', now()),
+('lemon-bar', 111, 5, 'We used these for a dessert platter at a fundraiser, and they were a hit.', now()),
+('lemon-bar', 112, 5, 'These bars make for a lovely dessert after a light dinner.', now()),
+
+('carrot-cake', 103, 5, 'Moist and flavorful, with just the right amount of spice; perfect for coffee breaks.', now()),
+('carrot-cake', 104, 4, 'Tasty, but I prefer my carrot cake with a bit more frosting.', now()),
+('carrot-cake', 105, 5, 'Great for afternoon tea, especially with the walnut topping.', now()),
+('carrot-cake', 106, 5, 'We served this at a family dinner, and everyone went for seconds.', now()),
+('carrot-cake', 107, 4, 'The cake was delicious, though I would have liked more raisins in it.', now()),
+('carrot-cake', 108, 5, 'Perfect for brunch gatherings; the cream cheese frosting is delightful.', now()),
+('carrot-cake', 109, 4, 'Great for special occasions, but a bit too sweet for my taste.', now()),
+('carrot-cake', 110, 5, 'The perfect combination of spice and sweetness; pairs well with black tea.', now()),
+('carrot-cake', 111, 5, 'We used this as a birthday cake for a family member who loves less traditional flavors.', now()),
+('carrot-cake', 112, 5, 'Served this at a holiday dinner, and it was a big success.', now()),
+
+('cinnamon-roll', 103, 5, 'Warm and gooey, perfect for a cozy Sunday breakfast.', now()),
+('cinnamon-roll', 104, 4, 'Delicious, but I wish there was a bit more cinnamon filling.', now()),
+('cinnamon-roll', 105, 5, 'Served these at a brunch gathering, and they were gone in minutes.', now()),
+('cinnamon-roll', 106, 5, 'The cream cheese glaze adds the perfect touch of sweetness.', now()),
+('cinnamon-roll', 107, 4, 'Great flavor, but I found the rolls a little dry when reheated.', now()),
+('cinnamon-roll', 108, 5, 'Perfect for sharing with friends over a cup of coffee.', now()),
+('cinnamon-roll', 109, 4, 'Tasty and indulgent, though I wish they were slightly bigger.', now()),
+('cinnamon-roll', 110, 5, 'A warm, comforting treat for chilly mornings.', now()),
+('cinnamon-roll', 111, 5, 'We served these at a holiday brunch, and everyone loved them.', now()),
+('cinnamon-roll', 112, 5, 'Perfect for satisfying a sweet craving; the texture is amazing.', now()),
+
+('pretzel', 103, 5, 'These pretzels were a great snack for movie night, paired perfectly with mustard.', now()),
+('pretzel', 104, 4, 'I enjoyed these with a beer, though I wish they were slightly saltier.', now()),
+('pretzel', 105, 5, 'Perfect for a light snack during a picnic; chewy and flavorful.', now()),
+('pretzel', 106, 5, 'Served these as an appetizer during a game night, and everyone loved them.', now()),
+('pretzel', 107, 4, 'Tasty and satisfying, but they were a bit dry when reheated.', now()),
+('pretzel', 108, 5, 'Great for dipping into cheese sauce, a wonderful treat for gatherings.', now()),
+('pretzel', 109, 4, 'Good for an afternoon snack, but I would prefer a softer texture.', now()),
+('pretzel', 110, 5, 'Perfectly salty and chewy, great with a side of marinara sauce.', now()),
+('pretzel', 111, 5, 'We served these at a party, and they disappeared quickly.', now()),
+('pretzel', 112, 5, 'A great addition to a charcuterie board for a casual get-together.', now()),
+
+('pumpkin-pie', 103, 5, 'The perfect dessert for Thanksgiving, with just the right amount of spice.', now()),
+('pumpkin-pie', 104, 4, 'Great flavor, but I prefer a slightly firmer filling.', now()),
+('pumpkin-pie', 105, 5, 'We served this with whipped cream at a fall dinner party, and it was a hit.', now()),
+('pumpkin-pie', 106, 5, 'Ideal for a cozy dessert on chilly evenings; pairs well with hot cocoa.', now()),
+('pumpkin-pie', 107, 4, 'Delicious, but I would have liked a slightly flakier crust.', now()),
+('pumpkin-pie', 108, 5, 'Great for sharing at potlucks; everyone loved the spiced flavor.', now()),
+('pumpkin-pie', 109, 4, 'Tasty, though I found it a little too sweet for my preference.', now()),
+('pumpkin-pie', 110, 5, 'A classic holiday dessert that pairs well with a scoop of vanilla ice cream.', now()),
+('pumpkin-pie', 111, 5, 'We served this at a Halloween party, and it was a big success.', now()),
+('pumpkin-pie', 112, 5, 'Rich, spiced, and comforting; perfect for autumn gatherings.', now()),
+
+('apple-strudel', 103, 5, 'Served warm with a scoop of vanilla ice cream, this strudel was amazing.', now()),
+('apple-strudel', 104, 4, 'Great for a quick dessert, though the pastry was a bit drier than I expected.', now()),
+('apple-strudel', 105, 5, 'Perfect for breakfast with a cup of coffee; the apple filling was delightful.', now()),
+('apple-strudel', 106, 5, 'We brought this to a potluck, and it was gone within minutes.', now()),
+('apple-strudel', 107, 4, 'The flavors were great, but I wish the pastry was slightly flakier.', now()),
+('apple-strudel', 108, 5, 'A comforting dessert for cold evenings, served with warm custard.', now()),
+('apple-strudel', 109, 4, 'Delicious, but I would have preferred more cinnamon in the filling.', now()),
+('apple-strudel', 110, 5, 'Great as a mid-morning snack; pairs well with herbal tea.', now()),
+('apple-strudel', 111, 5, 'We used this as a dessert at a family dinner, and everyone loved it.', now()),
+('apple-strudel', 112, 5, 'Perfectly spiced and balanced, an ideal treat for fall.', now()),
+
+('raspberry-tart', 103, 5, 'Beautifully presented and perfect for a summer dessert; the raspberries were fresh and vibrant.', now()),
+('raspberry-tart', 104, 4, 'Tasty, but I found the crust a bit harder than I prefer.', now()),
+('raspberry-tart', 105, 5, 'Great for a light dessert after dinner; the tartness of the raspberries is perfect.', now()),
+('raspberry-tart', 106, 5, 'We served this at a baby shower, and it was a hit with everyone.', now()),
+('raspberry-tart', 107, 4, 'Delicious, but I would have liked a slightly sweeter glaze.', now()),
+('raspberry-tart', 108, 5, 'A refreshing treat for summer picnics, especially with a dollop of whipped cream.', now()),
+('raspberry-tart', 109, 4, 'Tasty, though the filling could have been a bit thicker.', now()),
+('raspberry-tart', 110, 5, 'Perfect for pairing with a chilled glass of white wine.', now()),
+('raspberry-tart', 111, 5, 'We served this at a brunch event, and it looked stunning on the table.', now()),
+('raspberry-tart', 112, 5, 'A delightful dessert option that works well for both casual and formal settings.', now()),
+
+('banana-bread', 103, 5, 'Moist and flavorful, this banana bread is perfect for breakfast with coffee.', now()),
+('banana-bread', 104, 4, 'Delicious, but I wish it had more banana chunks.', now()),
+('banana-bread', 105, 5, 'We toasted slices of this bread and spread them with peanut butter for a quick snack.', now()),
+('banana-bread', 106, 5, 'Ideal for afternoon tea; the texture was perfect.', now()),
+('banana-bread', 107, 4, 'The flavor was great, but I found it slightly dense for my preference.', now()),
+('banana-bread', 108, 5, 'Perfect for gifting; the aroma alone is irresistible.', now()),
+('banana-bread', 109, 4, 'Tasty and moist, but I would have liked a bit more sweetness.', now()),
+('banana-bread', 110, 5, 'Great for serving with cream cheese or butter for a comforting snack.', now()),
+('banana-bread', 111, 5, 'We served this at a breakfast meeting, and everyone loved it.', now()),
+('banana-bread', 112, 5, 'Rich, moist, and satisfying; perfect for any time of the day.', now()),
+
+('vegan-brownie', 103, 5, 'Rich and fudgy, these brownies are perfect for a guilt-free dessert.', now()),
+('vegan-brownie', 104, 4, 'Delicious, but I found them a bit denser than I prefer.', now()),
+('vegan-brownie', 105, 5, 'We served these at a vegan potluck, and everyone loved them.', now()),
+('vegan-brownie', 106, 5, 'Perfect for pairing with almond milk; you wouldn’t guess they’re vegan.', now()),
+('vegan-brownie', 107, 4, 'Great flavor, but the texture was a bit too soft for my liking.', now()),
+('vegan-brownie', 108, 5, 'Ideal for satisfying a chocolate craving without feeling heavy.', now()),
+('vegan-brownie', 109, 4, 'Tasty, but I would have preferred a slightly darker chocolate flavor.', now()),
+('vegan-brownie', 110, 5, 'These brownies are perfect for sharing with friends who have dietary restrictions.', now()),
+('vegan-brownie', 111, 5, 'We served these at a small gathering, and they were very popular.', now()),
+('vegan-brownie', 112, 5, 'A rich and satisfying treat that pairs well with a hot cup of coffee.', now()),
+
+('gluten-free-cupcake', 103, 5, 'These cupcakes were so moist and delicious that no one guessed they were gluten-free.', now()),
+('gluten-free-cupcake', 104, 4, 'Tasty and soft, though the frosting was slightly too sweet for me.', now()),
+('gluten-free-cupcake', 105, 5, 'Perfect for serving at events where dietary restrictions are a concern.', now()),
+('gluten-free-cupcake', 106, 5, 'We brought these to a family gathering, and even non-gluten-free folks loved them.', now()),
+('gluten-free-cupcake', 107, 4, 'Great flavor, but they were a bit crumbly for my liking.', now()),
+('gluten-free-cupcake', 108, 5, 'Perfect for pairing with tea or coffee; light and satisfying.', now()),
+('gluten-free-cupcake', 109, 4, 'Good for gluten-free treats, but I wish they had a slightly stronger vanilla flavor.', now()),
+('gluten-free-cupcake', 110, 5, 'These cupcakes were ideal for a party where some guests had dietary restrictions.', now()),
+('gluten-free-cupcake', 111, 5, 'A wonderful treat that works well for both casual and formal occasions.', now()),
+('gluten-free-cupcake', 112, 5, 'We served these at a wedding with gluten-free options, and they were a big hit.', now()),
+
+('almond-croissant', 103, 5, 'Rich and buttery, with a delightful almond paste filling; great for breakfast.', now()),
+('almond-croissant', 104, 4, 'Delicious, but I found the filling slightly too sweet for my taste.', now()),
+('almond-croissant', 105, 5, 'Perfect with coffee or tea, especially for a mid-morning snack.', now()),
+('almond-croissant', 106, 5, 'We used these as part of a brunch spread, and they were very popular.', now()),
+('almond-croissant', 107, 4, 'The almond flavor was excellent, though I wish the pastry was flakier.', now()),
+('almond-croissant', 108, 5, 'A luxurious treat for a Sunday morning; they feel indulgent.', now()),
+('almond-croissant', 109, 4, 'Good for breakfast, but a bit heavier than I prefer.', now()),
+('almond-croissant', 110, 5, 'Served these with a side of fresh fruit, and they were amazing.', now()),
+('almond-croissant', 111, 5, 'Great for gifting to friends who love decadent pastries.', now()),
+('almond-croissant', 112, 5, 'We included these in a holiday breakfast basket, and they were well-received.', now()),
+
+('mini-quiche', 103, 5, 'These mini quiches were perfect for a brunch gathering; everyone loved the savory flavors.', now()),
+('mini-quiche', 104, 4, 'Great flavor, but they were a bit dry when reheated.', now()),
+('mini-quiche', 105, 5, 'We served these as appetizers at a dinner party, and they were a big hit.', now()),
+('mini-quiche', 106, 5, 'Perfect for quick breakfasts; they’re convenient and filling.', now()),
+('mini-quiche', 107, 4, 'Tasty and satisfying, though I wish they had more cheese.', now()),
+('mini-quiche', 108, 5, 'Great for snacks during movie nights; they’re small and easy to eat.', now()),
+('mini-quiche', 109, 4, 'Good flavor, but I would have liked a slightly fluffier texture.', now()),
+('mini-quiche', 110, 5, 'Perfect for serving at cocktail parties alongside other finger foods.', now()),
+('mini-quiche', 111, 5, 'We used these for a picnic lunch, and they stayed fresh and delicious.', now()),
+('mini-quiche', 112, 5, 'A versatile dish that works well for any meal or event.', now()),
+
+('focaccia', 103, 5, 'Soft and flavorful, this focaccia is perfect for dipping in olive oil and balsamic.', now()),
+('focaccia', 104, 4, 'Tasty, though I found it a bit too salty for my liking.', now()),
+('focaccia', 105, 5, 'Great for making sandwiches; the rosemary flavor is excellent.', now()),
+('focaccia', 106, 5, 'We served this alongside pasta, and it paired beautifully.', now()),
+('focaccia', 107, 4, 'Delicious, but I wish it was slightly thicker.', now()),
+('focaccia', 108, 5, 'Perfect for serving with soups and stews; it soaks up the broth nicely.', now()),
+('focaccia', 109, 4, 'Good as a snack, but I prefer a less salty version.', now()),
+('focaccia', 110, 5, 'A great addition to charcuterie boards; it pairs well with cheese and meats.', now()),
+('focaccia', 111, 5, 'We served this at a dinner party, and everyone complimented the flavor.', now()),
+('focaccia', 112, 5, 'A versatile bread that’s ideal for both casual and formal meals.', now()),
+
+('easter-cookies', 103, 5, 'Fun to decorate with the kids, and the cookies were delicious.', now()),
+('easter-cookies', 104, 4, 'Tasty and festive, though I found them slightly too sweet.', now()),
+('easter-cookies', 105, 5, 'Perfect for Easter celebrations; the colorful designs were a hit.', now()),
+('easter-cookies', 106, 5, 'We used these as part of an Easter gift basket, and they were very well received.', now()),
+('easter-cookies', 107, 4, 'Great flavor, but I wish they were a bit softer.', now()),
+('easter-cookies', 108, 5, 'Perfect for serving with tea during springtime gatherings.', now()),
+('easter-cookies', 109, 4, 'Good for holiday treats, but I prefer a more buttery flavor.', now()),
+('easter-cookies', 110, 5, 'Fun and delicious; they were a hit with both kids and adults.', now()),
+('easter-cookies', 111, 5, 'We brought these to an Easter brunch, and they looked great on the dessert table.', now()),
+('easter-cookies', 112, 5, 'A festive and tasty addition to any Easter celebration.', now());

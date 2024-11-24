@@ -1,7 +1,7 @@
 import { db } from "@/db";
 import { productsTable } from "@/db/schema";
 import { Message, User } from "@/types";
-import { eq, inArray, like } from "drizzle-orm";
+import { and, eq, gt, inArray, like, SQL } from "drizzle-orm";
 import OpenAI from "openai";
 import { ChatCompletionMessageParam } from "openai/resources/index.mjs";
 import { outdent } from "outdent";
@@ -44,22 +44,52 @@ export class Agent {
   constructor() {
     this.tools = [
       {
-        name: "search_product",
-        description: "Search for a product using its name",
+        name: "list_products",
+        description:
+          "List products available in the store. Will return 10 products at a time. Use the offset parameter to paginate.",
         parameters: {
           type: "object",
           properties: {
             query: {
-              type: "string",
+              type: ["string", "null"],
+              description: "Search query to filter products, if provided",
+            },
+            offset: {
+              type: "integer",
+              description: "Offset for pagination",
+            },
+            featured: {
+              type: ["boolean", "null"],
+              description: "Filter by featured products",
+            },
+            discounted: {
+              type: ["boolean", "null"],
+              description: "Filter by discounted products",
             },
           },
-          required: ["query"],
+          required: ["query", "offset", "featured", "discounted"],
           additionalProperties: false,
         },
         strict: true,
-        execute({ query }) {
+        execute({ query, offset, featured, discounted }) {
+          const conds: SQL[] = [];
+
+          if (query) {
+            conds.push(like(productsTable.name, `%${query}%`));
+          }
+
+          if (featured !== null) {
+            conds.push(eq(productsTable.featured, featured));
+          }
+
+          if (discounted !== null) {
+            conds.push(gt(productsTable.discount_percent, "0"));
+          }
+
           return db.query.productsTable.findMany({
-            where: like(productsTable.name, `%${query}%`),
+            ...(conds.length > 0 && {
+              where: conds.length > 1 ? and(...conds) : conds[0],
+            }),
             columns: {
               id: true,
               name: true,
@@ -70,7 +100,11 @@ export class Agent {
               serving_suggestions: true,
               storage_instructions: true,
               price: true,
+              discount_percent: true,
+              featured: true,
             },
+            offset,
+            limit: 10,
           });
         },
       },
@@ -99,8 +133,8 @@ export class Agent {
             limit: 100,
           });
 
-          // get first 20 results
-          const result = res.slice(0, 20);
+          // get first 50 results
+          const result = res.slice(0, 50);
           const products = await db.query.productsTable.findMany({
             where: inArray(
               productsTable.id,
@@ -118,6 +152,14 @@ export class Agent {
               price: true,
             },
           });
+
+          const productInfoCount = result.filter(
+            (r) => r.content_type === "product_info",
+          ).length;
+          const reviewCount = result.length - productInfoCount;
+          console.log(
+            `Product info count: ${productInfoCount}, Review count: ${reviewCount}`,
+          );
 
           return result.map((r) => {
             return {
@@ -155,6 +197,8 @@ export class Agent {
               serving_suggestions: true,
               storage_instructions: true,
               price: true,
+              discount_percent: true,
+              featured: true,
             },
           });
 

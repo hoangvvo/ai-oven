@@ -124,7 +124,7 @@ export function CartModal() {
       <Button onClick={openCart} variant="secondary" aria-label="My Cart">
         <ShoppingCartIcon className="w-4 h-4" />
         <span className="hidden md:block">
-          My Cart {totalQuantities ? `(${totalQuantities})` : ""}
+          My Cart {cart.items.length ? `(${cart.items.length})` : ""}
         </span>
       </Button>
       <Transition show={isOpen}>

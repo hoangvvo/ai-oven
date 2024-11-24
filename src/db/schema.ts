@@ -48,7 +48,7 @@ export const productsTable = pgTable("products", {
   serving_suggestions: text(),
   storage_instructions: text(),
   price: decimal({ precision: 10, scale: 2 }).notNull(),
-  discount_percent: decimal({ precision: 5, scale: 2 }),
+  discount_percent: decimal({ precision: 5, scale: 2 }).notNull().default("0"),
   image_urls: varchar({ length: 255 }).array().notNull(),
   stock_quantity: integer().notNull(),
   featured: boolean().notNull().default(false),

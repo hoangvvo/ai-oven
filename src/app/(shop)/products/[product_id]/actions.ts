@@ -2,6 +2,7 @@
 
 import { db } from "@/db";
 import { productReviewsTable, productsTable } from "@/db/schema";
+import { embedReviews } from "@/lib/embedder";
 import rateLimit from "@/lib/rate-limit";
 import { getSession } from "@/lib/session";
 import { and, eq } from "drizzle-orm";
@@ -38,12 +39,17 @@ export async function createReviews(formData: FormData) {
     throw new Error("Product not found");
   }
 
-  await db.insert(productReviewsTable).values({
-    product_id: data.product_id,
-    rating: data.rating,
-    comment: data.comment,
-    user_id: session.user.id,
-  });
+  const reviews = await db
+    .insert(productReviewsTable)
+    .values({
+      product_id: data.product_id,
+      rating: data.rating,
+      comment: data.comment,
+      user_id: session.user.id,
+    })
+    .returning();
+
+  void embedReviews(reviews, product);
 
   revalidatePath(`/products/${data.product_id}`);
 }

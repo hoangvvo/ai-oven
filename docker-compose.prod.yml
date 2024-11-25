@@ -71,7 +71,7 @@ services:
   attu:
     image: zilliz/attu:v2.4.11
     environment:
-      MILVUS_URL: milvus:19530
+      MILVUS_URL: milvus-standalone:19530
     ports:
       - "8002:3000"
 

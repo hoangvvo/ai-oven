@@ -5,12 +5,9 @@ import { and, eq, gt, inArray, like, or, SQL } from "drizzle-orm";
 import OpenAI from "openai";
 import { ChatCompletionMessageParam } from "openai/resources/index.mjs";
 import { outdent } from "outdent";
+import { openai } from "./ai";
 import { embedder } from "./embedder";
 import { vectorStore } from "./vector-store";
-
-const client = new OpenAI({
-  apiKey: process.env["OPENAI_API_KEY"],
-});
 
 const systemPrompt = outdent`
   You are the Chef of AI Oven, a bakery e-commerce website. Your personality is friendly, cheerful, and helpful.
@@ -279,7 +276,7 @@ export class Agent {
 
     let response: string | undefined;
     while (!response) {
-      const completion = await client.chat.completions.create({
+      const completion = await openai.chat.completions.create({
         model: "gpt-4o-2024-08-06",
         messages,
         tools: this.tools.map((tool) => ({

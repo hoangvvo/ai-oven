@@ -1,17 +1,13 @@
 import { ProductEntity } from "@/db/schema";
 import { Product, ProductDataVectorEntity, ProductReview } from "@/types";
-import OpenAI from "openai";
 import outdent from "outdent";
-
-const client = new OpenAI({
-  apiKey: process.env["OPENAI_API_KEY"], // This is the default and can be omitted
-});
+import { openai } from "./ai";
 
 class Embedder {
   constructor() {}
 
   async embed(texts: string[]) {
-    const res = await client.embeddings.create({
+    const res = await openai.embeddings.create({
       input: texts,
       model: "text-embedding-3-small",
     });

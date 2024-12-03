@@ -13,7 +13,7 @@ class Milvus {
 
   constructor() {
     this.client = new MilvusClient({
-      address: process.env.MILVUS_HOST as string,
+      address: process.env.MILVUS_HOST || "milvus-host",
       token: process.env.MILVUS_TOKEN as string,
       database: "aioven",
     });
